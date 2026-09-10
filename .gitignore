@@ -1,0 +1,11 @@
+# capturas geradas pelos testes
+testes/capturas/
+# prévia gerada pela ferramenta
+ferramentas/reciclalito-previa.html
+# lixo de sistema e de editor
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
+.vscode/
+.idea/

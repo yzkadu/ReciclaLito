@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ReciclaLito</title>
+<meta name="description" content="Guia de descarte correto de resíduos e segurança no manuseio de recicláveis. Funciona sem internet.">
+<meta name="theme-color" content="#FCD930">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icones/apple-touch-icon.png">
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+<a class="pular" href="#principal">Pular para o conteúdo</a>
+
+<header class="topo">
+  <button class="voltar" id="voltar" hidden aria-label="Voltar">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4 7 12l8 8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>Voltar</span>
+  </button>
+  <p class="marca" id="marca">Recicla<span>Lito</span></p>
+</header>
+
+<main id="principal" tabindex="-1"></main>
+
+<div class="instalar" id="instalar" hidden>
+  <p>Instale para usar sem internet.</p>
+  <button id="btInstalar">Instalar</button>
+  <button id="btInstalarNao" class="fantasma" aria-label="Dispensar o convite">&times;</button>
+</div>
+
+<script src="conteudo.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

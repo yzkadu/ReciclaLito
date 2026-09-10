@@ -1,0 +1,17 @@
+{
+  "name": "ReciclaLito",
+  "short_name": "ReciclaLito",
+  "description": "Guia de descarte correto de resíduos e segurança no manuseio de recicláveis. Funciona sem internet.",
+  "lang": "pt-BR",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FCD930",
+  "theme_color": "#FCD930",
+  "icons": [
+    { "src": "icones/icone-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icones/icone-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icones/icone-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
