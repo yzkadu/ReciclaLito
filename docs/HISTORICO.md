@@ -177,6 +177,18 @@ confiança que o "sem cadastro" comprou.
 
 ---
 
+## Publicação
+
+Repositório git inicializado e enviado para o GitHub (`yzkadu/ReciclaLito`), com
+GitHub Pages ativado a partir da branch `main`, pasta raiz. Endereço:
+`https://yzkadu.github.io/ReciclaLito/`. Conferido no ar logo após a ativação.
+
+Escolhido GitHub Pages em vez de Vercel, conforme a ressalva do `README.md`: o
+plano gratuito da Vercel (Hobby) proíbe uso comercial, e o app roda a operação da
+Papelito.
+
+---
+
 ## Pendências
 
 - [ ] Revisão do bloco `emergencia` por profissional de saúde. **Bloqueia divulgação.**
