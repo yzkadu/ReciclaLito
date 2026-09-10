@@ -328,20 +328,35 @@ const CONTEUDO = {
      MÓDULO 3 — INTEGRAÇÃO DA EQUIPE
      Trilha para quem está começando. Cada etapa aponta para
      um conteúdo que já existe nos módulos 1 e 2.
+
+     Para acrescentar uma etapa, copie um bloco { id, titulo, texto }
+     inteiro, cole antes da etapa "Verificação final" e mude o
+     conteúdo. O 'id' precisa ser diferente dos que já existem.
+     'ver' é opcional: aponta para a ficha de um material ou risco
+     (mesmo formato usado em 'itens'). A quantidade de etapas é
+     livre — o app conta sozinho, não precisa mexer em mais nada.
+
+     Depois de acrescentar uma etapa, considere acrescentar também
+     uma pergunta correspondente em 'perguntas' logo abaixo, para
+     que a verificação final cubra o assunto novo.
      ---------------------------------------------------------- */
   trilha: [
     { id: 't1', titulo: 'Por que separar resíduo',
-      texto: 'Material separado na origem chega limpo na cooperativa e vale mais. Material misturado se contamina: um papelão molhado de óleo deixa de ser reciclável e vira rejeito. Separar bem é o que transforma resíduo em renda para quem trabalha com ele.' },
+      texto: 'Material separado na origem chega limpo na cooperativa e vale mais. Material misturado se contamina: um papelão molhado de óleo deixa de ser reciclável e vira rejeito. Separar bem é o que transforma resíduo em renda para quem trabalha com ele. Também é o que evita acidente: material revirado às pressas, sem saber o que tem dentro do saco, é a situação em que mais se corta a mão ou se espeta em agulha escondida. Cada minuto gasto separando na origem é um minuto a menos catando depois, no meio do lixo misturado.' },
     { id: 't2', titulo: 'As cores da coleta seletiva',
-      texto: 'O código de cores é nacional e está na Resolução CONAMA 275. Azul é papel, vermelho é plástico, verde é vidro, amarelo é metal, laranja é resíduo perigoso, marrom é orgânico e cinza é rejeito. Quem conhece as cores acha o lugar certo sem precisar perguntar. Uma coisa importante: o óleo de cozinha não tem cor no código. Ele não é orgânico, não vai em lixeira nenhuma e só entra em ponto de coleta próprio. No app ele aparece de fundo claro justamente para não ser confundido com o marrom.' },
+      texto: 'O código de cores é nacional e está na Resolução CONAMA 275. Azul é papel, vermelho é plástico, verde é vidro, amarelo é metal, laranja é resíduo perigoso, marrom é orgânico e cinza é rejeito — o que não entra em nenhuma das outras categorias e vai para o lixo comum mesmo. Quem conhece as cores acha o lugar certo sem precisar perguntar, na rua e nos módulos deste app. Uma coisa importante: o óleo de cozinha não tem cor no código. Ele não é orgânico, não vai em lixeira nenhuma e só entra em ponto de coleta próprio. No app ele aparece de fundo claro justamente para não ser confundido com o marrom.' },
     { id: 't3', titulo: 'Papel e papelão na prática', ver: { modulo: 'materiais', id: 'papel' },
-      texto: 'É o material de maior volume no dia a dia. Seco e desmontado ocupa menos espaço e rende mais por viagem.' },
-    { id: 't4', titulo: 'Eletrônicos: riscos e cuidados', ver: { modulo: 'riscos', id: 'placas' },
-      texto: 'Eletrônico não é lixo comum. Tem metal pesado dentro e exige luva, cuidado no transporte e ponto de entrega específico.' },
-    { id: 't5', titulo: 'Pilhas, lâmpadas e óleo', ver: { modulo: 'riscos', id: 'lampadas' },
-      texto: 'São os três casos em que o descarte errado causa dano imediato: bateria que pega fogo, lâmpada que solta mercúrio e óleo que contamina a água.' },
-    { id: 't6', titulo: 'Verificação final',
-      texto: 'Seis perguntas rápidas para confirmar o que você viu.' }
+      texto: 'É o material de maior volume no dia a dia. Seco e desmontado ocupa menos espaço e rende mais por viagem: desmonte as caixas, tire fita adesiva e grampo grande antes de amarrar o fardo. Papel molhado ou engordurado não tem conserto, vira rejeito na hora. Papel higiênico, guardanapo sujo, papel plastificado e fotografia também não entram — parecem papel, mas o processo de reciclagem não aceita.' },
+    { id: 't4', titulo: 'Vidro e metal na prática', ver: { modulo: 'materiais', id: 'vidro' },
+      texto: 'Vidro mantém-se inteiro sempre que der, enxaguado e embrulhado em papelão grosso, com "vidro" escrito por fora — caco corta luva fina, e o aviso protege quem for manusear depois. Espelho, lâmpada, cerâmica e vidro de box não entram junto com vidro comum, mesmo parecendo o mesmo material. Metal rende mais por quilo do que qualquer outro material do dia a dia: lata de alimento enxaguada, tampa guardada junto e latinha de alumínio amassada dão o melhor retorno do galpão. A borda de lata recém-aberta corta fácil — dobrar a tampa para dentro antes de guardar evita boa parte dos cortes.' },
+    { id: 't5', titulo: 'Eletrônicos: riscos e cuidados', ver: { modulo: 'riscos', id: 'placas' },
+      texto: 'Eletrônico não é lixo comum. Tem metal pesado dentro — chumbo, mercúrio e cádmio — e exige luva, cuidado no transporte e ponto de entrega específico. Separe do resto assim que perceber que é eletrônico, sem abrir nem quebrar o aparelho; tire a bateria só se ela sair com a mão, sem forçar. O valor está no cobre e nas placas, não na carcaça de plástico, então não compensa arriscar a mão para render mais rápido. Ao manusear placa de circuito, segure pelas laterais e lave bem as mãos antes de comer, beber ou fumar.' },
+    { id: 't6', titulo: 'Cabos e fios: nunca queimar', ver: { modulo: 'riscos', id: 'cabos' },
+      texto: 'Fio e cabo têm cobre por dentro e plástico ou retardante de chama por fora. O jeito certo de separar os dois é descascar com alicate ou descascador — é mais seguro e o cobre limpo vale mais na venda. Queimar o fio para tirar o plástico continua sendo um erro que aparece de vez em quando: a fumaça solta dioxina, que faz mal ao pulmão e é cancerígena, e o cobre queimado ainda sai valendo menos. Cobre limpo vai direto para o ferro-velho ou para a cooperativa.' },
+    { id: 't7', titulo: 'Pilhas, lâmpadas e óleo', ver: { modulo: 'riscos', id: 'lampadas' },
+      texto: 'São os três casos em que o descarte errado causa dano imediato: bateria que pega fogo, lâmpada que solta mercúrio e óleo que contamina a água. Bateria inchada, quente ou vazando isola-se longe de papel e plástico, com os polos protegidos por fita — nunca se perfura nem se queima. Lâmpada fluorescente quebrada pede o oposto do instinto: não varrer nem aspirar, porque isso espalha o pó de mercúrio; areja-se o local por uns 15 minutos e recolhe-se com papelão rígido e luva. Óleo de cozinha usado vai em garrafa PET bem fechada — um litro dele jogado na pia contamina milhares de litros de água.' },
+    { id: 't8', titulo: 'Verificação final',
+      texto: 'Perguntas rápidas para confirmar o que você viu.' }
   ],
 
   /* Perguntas da verificação final do módulo 3 */
@@ -357,7 +372,11 @@ const CONTEUDO = {
     { p: 'Onde entra o óleo de cozinha usado?',
       opcoes: ['Na pia com bastante água', 'Em garrafa PET fechada, no ponto de coleta'], certa: 1 },
     { p: 'Bateria de celular inchada deve ser:',
-      opcoes: ['Furada para esvaziar', 'Isolada longe de papel e levada ao ponto de coleta', 'Jogada no lixo comum'], certa: 1 }
+      opcoes: ['Furada para esvaziar', 'Isolada longe de papel e levada ao ponto de coleta', 'Jogada no lixo comum'], certa: 1 },
+    { p: 'Um espelho quebrado pode ir junto com o vidro comum?',
+      opcoes: ['Sim, é o mesmo material', 'Não, vai separado'], certa: 1 },
+    { p: 'Por que não se deve queimar fio para tirar o cobre?',
+      opcoes: ['Demora mais que descascar', 'Solta fumaça que faz mal e ainda desvaloriza o cobre', 'Não faz diferença no preço'], certa: 1 }
   ],
 
   /* ----------------------------------------------------------

@@ -73,6 +73,20 @@ explica o motivo para quem for tentado a reverter.
 Efeito colateral aceito: editando só o `conteudo.js`, a mudança aparece no **segundo**
 acesso de quem já tem o app. Trocando a `VERSAO`, aparece já no primeiro.
 
+### A verificação final tinha o id `'t6'` escrito direto no `app.js`
+
+`telaEtapa()` decidia mostrar a verificação com `if (id === 't6')`, e `responder()`
+gravava o progresso em `p.t6`. Funcionava enquanto a trilha tivesse exatamente seis
+etapas e a última se chamasse `t6` — mas o `LEIA-ME.md` promete que dá para
+acrescentar etapa só editando `conteudo.js`, sem tocar em código. Ao acrescentar a
+sétima e oitava etapa (ver "Trilha maior", abaixo) isso ficou explícito: a
+verificação parou de abrir.
+
+Os dois pontos agora usam a última posição de `C.trilha` em vez do id fixo:
+`if (id === C.trilha[C.trilha.length - 1].id)`. A verificação continua sendo,
+por convenção, a última etapa da lista — só deixou de depender de quantas etapas
+existem antes dela.
+
 ---
 
 ## Acréscimos
@@ -131,6 +145,40 @@ mapa e botão de ligar.
 Impede a Vercel de guardar o `sw.js` em cache. Sem isso o servidor entrega o service
 worker antigo por horas e trocar a `VERSAO` não adianta: publica-se a correção e
 ninguém recebe.
+
+### Trilha maior, com verificação mais completa
+
+O módulo 3 tinha seis etapas curtas. A pedido, os textos das cinco etapas de
+conteúdo ficaram mais completos (o texto de cada uma passou a puxar mais detalhe
+do que já existe nos módulos de materiais e riscos, sem inventar informação nova),
+e entraram duas etapas que faltavam:
+
+- **Vidro e metal na prática** — cuidado com caco, o que não entra junto com vidro
+  comum, e por que metal é o material que mais rende por quilo.
+- **Cabos e fios: nunca queimar** — por que descascar com alicate em vez de queimar,
+  e o porquê (a fumaça solta dioxina e o cobre queimado ainda vale menos).
+
+A verificação final ganhou uma pergunta para cada etapa nova, foi de 6 para 8
+perguntas. O comentário no topo do bloco `trilha`, em `conteudo.js`, agora explica
+como acrescentar etapa: copiar um bloco `{ id, titulo, texto }`, colar antes da
+"Verificação final" e usar um `id` novo. Não precisa mexer em mais nada — o
+`app.js` conta as etapas sozinho (ver a correção do `t6` fixo, acima).
+
+**O que ficou de fora, por ora: jogo entre departamentos.** Foi cogitado um modo de
+disputa entre equipes/departamentos, além do quiz de verificação que já existe.
+Duas coisas pesam contra:
+
+1. O projeto já tinha decidido contra isso — ver "Pontos, medalhas e ranking", em
+   *O que não foi feito, e por quê*, abaixo: gamificar treinamento de trabalhador
+   adulto tende a soar como deboche.
+2. Tecnicamente exigiria saber **quem** é de qual equipe e **onde** guardar o placar
+   de cada uma — ou seja, cadastro e um lugar central para os dados, o que fura a
+   decisão "sem cadastro, sem coleta de dado pessoal" que hoje mantém o app fora da
+   LGPD (ver `CLAUDE.md`).
+
+Não foi implementado. Se a coordenação decidir que quer mesmo assim, é decisão de
+projeto — não de quem só está editando `conteudo.js` — e vale revisitar com calma
+os dois pontos acima antes de começar.
 
 ---
 

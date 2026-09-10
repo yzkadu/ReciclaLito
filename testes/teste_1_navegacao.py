@@ -81,7 +81,7 @@ with sync_playwright() as p:
     posicoes = set()
     for _ in range(12):
         pg.goto(BASE + "#inicio", wait_until="domcontentloaded")
-        pg.goto(BASE + "#etapa/t6", wait_until="domcontentloaded")
+        pg.goto(BASE + "#etapa/t8", wait_until="domcontentloaded")
         pg.wait_for_selector(".opcao")
         ops = pg.locator(".opcao").all_inner_texts()
         posicoes.add(ops.index("Azul"))
@@ -89,14 +89,16 @@ with sync_playwright() as p:
 
     # ---------- COMPROVANTE HONESTO ----------
     pg.evaluate("localStorage.clear()")
-    pg.goto(BASE + "#etapa/t6", wait_until="networkidle")
-    for i in range(6):
+    pg.goto(BASE + "#etapa/t8", wait_until="networkidle")
+    for i in range(8):
         certa = pg.locator('.opcao').nth(0)
         # acha a opção certa de verdade pelo texto
         gabarito = ["Azul", "Descascar com alicate", "Não, vira rejeito",
                     "Arejar o lugar e recolher com luva e papelão",
                     "Em garrafa PET fechada, no ponto de coleta",
-                    "Isolada longe de papel e levada ao ponto de coleta"][i]
+                    "Isolada longe de papel e levada ao ponto de coleta",
+                    "Não, vai separado",
+                    "Solta fumaça que faz mal e ainda desvaloriza o cobre"][i]
         pg.get_by_role("button", name=gabarito, exact=True).click()
         pg.wait_for_timeout(120)
         pg.locator("section.pergunta button.acao").click()
@@ -104,8 +106,8 @@ with sync_playwright() as p:
 
     texto = pg.inner_text("main").upper()
     v("VERIFICAÇÃO FEITA" in texto, "comprovante NÃO mente dizendo trilha concluída")
-    v("6 DE 6" in texto, "comprovante mostra o placar certo")
-    v("FALTAM 5 ETAPAS" in texto, "comprovante avisa quantas etapas faltam")
+    v("8 DE 8" in texto, "comprovante mostra o placar certo")
+    v("FALTAM 7 ETAPAS" in texto, "comprovante avisa quantas etapas faltam")
     pg.screenshot(path=os.path.join(CAP,"comprovante-parcial.png"), full_page=True)
 
     # nome persiste
@@ -113,10 +115,10 @@ with sync_playwright() as p:
     pg.goto(BASE + "#inicio", wait_until="networkidle")
     pg.goto(BASE + "#concluido", wait_until="networkidle")
     v(pg.input_value("#nomePessoa") == "Maria da Silva", "nome do comprovante fica salvo")
-    v("6 DE 6" in pg.inner_text("main").upper(), "placar sobrevive ao recarregar a página")
+    v("8 DE 8" in pg.inner_text("main").upper(), "placar sobrevive ao recarregar a página")
 
     # trilha completa -> comprovante completo
-    pg.evaluate("localStorage.setItem('reciclalito.trilha', JSON.stringify({t1:1,t2:1,t3:1,t4:1,t5:1,t6:1,acertos:5,total:6,data:'08/09/2026',nome:'Maria da Silva'}))")
+    pg.evaluate("localStorage.setItem('reciclalito.trilha', JSON.stringify({t1:1,t2:1,t3:1,t4:1,t5:1,t6:1,t7:1,t8:1,acertos:8,total:8,data:'08/09/2026',nome:'Maria da Silva'}))")
     pg.goto(BASE + "#inicio", wait_until="networkidle")
     pg.goto(BASE + "#concluido", wait_until="networkidle")
     v("TRILHA CONCLUÍDA" in pg.inner_text("main").upper(), "trilha completa mostra comprovante cheio")

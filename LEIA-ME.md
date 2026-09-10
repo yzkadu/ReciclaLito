@@ -138,6 +138,27 @@ piora a situação).
 > posto que atende a cooperativa ler antes. É o único conteúdo do app em que um
 > erro machuca alguém de verdade.
 
+### A trilha de integração (`trilha` e `perguntas`)
+
+É o módulo 3, o treinamento de quem está começando. Cada etapa é um bloco
+`{ id, titulo, texto }`; a última etapa da lista é sempre a verificação final —
+não precisa marcar isso de nenhum jeito especial, o app entende sozinho pela
+posição.
+
+Para acrescentar uma etapa, copie um bloco inteiro, cole antes da etapa
+"Verificação final" e mude o conteúdo. O `id` precisa ser diferente dos que já
+existem (`t1`, `t2`...). O campo `ver` é opcional: se a etapa fala de um material
+ou risco que já tem ficha própria, `ver: { modulo: 'materiais', id: 'papel' }`
+(ou `modulo: 'riscos'`) faz aparecer um botão "Ver a ficha completa". A
+quantidade de etapas é livre — pode ter mais ou menos que as de hoje.
+
+O bloco `perguntas`, logo abaixo, é a verificação final: uma pergunta por linha,
+com `opcoes` e `certa` marcando qual posição da lista `opcoes` é a resposta certa
+(a primeira posição é `0`). As perguntas aparecem em ordem, mas as opções de
+cada uma embaralham sozinhas. Ao acrescentar uma etapa nova na trilha, vale
+acrescentar também uma pergunta sobre o assunto dela aqui, para a verificação
+continuar cobrindo tudo que foi ensinado — mas isso é indicado, não obrigatório.
+
 ### Quanto rende
 
 Cada material tem `valor` (`'baixo'`, `'medio'` ou `'alto'`) e `rende`, um texto

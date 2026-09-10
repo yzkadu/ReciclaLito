@@ -27,8 +27,8 @@ with sync_playwright() as p:
     pg.wait_for_function("navigator.serviceWorker.controller !== null", timeout=10000)
     # espera o cache terminar de encher
     pg.wait_for_function(
-        "caches.open('reciclalito-v4').then(c=>c.keys()).then(k=>k.length>=10)", timeout=10000)
-    n = pg.evaluate("caches.open('reciclalito-v4').then(c=>c.keys()).then(k=>k.length)")
+        "caches.open('reciclalito-v5').then(c=>c.keys()).then(k=>k.length>=10)", timeout=10000)
+    n = pg.evaluate("caches.open('reciclalito-v5').then(c=>c.keys()).then(k=>k.length)")
     v(n >= 10, f"cache guardou {n} arquivos no primeiro acesso")
 
     # ---- MODO AVIÃO ----
@@ -53,7 +53,7 @@ with sync_playwright() as p:
 
     pg.goto(BASE + "#etapa/t1", wait_until="domcontentloaded"); pg.wait_for_timeout(400)
     pg.locator("[data-concluir]").click(); pg.wait_for_timeout(400)
-    v("1 de 6" in pg.inner_text(".barra-rot"), "OFFLINE: progresso da trilha grava no aparelho")
+    v("1 de 8" in pg.inner_text(".barra-rot"), "OFFLINE: progresso da trilha grava no aparelho")
 
     pg.screenshot(path=os.path.join(CAP,"offline.png"), full_page=True)
     b.close()

@@ -42,15 +42,19 @@ try:
         print("sem trocar VERSAO, 2o acesso:", "ONDE JOGO ISSO?" in texto_modulo1(pg), "(esperado True: atualizou por tras)")
 
         # --- agora troca a VERSAO, como manda o LEIA-ME ---
+        # a versão atual do sw.js não importa aqui: só precisa virar OUTRA string
+        versao_atual = re.search(r"VERSAO = '([^']+)'", orig_sw).group(1)
+        versao_nova = versao_atual + '-teste'
         io.open(os.path.join(RAIZ,"conteudo.js"),"w",encoding="utf-8").write(
             orig_cont.replace("modulo1: 'Onde descarto?'","modulo1: 'Onde ponho isso?'"))
-        io.open(os.path.join(RAIZ,"sw.js"),"w",encoding="utf-8").write(orig_sw.replace("reciclalito-v3","reciclalito-v4"))
+        io.open(os.path.join(RAIZ,"sw.js"),"w",encoding="utf-8").write(
+            orig_sw.replace(f"VERSAO = '{versao_atual}'", f"VERSAO = '{versao_nova}'"))
 
         pg.reload(wait_until="networkidle"); pg.wait_for_timeout(1500)
         pg.reload(wait_until="networkidle"); pg.wait_for_timeout(900)
         print("trocando a VERSAO:", "ONDE PONHO ISSO?" in texto_modulo1(pg), "(esperado True)")
         caches=pg.evaluate("caches.keys()")
-        print("caches antigos limpos:", caches, "(esperado so o v4)")
+        print("caches antigos limpos:", caches, f"(esperado so o {versao_nova})")
         b.close()
 finally:
     io.open(os.path.join(RAIZ,"conteudo.js"),"w",encoding="utf-8").write(orig_cont)

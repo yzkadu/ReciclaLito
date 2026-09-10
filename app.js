@@ -289,7 +289,7 @@
     var fim = (feitas === C.trilha.length)
       ? '<div class="leitura"><button class="acao claro" data-ir="#concluido">Ver meu comprovante</button></div>' : '';
     return '<h1 class="titulo-secao">' + esc(C.textos.modulo3) + '</h1>' +
-      '<p class="sub-secao">Seis etapas curtas. O progresso fica salvo neste celular.</p>' +
+      '<p class="sub-secao">' + C.trilha.length + ' etapas curtas. O progresso fica salvo neste celular.</p>' +
       '<div class="barra"><i style="width:' + pct + '%"></i></div>' +
       '<p class="barra-rot">' + feitas + ' de ' + C.trilha.length + ' concluídas</p>' +
       '<div class="etapas">' + itens + '</div>' + fim;
@@ -298,7 +298,10 @@
   function telaEtapa(id) {
     var e = acha(C.trilha, id);
     if (!e) return telaTrilha();
-    if (id === 't6') return telaPerguntas();
+    /* a verificação é sempre a última etapa da trilha, não um id fixo:
+       assim dá para acrescentar ou remover etapas em conteudo.js sem
+       mexer aqui. */
+    if (id === C.trilha[C.trilha.length - 1].id) return telaPerguntas();
     var ver = '';
     if (e.ver) {
       var alvo = (e.ver.modulo === 'materiais' ? '#material/' : '#risco/') + e.ver.id;
@@ -353,7 +356,7 @@
       if (qAtual < C.perguntas.length - 1) { qAtual++; pinta(montaPergunta()); }
       else {
         var p = lerProgresso();
-        p.t6 = true;
+        p[C.trilha[C.trilha.length - 1].id] = true;
         p.acertos = qAcertos;
         p.total = C.perguntas.length;
         p.data = new Date().toLocaleDateString('pt-BR');
