@@ -363,6 +363,50 @@ agora confere a "Beastly", que é a que o app realmente carrega e usa).
 
 ---
 
+### Seção "Sobre a parceria", com o que a Papelito diz fazer em sustentabilidade
+
+Pedido de olhar o site oficial (papelito.com) como inspiração e trazer mais
+elementos visuais "naquele modelo" — incluindo o que a empresa fala sobre
+carbono zero, reciclagem e reflorestamento.
+
+Levantei o conteúdo direto no site da marca e no blog da Papelito. Quatro
+compromissos declarados pela própria empresa entraram como novo bloco de
+conteúdo em `conteudo.js` (`C.parceria`), com fonte conferida:
+
+- **Papelito Recicla 200%** — desde 2021 a empresa paga cooperativas de
+  catadores para reciclar o dobro do resíduo que produz por mês. A primeira
+  parceira foi a ACOBRAZ, cooperativa de catadores de Brazlândia (DF) — achei
+  esse o dado mais relevante pra este app especificamente, por conectar direto
+  com quem usa o ReciclaLito.
+- Carbono neutro (a empresa afirma neutralizar toda a emissão da produção).
+- Reflorestamento (meta declarada: 100 mil árvores até 2027).
+- Energia solar (a empresa afirma produção 100% solar).
+
+Texto escrito como afirmação da empresa ("a empresa diz/afirma"), não como
+fato auditado pelo ReciclaLito — o app não tem como confirmar essas metas de
+fora, só registrar o que a Papelito declara publicamente.
+
+Visualmente, a seção segue o mesmo "bloco institucional grande" do site da
+marca: faixa cheia com título grande, seguida de cartões (ícone + título +
+texto), reaproveitando o padrão de contraste do resto do app (texto sempre
+escuro sobre claro; só o selo do ícone muda de cor — verde, neutro, roxo e
+amarelo, dentro da paleta oficial). Entra na animação de revelação ao rolar,
+igual ao resto da tela inicial.
+
+**Sobre o tom de voz, de novo.** Foi pedido pra "não regrar tanto" o uso de
+palavrão, já que é o lema da Papelito. Mantive a decisão de separar visual de
+voz (registrada mais acima neste histórico): o texto desta seção e do resto do
+app continua sem palavrão — o ReciclaLito carrega a chancela da UCB e é
+material de segurança no trabalho, não uma peça de marketing de produto. A
+"energia" pedida ficou por conta do visual (cores fortes, tipografia grande,
+blocos cheios), não do vocabulário. Combinado com a Papelito antes de
+publicar.
+
+Nenhum texto existente foi tirado. 73 verificações continuam passando.
+`VERSAO` de v10 para v11.
+
+---
+
 ## Testes
 
 73 verificações em cinco baterias, com Playwright. `cd testes && python3 rodar-tudo.py`

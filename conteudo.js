@@ -411,6 +411,41 @@ const CONTEUDO = {
     pontosRotulo: 'Onde entregar perto de você',
     pontosVazio: 'Os pontos da região ainda não foram cadastrados. Pergunte na cooperativa ou na administração regional.',
     foraDoCodigo: 'Fora do código de cores',
-    rodape: 'Projeto de extensão universitária — Universidade Católica de Brasília, em parceria com a Papelito Brasil.'
-  }
+    rodape: 'Projeto de extensão universitária — Universidade Católica de Brasília, em parceria com a Papelito Brasil.',
+    parceriaTitulo: 'Sobre a parceria',
+    parceriaIntro: 'A Papelito Brasil, que apoia este projeto, também declara compromissos próprios com reciclagem e meio ambiente:'
+  },
+
+  /* ----------------------------------------------------------
+     SOBRE A PARCERIA — o que a Papelito (apoiadora do projeto)
+     declara fazer em sustentabilidade. São afirmações da própria
+     empresa (ver fonte de cada item), não uma auditoria independente
+     feita pelo ReciclaLito — por isso o texto usa "a empresa diz/afirma".
+     ---------------------------------------------------------- */
+  parceria: [
+    {
+      id: 'recicla200',
+      titulo: 'Papelito Recicla 200%',
+      texto: 'Desde 2021 a empresa paga cooperativas de catadores para reciclar o dobro do resíduo que ela mesma produz por mês. A primeira parceira foi a ACOBRAZ, cooperativa de catadores de Brazlândia (DF) — a mesma linha de trabalho de quem usa este aplicativo.',
+      icone: 'reciclaDobro'
+    },
+    {
+      id: 'carbono',
+      titulo: 'Carbono neutro',
+      texto: 'A empresa afirma neutralizar toda a emissão de carbono da sua produção.',
+      icone: 'carbonoNeutro'
+    },
+    {
+      id: 'reflorestamento',
+      titulo: 'Reflorestamento',
+      texto: 'Meta declarada pela empresa: 100 mil árvores plantadas até 2027.',
+      icone: 'arvore'
+    },
+    {
+      id: 'energiaSolar',
+      titulo: 'Energia solar',
+      texto: 'A empresa afirma que a produção é 100% abastecida por energia solar.',
+      icone: 'energiaSolar'
+    }
+  ]
 };
