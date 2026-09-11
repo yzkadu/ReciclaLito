@@ -78,13 +78,23 @@ const CONTEUDO = {
       valor: 'baixo',
       rende: 'Rende pouco por litro, mas quase ninguém entrega. Alguns pontos trocam óleo usado por sabão — pergunte no ponto da sua região.',
       atencao: 'Um litro na pia contamina milhares de litros de água e entope a tubulação. Nunca jogue na pia nem no ralo.'
+    },
+    {
+      id: 'organico',
+      nome: 'Orgânico',
+      cor: '#6F4518', texto: 'claro', simbolo: 'organico',
+      separar: 'Guarde à parte, num recipiente próprio, nunca dentro do mesmo saco do reciclável. Casca, resto de comida, borra de café e poda de quintal entram aqui.',
+      entregar: 'Se houver coleta ou composteira na região, vai para lá. Sem isso, é lixo comum — não entra na coleta seletiva nem passa pela cooperativa.',
+      valor: 'sem venda',
+      rende: 'Não tem venda: a cooperativa não compra orgânico. O ganho de separar bem está em outro lugar — é o que evita perder o papel e o papelão do dia.',
+      atencao: 'Contamina qualquer reciclável que encostar nele: um saco com resto de comida molha e engorda papel, papelão e tudo mais junto, e o lote inteiro vira rejeito. Separe assim que perceber que é orgânico.'
     }
   ],
 
   /* ----------------------------------------------------------
      BUSCA — ITENS DO DIA A DIA
      Esta lista alimenta o campo "Buscar" do módulo 1. Serve para
-     quem está com o objeto na mão e não sabe em qual dos seis
+     quem está com o objeto na mão e não sabe em qual dos sete
      materiais ele entra.
 
      Cada item tem:
@@ -167,7 +177,8 @@ const CONTEUDO = {
     { nome: 'Fralda e absorvente', busca: 'fralda absorvente descartavel', resposta: 'Vai no lixo comum. Não é reciclável e contamina o material que estiver junto.', destino: 'Rejeito' },
     { nome: 'Bituca de cigarro', busca: 'bituca cigarro guimba filtro', resposta: 'Vai no lixo comum. O filtro é plástico, mas não tem como reciclar.', destino: 'Rejeito' },
     { nome: 'Esponja e escova de dente', busca: 'esponja bucha escova dente', resposta: 'Vai no lixo comum. Material misturado, sem separação possível.', destino: 'Rejeito' },
-    { nome: 'Resto de comida e casca', busca: 'comida resto casca fruta legume borra cafe organico', resposta: 'É orgânico. Se houver compostagem, vai para a leira. Se não houver, lixo comum. Nunca junto com o reciclável, porque molha e contamina tudo.', destino: 'Orgânico' },
+    { nome: 'Resto de comida e casca', busca: 'comida resto casca fruta legume borra cafe organico', vai: { modulo: 'materiais', id: 'organico' } },
+    { nome: 'Poda de quintal e folha seca', busca: 'poda galho folha grama jardim quintal', vai: { modulo: 'materiais', id: 'organico' } },
     { nome: 'Roupa e calçado velho', busca: 'roupa calcado sapato tecido pano', resposta: 'Não entra na coleta seletiva. Se estiver em bom estado, doe. Se estiver rasgado, procure um ponto de coleta de tecido.', destino: 'Doação' }
   ],
 
@@ -388,7 +399,7 @@ const CONTEUDO = {
     modulo1desc: 'Busque o item ou toque no material',
     buscaRotulo: 'Buscar item',
     buscaDica: 'Ex.: isopor, fralda, latinha, pilha',
-    buscaVazia: 'Nada encontrado com esse nome. Toque num dos seis materiais abaixo ou pergunte na cooperativa.',
+    buscaVazia: 'Nada encontrado com esse nome. Toque num dos sete materiais abaixo ou pergunte na cooperativa.',
     modulo2: 'Segurança do catador',
     modulo2desc: 'Riscos do eletrônico e proteção no manuseio',
     modulo3: 'Integração da equipe',

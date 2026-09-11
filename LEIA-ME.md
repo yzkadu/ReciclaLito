@@ -84,7 +84,7 @@ Para editar direto no navegador:
 
 O campo **Buscar** do módulo 1 usa o bloco `itens` do `conteudo.js`. É a lista de
 objetos do dia a dia — isopor, fralda, latinha, remédio vencido — para quem está com
-a coisa na mão e não sabe em qual dos seis materiais ela entra.
+a coisa na mão e não sabe em qual dos sete materiais ela entra.
 
 Cada item tem, no máximo, estes campos:
 

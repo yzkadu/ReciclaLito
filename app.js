@@ -18,7 +18,8 @@
     vidro: '<path d="M12 3h8v8l3 5v14H9V16l3-5z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>',
     metal: '<rect x="9" y="5" width="14" height="22" rx="2" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M9 10h14M9 22h14" stroke="currentColor" stroke-width="2.4"/>',
     eletronico: '<rect x="5" y="8" width="22" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M11 27h10M16 23v4" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M13 14l-2 3h4l-2 3" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>',
-    oleo: '<path d="M16 4c5 6 8 9 8 13a8 8 0 1 1-16 0c0-4 3-7 8-13z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>'
+    oleo: '<path d="M16 4c5 6 8 9 8 13a8 8 0 1 1-16 0c0-4 3-7 8-13z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>',
+    organico: '<path d="M6 27C6 15 14 6 27 6c1 13-8 21-20 21-.4 0-.7 0-1 0z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M9 24c4-7 9-12 15-15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>'
   };
   function icone(nome, classe) {
     return '<svg viewBox="0 0 32 32" class="' + (classe || '') + '" aria-hidden="true">' + (ICONES[nome] || '') + '</svg>';

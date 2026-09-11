@@ -113,6 +113,26 @@ O óleo não é orgânico e não tem cor na CONAMA 275. Passou a aparecer com fu
 e borda tracejada, com a etiqueta "fora do código de cores". A etapa 2 ganhou o cinza
 (rejeito) e a explicação da exceção.
 
+### O sétimo material: orgânico
+
+O módulo 1 tinha seis materiais e nenhum deles era o orgânico — apesar de "marrom é
+orgânico" já estar na etapa 2 da trilha desde o começo, e do item "Resto de comida e
+casca" já existir na busca, sem ficha própria, só com uma resposta curta.
+
+Orgânico ganhou ficha igual às dos outros seis: cor marrom (a que já estava reservada
+para ele na CONAMA 275), ícone de folha novo em `app.js`, e os mesmos quatro campos —
+como separar, onde entregar, quanto rende, atenção. A diferença é o campo `valor`:
+em vez de `'baixo'`, `'medio'` ou `'alto'`, veio `'sem venda'`, porque não é isso —
+a cooperativa não compra orgânico, então as três barrinhas de "quanto rende" ficam
+vazias de propósito. A atenção da ficha é a mesma coisa que a etapa 1 da trilha já
+ensinava: orgânico contamina reciclável que encostar nele.
+
+O item "Resto de comida e casca" passou a apontar para a ficha nova em vez de uma
+resposta solta, e ganhou um vizinho, "Poda de quintal e folha seca", cobrindo o outro
+caso comum de resíduo orgânico fora da cozinha.
+
+Textos que diziam "seis materiais" (`conteudo.js` e `LEIA-ME.md`) viraram "sete".
+
 ### "Deu errado. E agora?"
 
 O módulo 2 ensinava a evitar acidente e parava aí. Não dizia o que fazer depois de
