@@ -29,11 +29,17 @@
     telas: '<rect x="4" y="7" width="24" height="16" rx="2.4" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M11 28h10M16 23v5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>',
     toner: '<rect x="7" y="10" width="18" height="14" rx="2.4" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M12 10V7h8v3" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M11 16h10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>',
 
+    /* ---- primeiros socorros (módulo 2, "Deu errado? E agora?") ---- */
+    corte: '<rect x="4" y="13" width="24" height="6" rx="3" transform="rotate(-45 16 16)" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="10.5" cy="10.5" r="1.4" fill="currentColor"/><circle cx="14" cy="14" r="1.4" fill="currentColor"/><circle cx="18" cy="18" r="1.4" fill="currentColor"/><circle cx="21.5" cy="21.5" r="1.4" fill="currentColor"/>',
+    agulha: '<path d="M22 4l6 6-3.2 3.2-1.4-1.4-11 11-4-1.4-1.4-4 11-11-1.4-1.4z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M5 27l2.6-2.6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>',
+    olho: '<path d="M3 16s5.5-9 13-9 13 9 13 9-5.5 9-13 9-13-9-13-9z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><circle cx="16" cy="16" r="4.2" fill="none" stroke="currentColor" stroke-width="2.4"/>',
+
     /* ---- cabeçalhos de seção nas fichas (fora do código de cores dos materiais) ---- */
     separar: '<path d="M5 6h22l-8 10v8l-6 3v-11z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>',
     entregar: '<path d="M16 28s9-9.5 9-16a9 9 0 1 0-18 0c0 6.5 9 16 9 16z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><circle cx="16" cy="12" r="3.2" fill="none" stroke="currentColor" stroke-width="2.4"/>',
     atencao: '<path d="M16 4 3 27h26L16 4z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M16 13v6.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="16" cy="23.5" r="1.4" fill="currentColor"/>',
     manusear: '<path d="M16 4l11 4v8c0 7-4.7 11.3-11 12-6.3-.7-11-5-11-12V8z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M11 16.5l3.3 3.3 6-6.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>',
+    moeda: '<circle cx="16" cy="16" r="12" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M16 10v12M13 12.5c0-1.4 1.3-2.5 3-2.5s3 1 3 2.3c0 3-6 1.7-6 4.7 0 1.3 1.3 2.3 3 2.3s3-1.1 3-2.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>',
 
     /* ---- trilha (módulo 3) e comprovante ---- */
     generico: '<path d="M16 8c-3-2-7-2-11-1v18c4-1 8-1 11 1 3-2 7-2 11-1V7c-4-1-8-1-11 1z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M16 8v18" stroke="currentColor" stroke-width="2.2"/>',
@@ -192,7 +198,8 @@
     var m = acha(C.materiais, id);
     if (!m) return telaMateriais();
     return '<div class="faixa ' + m.texto + (m.foraDoCodigo ? ' fora' : '') + '" style="background:' + m.cor + '">' +
-        icone(m.simbolo) + '<h2>' + esc(m.nome) + '</h2>' +
+        '<span class="faixa-selo">' + icone(m.simbolo) + '</span>' +
+        '<h2>' + esc(m.nome) + '</h2>' +
         (m.foraDoCodigo ? '<p class="oquetem">' + esc(C.textos.foraDoCodigo) +
           '. Não é orgânico e não vai em lixeira comum.</p>' : '') + '</div>' +
       '<div class="blocos">' +
@@ -214,7 +221,7 @@
       barras += '<i' + (i <= n ? ' class="cheia"' : '') + '></i>';
     }
     return '<section class="bloco rende">' +
-      '<h3>' + esc(C.textos.valorRotulo) + '</h3>' +
+      '<h3>' + icone('moeda', 'ic-bloco') + '<span>' + esc(C.textos.valorRotulo) + '</span></h3>' +
       '<div class="medida" role="img" aria-label="Valor ' + esc(m.valor || 'não informado') + '">' +
         barras + '<span>' + esc(m.valor || '') + '</span></div>' +
       '<p>' + esc(m.rende) + '</p>' +
@@ -244,9 +251,14 @@
   function telaRiscos() {
     var itens = C.riscos.map(function (r) {
       return '<button class="risco" data-ir="#risco/' + r.id + '">' +
-        icone(r.id, 'ic-risco') + '<span>' + esc(r.nome) + '</span>' + SETA + '</button>';
+        '<span class="risco-selo">' + icone(r.id, 'ic-risco') + '</span>' +
+        '<span class="nome">' + esc(r.nome) + '</span>' +
+        '<span class="risco-mais" aria-hidden="true">' + SETA + '</span>' +
+      '</button>';
     }).join('');
-    var epi = C.protecao.map(function (i) { return '<li>' + esc(i) + '</li>'; }).join('');
+    var epi = C.protecao.map(function (i) {
+      return '<li>' + icone('manusear', 'ic-epi') + '<span>' + esc(i) + '</span></li>';
+    }).join('');
     return '<h1 class="titulo-secao">' + esc(C.textos.modulo2) + '</h1>' +
       '<p class="sub-secao">O que cada material tem dentro e como manusear sem se machucar.</p>' +
       '<div class="riscos">' + itens + '</div>' +
@@ -258,8 +270,9 @@
   function telaRisco(id) {
     var r = acha(C.riscos, id);
     if (!r) return telaRiscos();
-    return '<div class="faixa" style="background:var(--laranja)">' +
-        icone(r.id, 'ic-faixa') + '<h2>' + esc(r.nome) + '</h2>' +
+    return '<div class="faixa risco-faixa" style="background:var(--laranja)">' +
+        '<span class="faixa-selo">' + icone(r.id, 'ic-faixa') + '</span>' +
+        '<h2>' + esc(r.nome) + '</h2>' +
         '<p class="oquetem">' + esc(r.oQueTem) + '</p></div>' +
       '<div class="blocos">' +
         campo('Como manusear', r.manusear, false, 'manusear') +
@@ -269,6 +282,14 @@
       blocoPontos(r.id);
   }
 
+  /* ícone de cada situação de primeiro socorro, pelo id em C.emergencia.
+     um id sem correspondência cai no ícone genérico de atenção — assim a
+     Papelito pode acrescentar situação nova em conteudo.js sem quebrar nada
+     aqui. */
+  var MAPA_ICONE_SOCORRO = {
+    corte: 'corte', agulha: 'agulha', bateria: 'baterias',
+    olho: 'olho', toner: 'toner', lampada: 'lampadas'
+  };
   function telaEmergencia() {
     var itens = (C.emergencia || []).map(function (e) {
       var ver = e.ver
@@ -277,7 +298,7 @@
           '">Ver a ficha completa</button>'
         : '';
       return '<section class="socorro">' +
-        '<h3>' + esc(e.nome) + '</h3>' +
+        '<h3>' + icone(MAPA_ICONE_SOCORRO[e.id] || 'atencao', 'ic-bloco') + '<span>' + esc(e.nome) + '</span></h3>' +
         '<p class="agora"><b>Agora:</b> ' + esc(e.agora) + '</p>' +
         '<p class="procure"><b>Procure atendimento:</b> ' + esc(e.procure) + '</p>' +
         '<p class="nunca"><b>Nunca:</b> ' + esc(e.nunca) + '</p>' + ver +

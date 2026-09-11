@@ -241,6 +241,39 @@ procurasse.
 
 ---
 
+### Segurança e materiais mais visuais, com cartões no lugar de lista
+
+Continuação da passada anterior, a pedido: a lista do módulo 2 (riscos) e as
+fichas de material e risco ganharam mais peso visual, sem entrar em foto real
+(decisão registrada abaixo).
+
+- **Módulo de riscos virou grade de cartões.** Em vez da lista fina de texto +
+  seta, cada risco agora é um cartão com um selo circular colorido em volta do
+  ícone, nome e uma seta discreta no canto — mesmo padrão visual da grade de
+  materiais do módulo 1.
+- **Selo circular no ícone da ficha**, tanto de material quanto de risco (a
+  faixa colorida no topo da ficha). O círculo se adapta ao texto claro/escuro
+  que o material já declara em `conteudo.js`, então continua legível em fundo
+  claro (ex.: óleo, metal) e em fundo escuro.
+- **"Deu errado? E agora?" ganhou um ícone por situação** (corte, agulha,
+  bateria, olho, toner, lâmpada) — ficou de fora da primeira passada de
+  ícones e agora entrou. Um id sem ícone mapeado cai no ícone genérico de
+  atenção, então uma situação nova que a Papelito acrescentar em `conteudo.js`
+  não quebra nada.
+- **"Sempre que for trabalhar" (EPI)** trocou o "✓" por um ícone (o mesmo de
+  "Como manusear"), e "Quanto rende" ganhou um ícone de moeda no título.
+- **Sobre pedir fotos reais** (do material, do EPI, da situação de risco): não
+  entrou nesta passada. O app roda sem internet e sem build, e a forma mais
+  simples de trazer imagem de verdade sem violar direito de uso é a própria
+  Papelito fornecer as fotos (do galpão, dos próprios EPIs, etc.) para eu
+  encaixar — puxar imagem qualquer da internet para um app comercial tem risco
+  de direito autoral que não cabe decidir sozinho aqui.
+
+Ícones novos no `ICONES` (em `app.js`): `corte`, `agulha`, `olho`, `moeda`.
+73 verificações continuam passando. `VERSAO` de v7 para v8.
+
+---
+
 ## Testes
 
 73 verificações em cinco baterias, com Playwright. `cd testes && python3 rodar-tudo.py`

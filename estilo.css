@@ -176,6 +176,12 @@ button{font:inherit; color:inherit; cursor:pointer; border:none; background:none
 }
 .faixa .oquetem{margin:8px 0 0; font-size:16px; font-weight:600; opacity:.95}
 .faixa svg{width:44px; height:44px}
+.faixa-selo{
+  width:64px; height:64px; border-radius:50%; background:rgba(255,255,255,.2);
+  display:grid; place-items:center;
+}
+.faixa.escuro .faixa-selo{background:rgba(0,0,0,.1)}
+.faixa-selo svg{width:36px; height:36px}
 
 .blocos{padding:0 0 30px}
 .bloco{padding:18px 16px; border-bottom:2px solid var(--linha); background:var(--branco)}
@@ -191,21 +197,31 @@ button{font:inherit; color:inherit; cursor:pointer; border:none; background:none
 .bloco.perigo h3 .ic-bloco{color:var(--laranja)}
 
 /* ---------------- lista de riscos ---------------- */
-.riscos{display:grid; gap:12px; padding:0 16px 24px}
-.risco{
-  display:flex; align-items:center; justify-content:space-between; gap:12px;
-  width:100%; text-align:left; background:var(--branco); border-radius:12px;
-  padding:18px 16px; min-height:var(--toque); border-left:7px solid var(--laranja);
-  font-weight:700; font-size:18px;
+.riscos{
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(148px,1fr));
+  gap:12px; padding:0 16px 24px;
 }
-.risco:active{background:#F0EFEA}
-.risco svg{width:22px; height:22px; flex:none; color:var(--cinza)}
+.risco{
+  position:relative; display:flex; flex-direction:column; align-items:flex-start;
+  gap:10px; min-height:132px; text-align:left; background:var(--branco);
+  border-radius:14px; padding:16px; border:2px solid var(--linha);
+  border-bottom:5px solid var(--laranja);
+}
+.risco:active{transform:translateY(2px); border-bottom-width:3px}
+.risco-selo{
+  width:52px; height:52px; border-radius:50%; background:#FFF1EA;
+  display:grid; place-items:center; flex:none;
+}
+.risco-selo svg{width:30px; height:30px; color:var(--laranja)}
+.risco .nome{font-weight:800; font-size:17px; line-height:1.25; padding-right:20px}
+.risco-mais{position:absolute; right:14px; bottom:14px; color:var(--cinza)}
+.risco-mais svg{width:18px; height:18px; display:block}
 
 .protecao{margin:6px 16px 34px; background:var(--preto); color:var(--branco); border-radius:14px; padding:20px 18px}
 .protecao h3{font-family:var(--display); font-size:22px; text-transform:uppercase; margin:0 0 12px; color:var(--amarelo)}
 .protecao ul{margin:0; padding:0; list-style:none}
-.protecao li{display:flex; gap:10px; padding:7px 0; font-size:16px; line-height:1.45}
-.protecao li::before{content:"✓"; color:var(--verde); font-weight:800; flex:none}
+.protecao li{display:flex; align-items:center; gap:12px; padding:8px 0; font-size:16px; line-height:1.45}
+.protecao .ic-epi{width:24px; height:24px; flex:none; color:var(--verde)}
 
 /* ---------------- trilha ---------------- */
 .barra{height:12px; border-radius:99px; background:#E3E2DC; margin:0 16px; overflow:hidden}
@@ -410,7 +426,8 @@ body.com-convite{padding-bottom:calc(86px + env(safe-area-inset-bottom))}
   background:var(--branco); border:2px solid var(--linha);
   border-left:7px solid #C8332B; border-radius:12px; padding:16px;
 }
-.socorro h3{margin:0 0 10px; font-size:19px; line-height:1.3}
+.socorro h3{display:flex; align-items:center; gap:8px; margin:0 0 10px; font-size:19px; line-height:1.3}
+.socorro h3 .ic-bloco{width:22px; height:22px; color:#C8332B}
 .socorro p{margin:0 0 9px; font-size:16px; line-height:1.5}
 .socorro p:last-of-type{margin-bottom:0}
 .socorro .agora b{color:#0B5C31}
