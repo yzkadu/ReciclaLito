@@ -407,6 +407,35 @@ Nenhum texto existente foi tirado. 73 verificações continuam passando.
 
 ---
 
+### v11 chegou com cache corrompido em quem acessou logo depois do push
+
+A Papelito avisou que não via a atualização de forma nenhuma, nem essa nem a
+sensação de "o site mudou". Investigando: o GitHub Pages usa uma CDN (Fastly)
+que não atualiza em todos os servidores ao mesmo tempo — logo depois de um
+`git push`, alguns visitantes já recebem o arquivo novo e outros ainda recebem
+o antigo, por um tempo (às vezes mais de um minuto).
+
+O problema: o `sw.js` deste app baixa todos os arquivos e guarda no cache
+`VERSAO` já no primeiro acesso (`install`). Se alguém abrir o site bem na
+janela em que a CDN ainda está desatualizada, o cache grava o conteúdo antigo
+— só que com o nome do cache novo (`reciclalito-v11`). Como o app só busca
+versão nova quando o número da `VERSAO` muda, esse acesso fica preso com
+conteúdo velho para sempre, mesmo o cache "achando" que está atualizado.
+
+Não dá pra evitar 100% esse instante de janela (é do funcionamento da CDN, não
+do código deste app), mas dá pra corrigir quem foi pego nela: bastou trocar a
+`VERSAO` de novo. Quem ficou com cache velho baixa tudo de novo a partir do
+zero, e desta vez a CDN já estava assentada.
+
+Fica de lição: depois de publicar uma mudança visual grande, esperar alguns
+minutos antes de abrir o site (ou testar direto no arquivo, sem passar pelo
+GitHub Pages) evita cair nessa janela.
+
+Nenhuma mudança de conteúdo ou visual nesta passada — só a troca de versão.
+73 verificações continuam passando. `VERSAO` de v11 para v12.
+
+---
+
 ## Testes
 
 73 verificações em cinco baterias, com Playwright. `cd testes && python3 rodar-tudo.py`

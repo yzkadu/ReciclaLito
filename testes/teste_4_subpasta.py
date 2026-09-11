@@ -32,8 +32,8 @@ with sync_playwright() as p:
     v(True, "subpasta: service worker registra")
     esc=pg.evaluate("navigator.serviceWorker.getRegistration().then(r=>r.scope)")
     v(esc.endswith("/reciclalito/"), f"subpasta: escopo correto ({esc})")
-    pg.wait_for_function("caches.open('reciclalito-v11').then(c=>c.keys()).then(k=>k.length>=10)", timeout=10000)
-    n=pg.evaluate("caches.open('reciclalito-v11').then(c=>c.keys()).then(k=>k.length)")
+    pg.wait_for_function("caches.open('reciclalito-v12').then(c=>c.keys()).then(k=>k.length>=10)", timeout=10000)
+    n=pg.evaluate("caches.open('reciclalito-v12').then(c=>c.keys()).then(k=>k.length)")
     v(n>=10, f"subpasta: cache guardou {n} arquivos")
 
     man=pg.evaluate("fetch('manifest.json').then(r=>r.json())")
