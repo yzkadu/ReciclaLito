@@ -1,7 +1,7 @@
 /* ReciclaLito — funcionamento sem internet.
    Ao publicar uma alteração, troque o número da VERSAO abaixo.
    Isso faz o celular baixar a versão nova em vez de usar a antiga. */
-const VERSAO = 'reciclalito-v9';
+const VERSAO = 'reciclalito-v10';
 
 const ARQUIVOS = [
   './',
@@ -12,6 +12,10 @@ const ARQUIVOS = [
   './manifest.json',
   './fontes/ultra.woff2',
   './fontes/archivo.woff2',
+  './fontes/beastly.woff2',
+  './fontes/ppneuemontreal-regular.woff2',
+  './fontes/ppneuemontreal-medium.woff2',
+  './fontes/ppneuemontreal-bold.woff2',
   './icones/icone-192.png',
   './icones/icone-512.png',
   './icones/apple-touch-icon.png'

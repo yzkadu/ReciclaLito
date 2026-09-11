@@ -301,6 +301,68 @@ bastando adicionar a imagem e trocar a linha correspondente no objeto
 
 ---
 
+### Identidade visual real da Papelito, e a decisão de não usar o mascote
+
+A Papelito mandou o material de marca de verdade: guia de marca (PDF), logo em
+SVG, fontes originais, e a prancha de adesivos do mascote "Pezito". Pedido:
+deixar o site inteiro mais visual, sem tirar nenhum texto, usando esse material
+como base — incluindo um efeito de rolagem tipo "revela ao descer a tela".
+
+**Cores.** Antes de trocar qualquer coisa, conferi o guia de marca contra as
+variáveis já usadas no CSS (`--amarelo`, `--preto`, `--verde`, `--laranja`): já
+batiam exatamente com a cor oficial (inclusive o Pantone). Nenhuma cor precisou
+mudar. Acrescentei duas cores de apoio que o app ainda não usava,
+`--rosa:#FF25B7` e `--roxo:#AE69FF` — estão disponíveis em `estilo.css`, mas o
+próprio guia pede moderação nelas, então não forcei uso em lugar nenhum ainda.
+
+**Fontes.** A fonte de título oficial é "Beastly" (traço irregular, tipo
+recortado à mão) e a de texto é "PP Neue Montreal". O próprio guia de marca já
+documenta uma ordem de contingência para quando a fonte original não carrega —
+Beastly → Ultra → Rockwell → Georgia → serif — que é exatamente a cadeia que o
+app já tinha, só faltando a Beastly de verdade na frente. Converti os arquivos
+originais (TTF/OTF) para `.woff2` (bem mais leve) e troquei `--display` e
+`--texto` em `estilo.css`. `Ultra` e `Archivo` continuam no app como
+contingência, exatamente como o guia recomenda.
+
+**Logo, com crédito discreto.** A pedido, o ReciclaLito continua sendo a marca
+principal do app — a Papelito aparece como apoiadora, num selo pequeno e em cor
+neutra (não na cor forte da marca) no rodapé da tela inicial: "uma iniciativa
+Papelito", com o logo oficial em SVG.
+
+**Mascote Pezito: decisão de não usar, revendo o que combinamos antes.**
+Tinha sido combinado curar só as poses "limpas" da prancha do Pezito. Ao rever
+as cerca de 100 poses, o que apareceu foi diferente do esperado: o desenho de
+cigarro/baseado não é um detalhe isolado em algumas poses — ele é estrutural ao
+personagem, aparecendo até em poses de outra forma inocentes (lendo, andando de
+bicicleta). A prancha também tem, espalhados, um palavrão explícito, um gesto
+de mão que parece obsceno e imagens de parafernália. Não existe, portanto, um
+subconjunto "limpo" pra extrair — é o personagem inteiro que carrega essa
+linguagem adulta, que não combina com um app de treinamento de segurança no
+trabalho. Decisão: o Pezito não entrou no ReciclaLito. Isso foi conversado
+com a Papelito antes de qualquer coisa ser publicada.
+
+Pelo mesmo motivo, os seis arquivos de fotografia de produto que vieram junto
+(sedas, piteiras, filtros, dichavadores, tubelitos, bandejas) não têm relação
+com o ReciclaLito e não foram usados.
+
+**Revelação ao rolar a tela.** Acrescentado um sistema leve de "aparece ao
+descer a tela", parecido com o efeito usado em sites de produto: cartões de
+material, de risco, de socorro, de etapa da trilha, blocos de ficha e o selo de
+apoio da Papelito começam com opacidade zero e sobem 16px, e ganham a classe
+`.mostrar` (com `IntersectionObserver`, em `app.js`) ao entrarem na tela — sem
+JavaScript, ou em navegador sem `IntersectionObserver`, tudo aparece de uma vez,
+então o conteúdo nunca depende disso pra ficar visível. Continua respeitando o
+`prefers-reduced-motion` que já existia — quem pede menos movimento não vê
+nenhuma dessas transições.
+
+Nenhum texto foi retirado nesta mudança — só estilo, fonte, cor e o efeito de
+entrada. 73 verificações continuam passando (uma precisou ser ajustada: o
+teste de fonte offline conferia a fonte "Ultra", que virou a de contingência —
+agora confere a "Beastly", que é a que o app realmente carrega e usa).
+`VERSAO` de v9 para v10.
+
+---
+
 ## Testes
 
 73 verificações em cinco baterias, com Playwright. `cd testes && python3 rodar-tudo.py`

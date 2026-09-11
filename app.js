@@ -96,17 +96,25 @@
         botaoModulo('m3', '#trilha', t.modulo3, t.modulo3desc) +
       '</nav>' +
       '</div>' +
-      '<p class="rodape">' + esc(t.rodape) + '</p>';
+      '<p class="rodape">' + esc(t.rodape) + '</p>' +
+      LOGO_PAPELITO;
   }
   function botaoModulo(cls, destino, nome, desc) {
-    return '<button class="modulo ' + cls + '" data-ir="' + destino + '">' +
+    return '<button class="modulo reveal ' + cls + '" data-ir="' + destino + '">' +
       '<span class="nome">' + esc(nome) + '</span>' +
       '<span class="desc">' + esc(desc) + '</span></button>';
   }
 
+  /* selo discreto de apoio da Papelito (a pedido: crédito pequeno, o
+     ReciclaLito continua sendo a marca principal do app). Um único <path>
+     do logo oficial, em currentColor para seguir a cor neutra do selo. */
+  var LOGO_PAPELITO = '<div class="credito-papelito">' +
+    '<svg viewBox="0 0 2000 448" aria-hidden="true"><path fill="currentColor" d="M1407.36,178.69l79.92-6.08,9.27,192.96h77.08l4.2-199.68,72.48-5.74.54-71.71h-243.3l-.19,90.25ZM1147.63,88.44h-105.09v277.13h206.57v-95.97l-148.93,36.29,47.46-217.46ZM1844.02,88.44h-155.37l-20.12,197.37,40.85,79.76h165.63l36.99-137.69c-.53-5.54-67.43-139.36-67.98-139.44M1295.78,88.43l-13.31,277.14h97.72s-13.31-277.14-13.31-277.14h-71.1ZM296.92,88.44H88v277.13h40.81l33.24-93.55,134.86-39.93V88.44ZM386.87,88.44l-111.15,277.13h36.06l78-86.59,10.65-.05,81.66,86.65h72.21l-114.67-277.13h-52.77ZM572.53,365.57h40.84l25.43-82.53,122.29-18.01,19.21-176.59h-218.57l10.8,277.13ZM882.7,261.39l80.39-19.89v-35.21l-80.79-14.82v-32.35l125.26-17.63v-53.05h-193.73v277.13h197.25v-52.83l-128.38-21.8v-29.55Z"/></svg>' +
+    '<span>uma iniciativa Papelito</span></div>';
+
   function telaMateriais() {
     var itens = C.materiais.map(function (m) {
-      return '<button class="material ' + m.texto + (m.foraDoCodigo ? ' fora' : '') +
+      return '<button class="material reveal ' + m.texto + (m.foraDoCodigo ? ' fora' : '') +
         '" style="background:' + m.cor + '" data-ir="#material/' + m.id + '">' +
         icone(m.simbolo) + '<span class="nome">' + esc(m.nome) + '</span>' +
         (m.foraDoCodigo ? '<span class="marca-fora">' + esc(C.textos.foraDoCodigo) + '</span>' : '') +
@@ -189,7 +197,7 @@
     var it = (C.itens || [])[Number(n)];
     if (!it) return telaMateriais();
     var d = destinoDe(it);
-    return '<div class="faixa" style="background:var(--preto)">' +
+    return '<div class="faixa reveal" style="background:var(--preto)">' +
         '<h2>' + esc(it.nome) + '</h2>' +
         '<p class="oquetem"><span class="chip ' + d.texto + '" style="background:' + d.cor + '">' + esc(d.rot) + '</span></p>' +
       '</div>' +
@@ -201,7 +209,7 @@
   function telaMaterial(id) {
     var m = acha(C.materiais, id);
     if (!m) return telaMateriais();
-    return '<div class="faixa ' + m.texto + (m.foraDoCodigo ? ' fora' : '') + '" style="background:' + m.cor + '">' +
+    return '<div class="faixa reveal ' + m.texto + (m.foraDoCodigo ? ' fora' : '') + '" style="background:' + m.cor + '">' +
         '<span class="faixa-selo">' + icone(m.simbolo) + '</span>' +
         '<h2>' + esc(m.nome) + '</h2>' +
         (m.foraDoCodigo ? '<p class="oquetem">' + esc(C.textos.foraDoCodigo) +
@@ -224,7 +232,7 @@
     for (var i = 1; i <= 3; i++) {
       barras += '<i' + (i <= n ? ' class="cheia"' : '') + '></i>';
     }
-    return '<section class="bloco rende">' +
+    return '<section class="bloco reveal rende">' +
       '<h3>' + icone('moeda', 'ic-bloco') + '<span>' + esc(C.textos.valorRotulo) + '</span></h3>' +
       '<div class="medida" role="img" aria-label="Valor ' + esc(m.valor || 'não informado') + '">' +
         barras + '<span>' + esc(m.valor || '') + '</span></div>' +
@@ -241,7 +249,7 @@
     return '<section class="pontos"><h3>' + icone('entregar', 'ic-bloco') + '<span>' + esc(C.textos.pontosRotulo) + '</span></h3>' +
       lista.map(function (p) {
         var mapa = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(p.endereco);
-        return '<article class="ponto' + (p.exemplo ? ' exemplo' : '') + '">' +
+        return '<article class="ponto reveal' + (p.exemplo ? ' exemplo' : '') + '">' +
           (p.exemplo ? '<span class="tarja">Exemplo — substituir</span>' : '') +
           '<h4>' + esc(p.nome) + '</h4>' +
           '<p>' + esc(p.endereco) + '</p>' +
@@ -254,7 +262,7 @@
 
   function telaRiscos() {
     var itens = C.riscos.map(function (r) {
-      return '<button class="risco" data-ir="#risco/' + r.id + '">' +
+      return '<button class="risco reveal" data-ir="#risco/' + r.id + '">' +
         '<span class="risco-selo">' + icone(r.id, 'ic-risco') + '</span>' +
         '<span class="nome">' + esc(r.nome) + '</span>' +
         '<span class="risco-mais" aria-hidden="true">' + SETA + '</span>' +
@@ -266,7 +274,7 @@
     return '<h1 class="titulo-secao">' + esc(C.textos.modulo2) + '</h1>' +
       '<p class="sub-secao">O que cada material tem dentro e como manusear sem se machucar.</p>' +
       '<div class="riscos">' + itens + '</div>' +
-      '<section class="protecao"><h3>Sempre que for trabalhar</h3><ul>' + epi + '</ul></section>' +
+      '<section class="protecao reveal"><h3>Sempre que for trabalhar</h3><ul>' + epi + '</ul></section>' +
       '<div class="leitura"><button class="acao urgente" data-ir="#emergencia">' +
         esc(C.textos.emergencia) + '</button></div>';
   }
@@ -274,7 +282,7 @@
   function telaRisco(id) {
     var r = acha(C.riscos, id);
     if (!r) return telaRiscos();
-    return '<div class="faixa risco-faixa" style="background:var(--laranja)">' +
+    return '<div class="faixa reveal risco-faixa" style="background:var(--laranja)">' +
         '<span class="faixa-selo">' + icone(r.id, 'ic-faixa') + '</span>' +
         '<h2>' + esc(r.nome) + '</h2>' +
         '<p class="oquetem">' + esc(r.oQueTem) + '</p></div>' +
@@ -301,7 +309,7 @@
           ((e.ver.modulo === 'materiais' ? '#material/' : '#risco/') + e.ver.id) +
           '">Ver a ficha completa</button>'
         : '';
-      return '<section class="socorro">' +
+      return '<section class="socorro reveal">' +
         '<h3>' + icone(MAPA_ICONE_SOCORRO[e.id] || 'atencao', 'ic-bloco') + '<span>' + esc(e.nome) + '</span></h3>' +
         '<p class="agora"><b>Agora:</b> ' + esc(e.agora) + '</p>' +
         '<p class="procure"><b>Procure atendimento:</b> ' + esc(e.procure) + '</p>' +
@@ -317,7 +325,7 @@
   }
 
   function campo(rot, txt, perigo, iconeNome) {
-    return '<section class="bloco' + (perigo ? ' perigo' : '') + '">' +
+    return '<section class="bloco reveal' + (perigo ? ' perigo' : '') + '">' +
       '<h3>' + (iconeNome ? icone(iconeNome, 'ic-bloco') : '') + '<span>' + esc(rot) + '</span></h3>' +
       '<p>' + esc(txt) + '</p></section>';
   }
@@ -342,7 +350,7 @@
     var pct = Math.round(feitas / C.trilha.length * 100);
     var itens = C.trilha.map(function (e, i) {
       var ok = p[e.id] ? '1' : '0';
-      return '<button class="etapa" data-feita="' + ok + '" data-ir="#etapa/' + e.id + '">' +
+      return '<button class="etapa reveal" data-feita="' + ok + '" data-ir="#etapa/' + e.id + '">' +
         icone(iconeEtapa(e), 'ic-etapa') +
         '<span class="mk" aria-hidden="true">' + (ok === '1' ? '✓' : (i + 1)) + '</span>' +
         '<span class="tt">' + esc(e.titulo) + '</span></button>';
@@ -486,6 +494,29 @@
     main.classList.remove('entra');
     void main.offsetWidth; /* força o navegador a "esquecer" o estado anterior */
     main.classList.add('entra');
+    iniciaRevelacao();
+  }
+
+  /* revelação ao rolar (efeito "aparece conforme desce a tela"): elementos com
+     classe .reveal começam com opacity:0 no CSS e ganham .mostrar quando entram
+     na tela. Se o navegador não tiver IntersectionObserver, tudo aparece de uma
+     vez — o conteúdo nunca pode depender disso para ficar visível. */
+  function iniciaRevelacao() {
+    var alvos = main.querySelectorAll('.reveal');
+    if (!alvos.length) return;
+    if (!('IntersectionObserver' in window)) {
+      for (var i = 0; i < alvos.length; i++) alvos[i].classList.add('mostrar');
+      return;
+    }
+    var obs = new IntersectionObserver(function (entradas) {
+      for (var j = 0; j < entradas.length; j++) {
+        if (entradas[j].isIntersecting) {
+          entradas[j].target.classList.add('mostrar');
+          obs.unobserve(entradas[j].target);
+        }
+      }
+    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.1 });
+    for (var k = 0; k < alvos.length; k++) obs.observe(alvos[k]);
   }
   function irPara(hash) {
     if (location.hash === hash) render(); else location.hash = hash;

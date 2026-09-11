@@ -5,9 +5,31 @@
    toque grande, contraste alto, texto curto, cor com função.
    ============================================================ */
 
+/* Fontes oficiais da marca (Guia de Marca Papelito 2025). "Beastly" é o título
+   (traço irregular, propositalmente "cortado à mão"; por isso vem numa única
+   variante e não em negrito/itálico) e "PP Neue Montreal" é o texto corrido.
+   A ordem de fallback abaixo — Ultra, depois Rockwell/Georgia/serif para o
+   título; Archivo, depois as fontes do sistema para o texto — é a mesma que
+   o próprio guia de marca recomenda para quando a fonte original não carrega. */
+@font-face{
+  font-family:"Beastly"; src:url("fontes/beastly.woff2") format("woff2");
+  font-weight:400; font-style:normal; font-display:swap;
+}
 @font-face{
   font-family:"Ultra"; src:url("fontes/ultra.woff2") format("woff2");
   font-weight:400; font-style:normal; font-display:swap;
+}
+@font-face{
+  font-family:"PP Neue Montreal"; src:url("fontes/ppneuemontreal-regular.woff2") format("woff2");
+  font-weight:400; font-style:normal; font-display:swap;
+}
+@font-face{
+  font-family:"PP Neue Montreal"; src:url("fontes/ppneuemontreal-medium.woff2") format("woff2");
+  font-weight:500; font-style:normal; font-display:swap;
+}
+@font-face{
+  font-family:"PP Neue Montreal"; src:url("fontes/ppneuemontreal-bold.woff2") format("woff2");
+  font-weight:700; font-style:normal; font-display:swap;
 }
 @font-face{
   font-family:"Archivo"; src:url("fontes/archivo.woff2") format("woff2");
@@ -20,11 +42,13 @@
   --branco:#FFFFFF;
   --verde:#10A958;
   --laranja:#FF6019;
+  --rosa:#FF25B7;             /* cor de apoio da marca — usar com moderação */
+  --roxo:#AE69FF;             /* cor de apoio da marca — usar com moderação */
   --cinza:#6B6B66;
   --linha:#DCDCD6;
   --fundo:#F7F6F2;
-  --display:"Ultra",Rockwell,Georgia,serif;
-  --texto:"Archivo",system-ui,-apple-system,sans-serif;
+  --display:"Beastly","Ultra",Rockwell,Georgia,serif;
+  --texto:"PP Neue Montreal","Archivo",system-ui,-apple-system,sans-serif;
   --toque:56px;              /* alvo mínimo de toque, dedo com luva */
 }
 
@@ -351,9 +375,30 @@ body.com-convite{padding-bottom:calc(86px + env(safe-area-inset-bottom))}
   100%{opacity:1; transform:translateY(0)}
 }
 
+/* ---------------- revelação ao rolar a tela ---------------- */
+/* .reveal começa "escondido" e ganha .mostrar quando entra na tela (ver
+   iniciaRevelacao() em app.js, chamada a cada pinta()). Sem JavaScript, ou em
+   navegador sem IntersectionObserver, app.js já entrega tudo com .mostrar —
+   então isto aqui nunca pode ser a única forma de o conteúdo aparecer. */
+.reveal{
+  opacity:0; transform:translateY(16px);
+  transition:opacity .5s ease, transform .5s ease;
+}
+.reveal.mostrar{opacity:1; transform:translateY(0)}
+/* atraso crescente entre itens de uma mesma grade/lista, pra criar o efeito
+   de cascata em vez de tudo aparecer de uma vez só */
+.modulos .reveal:nth-child(2){transition-delay:.08s}
+.modulos .reveal:nth-child(3){transition-delay:.16s}
+.materiais .reveal:nth-child(2),.riscos .reveal:nth-child(2),.socorros .reveal:nth-child(2){transition-delay:.05s}
+.materiais .reveal:nth-child(3),.riscos .reveal:nth-child(3),.socorros .reveal:nth-child(3){transition-delay:.1s}
+.materiais .reveal:nth-child(4),.riscos .reveal:nth-child(4){transition-delay:.15s}
+.materiais .reveal:nth-child(5),.riscos .reveal:nth-child(5){transition-delay:.2s}
+.materiais .reveal:nth-child(6),.riscos .reveal:nth-child(6){transition-delay:.25s}
+
 @media (prefers-reduced-motion:reduce){
   *{transition:none !important; animation:none !important}
   .modulo:active,.material:active,.acao:active{transform:none}
+  .reveal{opacity:1; transform:none}
 }
 
 /* ---------------- material fora do código de cores ---------------- */
@@ -434,3 +479,13 @@ body.com-convite{padding-bottom:calc(86px + env(safe-area-inset-bottom))}
 .socorro .procure b{color:#B03C08}
 .socorro .nunca b{color:#A82A22}
 .socorro .link-ver{margin-top:6px}
+
+/* ---------------- crédito discreto da Papelito ---------------- */
+/* Selo pequeno na tela inicial. O ReciclaLito é a marca principal do app;
+   isto aqui é só a assinatura de quem apoia o projeto, por isso o logo vem
+   pequeno, em tom neutro — não repete a cor forte da marca Papelito. */
+.credito-papelito{
+  display:flex; align-items:center; gap:8px; padding:0 16px 22px; color:var(--cinza);
+}
+.credito-papelito svg{width:64px; height:auto; flex:none; opacity:.55}
+.credito-papelito span{font-size:12px; font-weight:700; letter-spacing:.02em}
