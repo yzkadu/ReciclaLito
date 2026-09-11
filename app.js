@@ -21,13 +21,17 @@
     oleo: '<path d="M16 4c5 6 8 9 8 13a8 8 0 1 1-16 0c0-4 3-7 8-13z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>',
     organico: '<path d="M6 27C6 15 14 6 27 6c1 13-8 21-20 21-.4 0-.7 0-1 0z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M9 24c4-7 9-12 15-15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>',
 
-    /* ---- riscos (módulo 2), um ícone por id em C.riscos ---- */
-    baterias: '<rect x="4" y="10" width="21" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="2.4"/><rect x="25" y="14.5" width="4" height="5" rx="1" fill="currentColor"/><path d="M16 14l-4 5h4l-1.5 4 5-5h-4z" fill="currentColor"/>',
-    lampadas: '<path d="M12 24h8M13 27h6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M16 4a9 9 0 0 0-5.3 16.3c.8.6 1.3 1.5 1.3 2.7h8c0-1.2.5-2.1 1.3-2.7A9 9 0 0 0 16 4z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>',
-    cabos: '<path d="M12 3v7M20 3v7M9 10h14v5a7 7 0 0 1-14 0v-5z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M16 22v6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>',
-    placas: '<rect x="8" y="8" width="16" height="16" rx="2.4" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M12 4v4M20 4v4M12 24v4M20 24v4M4 12h4M4 20h4M24 12h4M24 20h4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>',
-    telas: '<rect x="4" y="7" width="24" height="16" rx="2.4" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M11 28h10M16 23v5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>',
-    toner: '<rect x="7" y="10" width="18" height="14" rx="2.4" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M12 10V7h8v3" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M11 16h10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>',
+    /* ---- riscos (módulo 2), um ícone por id em C.riscos ----
+       Estes seis, diferente do resto do app, são ilustrados em cor fixa
+       (não usam currentColor): a pedido, criados a partir de foto real de
+       cada objeto como referência, mas desenhados do zero na paleta da marca
+       — nenhuma foto entrou no app, só a ideia de forma e cor. */
+    baterias: '<rect x="4" y="10" width="21" height="14" rx="2.5" fill="#FF6019" stroke="#231F20" stroke-width="2.2"/><rect x="25" y="14.5" width="4" height="5" rx="1" fill="#231F20"/><path d="M16 14l-4 5h4l-1.5 4 5-5h-4z" fill="#FCD930" stroke="#231F20" stroke-width="1"/>',
+    lampadas: '<rect x="1" y="12" width="4" height="8" rx="1.5" fill="#231F20"/><rect x="27" y="12" width="4" height="8" rx="1.5" fill="#231F20"/><rect x="3" y="13" width="26" height="6" rx="3" fill="#FCD930" stroke="#231F20" stroke-width="2.2"/><path d="M8 16h16" stroke="#FFFFFF" stroke-width="1.4" stroke-linecap="round" opacity=".55"/>',
+    cabos: '<path d="M12 3v7M20 3v7" stroke="#231F20" stroke-width="2.4" stroke-linecap="round"/><path d="M9 10h14v5a7 7 0 0 1-14 0v-5z" fill="#10A958" stroke="#231F20" stroke-width="2.2" stroke-linejoin="round"/><path d="M16 22v6" stroke="#231F20" stroke-width="2.4" stroke-linecap="round"/>',
+    placas: '<path d="M12 4v4M20 4v4M12 24v4M20 24v4M4 12h4M4 20h4M24 12h4M24 20h4" stroke="#231F20" stroke-width="2.2" stroke-linecap="round"/><rect x="8" y="8" width="16" height="16" rx="2.4" fill="#231F20"/><circle cx="12.5" cy="12.5" r="1.4" fill="#FCD930"/><circle cx="19.5" cy="12.5" r="1.4" fill="#FCD930"/><circle cx="12.5" cy="19.5" r="1.4" fill="#FCD930"/><circle cx="19.5" cy="19.5" r="1.4" fill="#FCD930"/>',
+    telas: '<rect x="4" y="7" width="24" height="16" rx="2.4" fill="#0B5FA5" stroke="#231F20" stroke-width="2.4"/><path d="M11 28h10M16 23v5" stroke="#231F20" stroke-width="2.4" stroke-linecap="round"/>',
+    toner: '<rect x="7" y="10" width="18" height="14" rx="2.4" fill="#231F20"/><path d="M12 10V7h8v3" fill="none" stroke="#231F20" stroke-width="2.4" stroke-linejoin="round"/><path d="M11 16h10" stroke="#FCD930" stroke-width="2.2" stroke-linecap="round"/>',
 
     /* ---- primeiros socorros (módulo 2, "Deu errado? E agora?") ---- */
     corte: '<rect x="4" y="13" width="24" height="6" rx="3" transform="rotate(-45 16 16)" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="10.5" cy="10.5" r="1.4" fill="currentColor"/><circle cx="14" cy="14" r="1.4" fill="currentColor"/><circle cx="18" cy="18" r="1.4" fill="currentColor"/><circle cx="21.5" cy="21.5" r="1.4" fill="currentColor"/>',

@@ -274,6 +274,33 @@ fichas de material e risco ganharam mais peso visual, sem entrar em foto real
 
 ---
 
+### Os seis ícones de risco, ilustrados na paleta da marca
+
+Pedido de seguir buscando foto real para os seis riscos do módulo 2 (pilha,
+lâmpada, cabo, placa, tela, cartucho). Como o app é público (o link do GitHub
+Pages abre pra qualquer um, mesmo sendo uso interno com a Papelito), baixar
+foto qualquer da internet sem saber a licença de quem tirou continua sendo
+risco de direito autoral — isso não muda com o app sendo de uso restrito.
+
+Caminho escolhido: usei fotos reais do Wikimedia Commons só como referência
+visual (a forma real de uma bateria, de um tubo fluorescente, de fio
+descascado, de uma placa, de um monitor CRT por dentro, de um cartucho de
+toner) e desenhei os seis ícones do zero, na paleta de cor que o app já usa
+(amarelo, preto, verde, laranja, o azul do papel). Nenhuma foto entrou no
+código — só a ideia de forma. Ficaram mais ilustrados que os outros ícones do
+app (cor fixa, não `currentColor`), de propósito: são os únicos pensados a
+partir de referência fotográfica.
+
+Se um dia a Papelito conseguir foto de verdade do próprio galpão (do EPI que
+usam, de uma bateria de verdade estufada, etc.), essa é a opção melhor — dá
+pra trocar o ícone de um risco específico por uma foto sem mexer no resto,
+bastando adicionar a imagem e trocar a linha correspondente no objeto
+`ICONES` em `app.js`.
+
+73 verificações continuam passando. `VERSAO` de v8 para v9.
+
+---
+
 ## Testes
 
 73 verificações em cinco baterias, com Playwright. `cd testes && python3 rodar-tudo.py`
