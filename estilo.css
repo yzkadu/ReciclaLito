@@ -365,7 +365,7 @@ body.com-convite{padding-bottom:calc(86px + env(safe-area-inset-bottom))}
   }
   .topo{max-width:none}
   .faixa{max-width:640px; margin:0 auto}
-  .faixa-parceria{border-radius:14px}
+  .faixa-parceria,.parceria-stat{border-radius:14px}
 }
 
 /* ---------------- troca de tela ---------------- */
@@ -499,6 +499,43 @@ body.com-convite{padding-bottom:calc(86px + env(safe-area-inset-bottom))}
   text-transform:uppercase; margin:0 0 10px; color:var(--amarelo);
 }
 .faixa-parceria p{margin:0; font-size:16px; line-height:1.5; max-width:46ch; opacity:.95}
+
+/* bloco de número em destaque (árvores plantadas), igual ao formato de
+   estatística grande da página oficial de sustentabilidade da marca */
+.parceria-stat{
+  background:var(--verde); color:var(--branco); padding:30px 16px; text-align:center;
+}
+.parceria-stat .ic-stat{width:34px; height:34px; margin:0 auto 6px; display:block}
+.parceria-stat h3{
+  font-family:var(--display); font-size:clamp(20px,6vw,26px); line-height:1.1;
+  text-transform:uppercase; margin:0 0 14px;
+}
+.parceria-numero{
+  font-family:var(--display); font-size:clamp(44px,16vw,64px); line-height:1;
+  margin:0; letter-spacing:-.01em;
+}
+.parceria-legenda{margin:4px 0 16px; font-size:15px; font-weight:700; text-transform:uppercase; letter-spacing:.02em; opacity:.9}
+.barra-stat{height:12px; border-radius:99px; background:rgba(255,255,255,.28); overflow:hidden; max-width:340px; margin:0 auto}
+.barra-stat i{display:block; height:100%; background:var(--amarelo); border-radius:99px}
+.parceria-meta{margin:10px 0 0; font-size:14px; opacity:.9}
+
+/* compromisso de reciclagem (Recicla 200% / ACOBRAZ) — texto em destaque,
+   não é um cartão da grade, é a "prova" de que o compromisso é concreto */
+.parceria-impacto{
+  margin:0 16px; padding:20px 16px; background:#FFF7DB; border-left:7px solid var(--amarelo);
+  border-radius:0 12px 12px 0;
+}
+.parceria-impacto h3{
+  display:flex; align-items:center; gap:9px; margin:0 0 8px;
+  font-size:16px; font-weight:800; text-transform:uppercase; letter-spacing:.01em; color:#5A4A00;
+}
+.parceria-impacto .ic-impacto{width:22px; height:22px; flex:none; color:#8A6D00}
+.parceria-impacto p{margin:0; font-size:16px; line-height:1.5; color:#4A4A45}
+
+.parceria-subtitulo{
+  margin:22px 16px 2px; font-size:15px; font-weight:800; text-transform:uppercase;
+  letter-spacing:.02em; color:#5A5A54;
+}
 .parceria-grade{display:grid; gap:12px; padding:16px}
 .parceria-item{
   background:var(--branco); border:2px solid var(--linha); border-radius:14px;
@@ -514,7 +551,19 @@ body.com-convite{padding-bottom:calc(86px + env(safe-area-inset-bottom))}
 .parceria-item.p-verde .parceria-selo{background:#E6F4EA; color:var(--verde)}
 .parceria-item.p-neutro .parceria-selo{background:#ECEBE6; color:var(--preto)}
 .parceria-item.p-roxo .parceria-selo{background:#F3E9FF; color:var(--roxo)}
-.parceria-item.p-amarelo .parceria-selo{background:#FFF7DB; color:var(--preto)}
+
+/* energia solar sozinha, como bloco de fechamento da seção — mesmo espírito
+   do bloco isolado que a página oficial usa pra esse mesmo assunto */
+.parceria-energia{
+  margin:18px 16px 0; padding:26px 20px; text-align:center;
+  background:var(--preto); color:var(--branco); border-radius:16px;
+}
+.parceria-energia svg{width:38px; height:38px; margin:0 auto 10px; display:block; color:var(--amarelo)}
+.parceria-energia h3{
+  font-family:var(--display); font-size:clamp(20px,6vw,25px); line-height:1;
+  text-transform:uppercase; margin:0 0 8px; color:var(--amarelo);
+}
+.parceria-energia p{margin:0; font-size:15.5px; line-height:1.5; max-width:38ch; margin:0 auto; opacity:.95}
 
 /* ---------------- crédito discreto da Papelito ---------------- */
 /* Selo pequeno na tela inicial. O ReciclaLito é a marca principal do app;

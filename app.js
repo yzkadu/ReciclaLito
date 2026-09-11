@@ -51,6 +51,7 @@
     carbonoNeutro: '<circle cx="16" cy="16" r="11.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M11 20c-1.2-6.4 2-10.6 8.4-11.4-1 6.2-2.2 10.4-8.4 11.4z" fill="currentColor"/><path d="M12.3 18.8c2-3 4.3-5.2 7.1-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>',
     arvore: '<rect x="14" y="21" width="4" height="8" rx="1" fill="currentColor"/><path d="M16 5.5c-6 0-9.5 4.3-9.5 8.3 0 3.2 2.3 5.4 5.4 5.4h8.2c3.1 0 5.4-2.2 5.4-5.4 0-4-3.5-8.3-9.5-8.3z" fill="currentColor"/>',
     energiaSolar: '<circle cx="16" cy="16" r="6" fill="currentColor"/><path d="M16 2.5v4.2M16 25.3v4.2M2.5 16h4.2M25.3 16h4.2M6.4 6.4l3 3M22.6 22.6l3 3M25.6 6.4l-3 3M9.4 22.6l-3 3" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>',
+    industria: '<path d="M4.5 28V15.5l6 4v-4l6 4v-4l7 4.5V28h-19z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><rect x="9" y="22" width="3.4" height="6" fill="currentColor"/><rect x="16" y="22" width="3.4" height="6" fill="currentColor"/>',
 
     /* ---- trilha (módulo 3) e comprovante ---- */
     generico: '<path d="M16 8c-3-2-7-2-11-1v18c4-1 8-1 11 1 3-2 7-2 11-1V7c-4-1-8-1-11 1z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M16 8v18" stroke="currentColor" stroke-width="2.2"/>',
@@ -111,12 +112,18 @@
   /* selo de cor de cada item da seção "sobre a parceria" — só o ícone e a
      tarja de fundo dele mudam de cor; o texto continua escuro sobre claro,
      igual ao resto do app (contraste alto). */
-  var COR_PARCERIA = {
-    recicla200: 'p-verde', carbono: 'p-neutro', reflorestamento: 'p-roxo', energiaSolar: 'p-amarelo'
-  };
+  var COR_PARCERIA = { carbono: 'p-neutro', reflorestamento: 'p-verde', industria: 'p-roxo' };
+
+  /* Seção no mesmo formato da página de sustentabilidade oficial da
+     Papelito (papelito.com/sustentabilidade): número de árvores em
+     destaque, depois o compromisso de reciclagem, depois os selos, depois
+     energia solar sozinha. Texto escrito do zero por este projeto — sem
+     copiar frase de campanha da marca — só os números e fatos são os
+     divulgados por ela (por isso "a empresa afirma/diz"). */
   function blocoParceria() {
     var lista = C.parceria || [];
-    if (!lista.length) return '';
+    var st = C.parceriaStat;
+    var t = C.textos;
     var itens = lista.map(function (p) {
       return '<article class="parceria-item reveal ' + (COR_PARCERIA[p.id] || '') + '">' +
         '<span class="parceria-selo">' + icone(p.icone, 'ic-parceria') + '</span>' +
@@ -124,12 +131,42 @@
         '<p>' + esc(p.texto) + '</p>' +
       '</article>';
     }).join('');
+
+    var stat = '';
+    if (st) {
+      var pct = Math.max(2, Math.min(100, Math.round(st.arvoresPlantadas / st.arvoresMeta * 100)));
+      stat = '<div class="parceria-stat reveal">' +
+        icone('arvore', 'ic-stat') +
+        '<h3>' + esc(t.parceriaStatTitulo) + '</h3>' +
+        '<p class="parceria-numero">' + st.arvoresPlantadas.toLocaleString('pt-BR') + '</p>' +
+        '<p class="parceria-legenda">' + esc(t.parceriaStatLegenda) + '</p>' +
+        '<div class="barra-stat"><i style="width:' + pct + '%"></i></div>' +
+        '<p class="parceria-meta">' + esc(st.metaTexto) + '</p>' +
+      '</div>';
+    }
+
+    var impacto = '<div class="parceria-impacto reveal">' +
+      '<h3>' + icone('reciclaDobro', 'ic-impacto') + '<span>' + esc(t.parceriaImpactoTitulo) + '</span></h3>' +
+      '<p>' + esc(t.parceriaImpactoTexto) + '</p>' +
+    '</div>';
+
+    var selos = lista.length
+      ? '<h3 class="parceria-subtitulo reveal">' + esc(t.parceriaSelosTitulo) + '</h3>' +
+        '<div class="parceria-grade">' + itens + '</div>'
+      : '';
+
+    var energia = '<div class="parceria-energia reveal">' +
+      icone('energiaSolar', 'ic-energia') +
+      '<h3>' + esc(t.parceriaEnergiaTitulo) + '</h3>' +
+      '<p>' + esc(t.parceriaEnergiaTexto) + '</p>' +
+    '</div>';
+
     return '<section class="parceria">' +
       '<div class="faixa-parceria reveal">' +
-        '<h3>' + esc(C.textos.parceriaTitulo) + '</h3>' +
-        '<p>' + esc(C.textos.parceriaIntro) + '</p>' +
+        '<h3>' + esc(t.parceriaTitulo) + '</h3>' +
+        '<p>' + esc(t.parceriaIntro) + '</p>' +
       '</div>' +
-      '<div class="parceria-grade">' + itens + '</div>' +
+      stat + impacto + selos + energia +
     '</section>';
   }
   function botaoModulo(cls, destino, nome, desc) {

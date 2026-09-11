@@ -413,39 +413,49 @@ const CONTEUDO = {
     foraDoCodigo: 'Fora do código de cores',
     rodape: 'Projeto de extensão universitária — Universidade Católica de Brasília, em parceria com a Papelito Brasil.',
     parceriaTitulo: 'Sobre a parceria',
-    parceriaIntro: 'A Papelito Brasil, que apoia este projeto, também declara compromissos próprios com reciclagem e meio ambiente:'
+    parceriaIntro: 'A Papelito Brasil, que apoia este projeto, também declara compromissos próprios com reciclagem e meio ambiente — no mesmo formato que a empresa usa na própria página de sustentabilidade dela:',
+    parceriaStatTitulo: 'Reflorestamento em números',
+    parceriaStatLegenda: 'árvores plantadas, segundo a empresa',
+    parceriaImpactoTitulo: 'Reciclar mais do que produz',
+    parceriaImpactoTexto: 'Desde 2021 a empresa paga cooperativas de catadores para reciclar o dobro do resíduo que ela mesma produz por mês. A primeira parceira foi a ACOBRAZ, cooperativa de catadores de Brazlândia (DF) — a mesma linha de trabalho de quem usa este aplicativo.',
+    parceriaSelosTitulo: 'Selos e compromissos declarados',
+    parceriaEnergiaTitulo: 'Energia solar',
+    parceriaEnergiaTexto: 'A empresa afirma que toda a sua produção é abastecida por energia solar.'
   },
 
   /* ----------------------------------------------------------
      SOBRE A PARCERIA — o que a Papelito (apoiadora do projeto)
-     declara fazer em sustentabilidade. São afirmações da própria
-     empresa (ver fonte de cada item), não uma auditoria independente
-     feita pelo ReciclaLito — por isso o texto usa "a empresa diz/afirma".
+     declara fazer em sustentabilidade, no mesmo formato usado na
+     página de sustentabilidade oficial dela (número de árvores em
+     destaque, depois selos). São afirmações da própria empresa (ver
+     fonte de cada item), não uma auditoria independente feita pelo
+     ReciclaLito — por isso o texto usa "a empresa diz/afirma".
+     Os dois números abaixo (arvoresPlantadas/arvoresMeta) são só
+     números: para atualizar, troque os dois valores.
      ---------------------------------------------------------- */
+  parceriaStat: {
+    arvoresPlantadas: 52274,
+    arvoresMeta: 100000,
+    metaTexto: 'Meta declarada: 100 mil árvores plantadas até 2027.'
+  },
   parceria: [
     {
-      id: 'recicla200',
-      titulo: 'Papelito Recicla 200%',
-      texto: 'Desde 2021 a empresa paga cooperativas de catadores para reciclar o dobro do resíduo que ela mesma produz por mês. A primeira parceira foi a ACOBRAZ, cooperativa de catadores de Brazlândia (DF) — a mesma linha de trabalho de quem usa este aplicativo.',
-      icone: 'reciclaDobro'
-    },
-    {
       id: 'carbono',
-      titulo: 'Carbono neutro',
-      texto: 'A empresa afirma neutralizar toda a emissão de carbono da sua produção.',
+      titulo: 'Carbono Zerado',
+      texto: 'A empresa afirma compensar as emissões de carbono da sua produção desde 2021, já aplicado a mais de 40 milhões de produtos.',
       icone: 'carbonoNeutro'
     },
     {
       id: 'reflorestamento',
-      titulo: 'Reflorestamento',
-      texto: 'Meta declarada pela empresa: 100 mil árvores plantadas até 2027.',
+      titulo: '100 mil árvores',
+      texto: 'Meta declarada de plantio de 100 mil árvores até 2027 (ver número atualizado acima).',
       icone: 'arvore'
     },
     {
-      id: 'energiaSolar',
-      titulo: 'Energia solar',
-      texto: 'A empresa afirma que a produção é 100% abastecida por energia solar.',
-      icone: 'energiaSolar'
+      id: 'industria',
+      titulo: 'Indústria brasileira',
+      texto: 'A empresa destaca a produção nacional como parte do seu compromisso declarado.',
+      icone: 'industria'
     }
   ]
 };

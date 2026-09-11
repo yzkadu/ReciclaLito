@@ -436,6 +436,45 @@ Nenhuma mudança de conteúdo ou visual nesta passada — só a troca de versão
 
 ---
 
+### "Sobre a parceria" refeita no formato da página oficial de sustentabilidade
+
+Pedido de seguir de perto o padrão de `papelito.com/sustentabilidade`
+especificamente (não só o site em geral). Reestruturei a seção inteira pra
+espelhar a sequência real daquela página, cada bloco visualmente parecido com
+o equivalente de lá:
+
+1. **Número de árvores em destaque** — bloco cheio (verde) com número grande
+   (52.274) e barra de progresso até a meta, no lugar do estilo "estatística
+   gigante" que a página oficial usa pra reflorestamento.
+2. **"Reciclar mais do que produz"** — o compromisso do Recicla 200%/ACOBRAZ
+   virou um destaque próprio (caixa com borda lateral), não mais um cartão
+   igual aos outros — é o dado mais forte pra esse público, merecia peso
+   próprio.
+3. **Selos** (Carbono Zerado, 100 mil árvores, Indústria brasileira) — grade
+   de cartões, igual à seção "Selos" do site oficial. Trocei "Carbono neutro"
+   por "Carbono Zerado" com o dado mais específico que achei na página deles
+   (compensação desde 2021, mais de 40 milhões de produtos), e troquei o
+   quarto cartão antigo (Energia solar) por "Indústria brasileira", que é um
+   dos três selos reais da página.
+4. **Energia solar sozinha** — virou bloco de fechamento próprio (faixa
+   preta), igual à página oficial, que também trata esse assunto separado
+   dos selos.
+
+Título e textos de cada bloco foram escritos do zero para este projeto — não
+copiei nenhuma frase de campanha da Papelito (ex.: o slogan deles pra aquela
+página). Só os fatos/números são da empresa, e o texto deixa isso explícito
+("a empresa afirma/diz").
+
+`C.parceriaStat` (novo, em `conteudo.js`) guarda só os dois números —
+`arvoresPlantadas` e `arvoresMeta` — pra a Papelito atualizar sem mexer em
+mais nada; a barra de progresso e o número formatado são calculados em
+`app.js` a partir deles.
+
+Nenhum texto anterior do app foi retirado. 73 verificações continuam
+passando. `VERSAO` de v12 para v13.
+
+---
+
 ## Testes
 
 73 verificações em cinco baterias, com Playwright. `cd testes && python3 rodar-tudo.py`
