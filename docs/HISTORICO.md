@@ -202,6 +202,45 @@ os dois pontos acima antes de começar.
 
 ---
 
+### Mais visual, menos parede de texto
+
+A pedido, uma passada em `app.js` e `estilo.css` para o app depender menos de
+parágrafo puro. Nada de conteúdo mudou — só a apresentação:
+
+- **Ícone em todo bloco de ficha.** As fichas de material e de risco (`Como
+  separar`, `Onde entregar`, `Atenção`, `Como manusear`) e o bloco de pontos de
+  entrega ganharam um ícone ao lado do título. A função `campo()` em `app.js`
+  passou a aceitar um quarto parâmetro (`iconeNome`) opcional — quem chama sem
+  ele continua funcionando exatamente como antes.
+- **Ícone em cada risco do módulo 2**, na lista e na ficha (bateria, lâmpada,
+  cabo, placa, tela, toner) — o módulo era só texto e seta.
+- **Ícone em cada etapa da trilha**, incluindo a tela de leitura da etapa e a
+  tela de verificação. A função nova `iconeEtapa(e)` decide o ícone pelo mesmo
+  material/risco que a etapa já referencia (`e.ver`), com um ícone genérico para
+  as duas etapas sem `ver` e um ícone próprio para a verificação final — nada
+  fixo por posição ou por `id`, para não repetir o erro do `t6` (ver acima).
+- **Transição leve entre telas.** `pinta()` agora reaplica a classe `entra` a
+  cada navegação, disparando um fade+leve subida em CSS
+  (`@keyframes entrada`). É puramente decorativo: `prefers-reduced-motion`
+  já zera tudo isso pela regra global que já existia em `estilo.css`.
+- **Resposta certa/errada na verificação ganhou uma pequena animação** (um
+  "pulo" na opção certa, um tremor na errada) — mesmo `data-estado` que já
+  existia, só ganhou `@keyframes` no CSS.
+- **Comprovante de trilha concluída ganhou troféu e confete.** Só aparece
+  quando as 8 etapas estão de fato concluídas (`completo === true`), é
+  `aria-hidden` (decorativo, não muda o que leitor de tela anuncia) e é uma
+  comemoração **individual** — não é placar nem comparação entre pessoas ou
+  equipes, e por isso não esbarra na decisão registrada em "Pontos, medalhas e
+  ranking" (*O que não foi feito, e por quê*, abaixo) nem no motivo 1 do
+  "jogo entre departamentos" logo acima.
+
+Rodada a bateria inteira de testes (73 verificações) antes e depois de cada
+grupo de mudança; nada quebrou, porque nenhum texto visível mudou e os ícones
+são elementos novos (`<svg>`), não substituem nó de texto que algum teste
+procurasse.
+
+---
+
 ## Testes
 
 73 verificações em cinco baterias, com Playwright. `cd testes && python3 rodar-tudo.py`

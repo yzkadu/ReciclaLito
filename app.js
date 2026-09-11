@@ -19,7 +19,26 @@
     metal: '<rect x="9" y="5" width="14" height="22" rx="2" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M9 10h14M9 22h14" stroke="currentColor" stroke-width="2.4"/>',
     eletronico: '<rect x="5" y="8" width="22" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M11 27h10M16 23v4" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M13 14l-2 3h4l-2 3" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>',
     oleo: '<path d="M16 4c5 6 8 9 8 13a8 8 0 1 1-16 0c0-4 3-7 8-13z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>',
-    organico: '<path d="M6 27C6 15 14 6 27 6c1 13-8 21-20 21-.4 0-.7 0-1 0z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M9 24c4-7 9-12 15-15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>'
+    organico: '<path d="M6 27C6 15 14 6 27 6c1 13-8 21-20 21-.4 0-.7 0-1 0z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M9 24c4-7 9-12 15-15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>',
+
+    /* ---- riscos (módulo 2), um ícone por id em C.riscos ---- */
+    baterias: '<rect x="4" y="10" width="21" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="2.4"/><rect x="25" y="14.5" width="4" height="5" rx="1" fill="currentColor"/><path d="M16 14l-4 5h4l-1.5 4 5-5h-4z" fill="currentColor"/>',
+    lampadas: '<path d="M12 24h8M13 27h6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M16 4a9 9 0 0 0-5.3 16.3c.8.6 1.3 1.5 1.3 2.7h8c0-1.2.5-2.1 1.3-2.7A9 9 0 0 0 16 4z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>',
+    cabos: '<path d="M12 3v7M20 3v7M9 10h14v5a7 7 0 0 1-14 0v-5z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M16 22v6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>',
+    placas: '<rect x="8" y="8" width="16" height="16" rx="2.4" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M12 4v4M20 4v4M12 24v4M20 24v4M4 12h4M4 20h4M24 12h4M24 20h4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>',
+    telas: '<rect x="4" y="7" width="24" height="16" rx="2.4" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M11 28h10M16 23v5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>',
+    toner: '<rect x="7" y="10" width="18" height="14" rx="2.4" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M12 10V7h8v3" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M11 16h10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>',
+
+    /* ---- cabeçalhos de seção nas fichas (fora do código de cores dos materiais) ---- */
+    separar: '<path d="M5 6h22l-8 10v8l-6 3v-11z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>',
+    entregar: '<path d="M16 28s9-9.5 9-16a9 9 0 1 0-18 0c0 6.5 9 16 9 16z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><circle cx="16" cy="12" r="3.2" fill="none" stroke="currentColor" stroke-width="2.4"/>',
+    atencao: '<path d="M16 4 3 27h26L16 4z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M16 13v6.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="16" cy="23.5" r="1.4" fill="currentColor"/>',
+    manusear: '<path d="M16 4l11 4v8c0 7-4.7 11.3-11 12-6.3-.7-11-5-11-12V8z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M11 16.5l3.3 3.3 6-6.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>',
+
+    /* ---- trilha (módulo 3) e comprovante ---- */
+    generico: '<path d="M16 8c-3-2-7-2-11-1v18c4-1 8-1 11 1 3-2 7-2 11-1V7c-4-1-8-1-11 1z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M16 8v18" stroke="currentColor" stroke-width="2.2"/>',
+    verificacao: '<rect x="7" y="6" width="18" height="23" rx="2" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M12 6V4h8v2" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M11 17l3.5 3.5L21 13" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>',
+    trofeu: '<path d="M8 4h16v6a8 8 0 0 1-16 0V4z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M8 6H4v3a5 5 0 0 0 5 5M24 6h4v3a5 5 0 0 1-5 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M16 18v5M11 27h10M12.5 23h7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>'
   };
   function icone(nome, classe) {
     return '<svg viewBox="0 0 32 32" class="' + (classe || '') + '" aria-hidden="true">' + (ICONES[nome] || '') + '</svg>';
@@ -164,8 +183,8 @@
         '<h2>' + esc(it.nome) + '</h2>' +
         '<p class="oquetem"><span class="chip ' + d.texto + '" style="background:' + d.cor + '">' + esc(d.rot) + '</span></p>' +
       '</div>' +
-      '<div class="blocos">' + campo('Onde vai', it.resposta || '') +
-      (it.nota ? campo('Observação', it.nota) : '') + '</div>' +
+      '<div class="blocos">' + campo('Onde vai', it.resposta || '', false, 'entregar') +
+      (it.nota ? campo('Observação', it.nota, false, 'atencao') : '') + '</div>' +
       '<div class="leitura"><button class="acao" data-ir="#materiais">Buscar outro item</button></div>';
   }
 
@@ -177,10 +196,10 @@
         (m.foraDoCodigo ? '<p class="oquetem">' + esc(C.textos.foraDoCodigo) +
           '. Não é orgânico e não vai em lixeira comum.</p>' : '') + '</div>' +
       '<div class="blocos">' +
-        campo('Como separar', m.separar) +
-        campo('Onde entregar', m.entregar) +
+        campo('Como separar', m.separar, false, 'separar') +
+        campo('Onde entregar', m.entregar, false, 'entregar') +
         blocoRende(m) +
-        campo('Atenção', m.atencao, true) +
+        campo('Atenção', m.atencao, true, 'atencao') +
       '</div>' +
       blocoPontos(m.id);
   }
@@ -208,7 +227,7 @@
       return p.recebe && p.recebe.indexOf(id) !== -1;
     });
     if (!lista.length) return '';
-    return '<section class="pontos"><h3>' + esc(C.textos.pontosRotulo) + '</h3>' +
+    return '<section class="pontos"><h3>' + icone('entregar', 'ic-bloco') + '<span>' + esc(C.textos.pontosRotulo) + '</span></h3>' +
       lista.map(function (p) {
         var mapa = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(p.endereco);
         return '<article class="ponto' + (p.exemplo ? ' exemplo' : '') + '">' +
@@ -225,7 +244,7 @@
   function telaRiscos() {
     var itens = C.riscos.map(function (r) {
       return '<button class="risco" data-ir="#risco/' + r.id + '">' +
-        '<span>' + esc(r.nome) + '</span>' + SETA + '</button>';
+        icone(r.id, 'ic-risco') + '<span>' + esc(r.nome) + '</span>' + SETA + '</button>';
     }).join('');
     var epi = C.protecao.map(function (i) { return '<li>' + esc(i) + '</li>'; }).join('');
     return '<h1 class="titulo-secao">' + esc(C.textos.modulo2) + '</h1>' +
@@ -240,12 +259,12 @@
     var r = acha(C.riscos, id);
     if (!r) return telaRiscos();
     return '<div class="faixa" style="background:var(--laranja)">' +
-        '<h2>' + esc(r.nome) + '</h2>' +
+        icone(r.id, 'ic-faixa') + '<h2>' + esc(r.nome) + '</h2>' +
         '<p class="oquetem">' + esc(r.oQueTem) + '</p></div>' +
       '<div class="blocos">' +
-        campo('Como manusear', r.manusear) +
-        campo('Atenção', r.alerta, true) +
-        campo('Onde entregar', r.entregar) +
+        campo('Como manusear', r.manusear, false, 'manusear') +
+        campo('Atenção', r.alerta, true, 'atencao') +
+        campo('Onde entregar', r.entregar, false, 'entregar') +
       '</div>' +
       blocoPontos(r.id);
   }
@@ -272,9 +291,24 @@
       '<div class="socorros">' + itens + '</div>';
   }
 
-  function campo(rot, txt, perigo) {
+  function campo(rot, txt, perigo, iconeNome) {
     return '<section class="bloco' + (perigo ? ' perigo' : '') + '">' +
-      '<h3>' + esc(rot) + '</h3><p>' + esc(txt) + '</p></section>';
+      '<h3>' + (iconeNome ? icone(iconeNome, 'ic-bloco') : '') + '<span>' + esc(rot) + '</span></h3>' +
+      '<p>' + esc(txt) + '</p></section>';
+  }
+
+  /* ícone de cada etapa da trilha: usa o mesmo símbolo do material ou risco
+     que ela apresenta (e.ver), a última etapa (verificação) tem ícone
+     próprio, e uma etapa sem "ver" cai no ícone genérico. Nada aqui depende
+     de posição fixa, então dá para reordenar etapas em conteudo.js à vontade. */
+  function iconeEtapa(e) {
+    if (e.id === C.trilha[C.trilha.length - 1].id) return 'verificacao';
+    if (e.ver && e.ver.modulo === 'materiais') {
+      var m = acha(C.materiais, e.ver.id);
+      return m ? m.simbolo : 'generico';
+    }
+    if (e.ver && e.ver.modulo === 'riscos') return e.ver.id;
+    return 'generico';
   }
 
   function telaTrilha() {
@@ -284,6 +318,7 @@
     var itens = C.trilha.map(function (e, i) {
       var ok = p[e.id] ? '1' : '0';
       return '<button class="etapa" data-feita="' + ok + '" data-ir="#etapa/' + e.id + '">' +
+        icone(iconeEtapa(e), 'ic-etapa') +
         '<span class="mk" aria-hidden="true">' + (ok === '1' ? '✓' : (i + 1)) + '</span>' +
         '<span class="tt">' + esc(e.titulo) + '</span></button>';
     }).join('');
@@ -308,7 +343,7 @@
       var alvo = (e.ver.modulo === 'materiais' ? '#material/' : '#risco/') + e.ver.id;
       ver = '<button class="link-ver" data-ir="' + alvo + '">Ver a ficha completa</button>';
     }
-    return '<h1 class="titulo-secao">' + esc(e.titulo) + '</h1>' +
+    return '<h1 class="titulo-secao com-icone">' + icone(iconeEtapa(e), 'ic-titulo') + '<span>' + esc(e.titulo) + '</span></h1>' +
       '<div class="leitura"><p>' + esc(e.texto) + '</p>' + ver +
       '<button class="acao" data-concluir="' + e.id + '">Marcar como lida</button></div>';
   }
@@ -331,7 +366,7 @@
     var ops = qOrdem.map(function (real, pos) {
       return '<button class="opcao" data-resp="' + pos + '">' + esc(q.opcoes[real]) + '</button>';
     }).join('');
-    return '<h1 class="titulo-secao">Verificação</h1>' +
+    return '<h1 class="titulo-secao com-icone">' + icone('verificacao', 'ic-titulo') + '<span>Verificação</span></h1>' +
       '<p class="sub-secao">Pergunta ' + (qAtual + 1) + ' de ' + C.perguntas.length + '</p>' +
       '<section class="pergunta"><h3>' + esc(q.p) + '</h3>' +
       '<div class="opcoes">' + ops + '</div><p class="retorno" id="retorno" role="status"></p></section>';
@@ -382,8 +417,10 @@
       '<p class="pendente">' + (faltam === 1 ? 'Falta 1 etapa da trilha.' : 'Faltam ' + faltam + ' etapas da trilha.') +
       '</p><button class="acao claro" data-ir="#trilha">Voltar para a trilha</button>';
 
-    return '<div class="fim">' +
+    return '<div class="fim' + (completo ? ' com-festa' : '') + '">' +
+      (completo ? confete() : '') +
       '<div class="selo' + (completo ? '' : ' parcial') + '">' +
+        (completo ? icone('trofeu', 'selo-icone') : '') +
         '<h2>' + (completo ? 'Trilha concluída' : 'Verificação feita') + '</h2>' +
         '<p>' + acertos + ' de ' + deQuantas + ' na verificação</p>' +
         '<p class="selo-data">' + esc(data) + '</p>' +
@@ -391,6 +428,23 @@
       '</div>' +
       (completo ? '<p>Tire um print desta tela e envie ao responsável pela sua equipe.</p>' : pendencia) +
       '<button class="acao" data-ir="#inicio">Voltar ao início</button></div>';
+  }
+
+  /* confete simples: alguns quadradinhos com cor e destino aleatórios,
+     só decorativo (aria-hidden) e sem repetição de nome entre pessoas —
+     é uma comemoração pessoal, não um placar entre catadores ou equipes. */
+  function confete() {
+    var cores = ['#FF6019', '#00A99D', '#FFC629', '#5B2A86', '#0072BC'];
+    var pedacos = '';
+    for (var i = 0; i < 16; i++) {
+      var tx = Math.round((Math.random() - 0.5) * 220) + 'px';
+      var ty = Math.round(60 + Math.random() * 160) + 'px';
+      var cor = cores[i % cores.length];
+      var atraso = (Math.random() * 0.3).toFixed(2) + 's';
+      pedacos += '<i style="--tx:' + tx + ';--ty:' + ty + ';background:' + cor +
+        ';animation-delay:' + atraso + '"></i>';
+    }
+    return '<div class="confete" aria-hidden="true">' + pedacos + '</div>';
   }
 
   /* ---------- navegação ---------- */
@@ -402,6 +456,11 @@
     main.innerHTML = html;
     main.focus();
     window.scrollTo(0, 0);
+    /* reinicia a classe pra disparar a transição de entrada a cada troca de tela;
+       @media (prefers-reduced-motion:reduce) já zera isso globalmente no CSS. */
+    main.classList.remove('entra');
+    void main.offsetWidth; /* força o navegador a "esquecer" o estado anterior */
+    main.classList.add('entra');
   }
   function irPara(hash) {
     if (location.hash === hash) render(); else location.hash = hash;

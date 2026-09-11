@@ -109,6 +109,8 @@ button{font:inherit; color:inherit; cursor:pointer; border:none; background:none
   text-transform:uppercase; margin:22px 16px 4px;
 }
 .sub-secao{margin:0 16px 16px; color:#4A4A45; font-size:16px}
+.titulo-secao.com-icone{display:flex; align-items:center; gap:10px}
+.titulo-secao.com-icone .ic-titulo{width:30px; height:30px; flex:none; color:var(--verde)}
 
 /* ---------------- grade de materiais ---------------- */
 .materiais{
@@ -178,12 +180,15 @@ button{font:inherit; color:inherit; cursor:pointer; border:none; background:none
 .blocos{padding:0 0 30px}
 .bloco{padding:18px 16px; border-bottom:2px solid var(--linha); background:var(--branco)}
 .bloco h3{
-  margin:0 0 6px; font-size:15px; font-weight:800; letter-spacing:.02em;
+  display:flex; align-items:center; gap:8px;
+  margin:0 0 8px; font-size:15px; font-weight:800; letter-spacing:.02em;
   text-transform:uppercase; color:#5A5A54;
 }
+.bloco h3 .ic-bloco{width:22px; height:22px; flex:none; color:var(--verde)}
 .bloco p{margin:0; font-size:17px; line-height:1.55}
 .bloco.perigo{background:#FFF1EA; border-left:7px solid var(--laranja)}
 .bloco.perigo h3{color:#B03C08}
+.bloco.perigo h3 .ic-bloco{color:var(--laranja)}
 
 /* ---------------- lista de riscos ---------------- */
 .riscos{display:grid; gap:12px; padding:0 16px 24px}
@@ -214,6 +219,8 @@ button{font:inherit; color:inherit; cursor:pointer; border:none; background:none
   border:2px solid var(--linha);
 }
 .etapa[data-feita="1"]{background:#EDF7F0; border-color:#BFE3CC}
+.etapa .ic-etapa{width:26px; height:26px; flex:none; margin-top:1px; color:#5A5A54}
+.etapa[data-feita="1"] .ic-etapa{color:var(--verde)}
 .etapa .mk{
   width:28px; height:28px; border-radius:50%; flex:none; margin-top:1px;
   display:grid; place-items:center; font-weight:800; font-size:15px;
@@ -244,17 +251,44 @@ button{font:inherit; color:inherit; cursor:pointer; border:none; background:none
   width:100%; text-align:left; background:var(--branco); border:2px solid var(--linha);
   border-radius:12px; padding:16px; font-size:17px; font-weight:600; min-height:var(--toque);
 }
-.opcao[data-estado="certa"]{background:#E6F4EA; border-color:var(--verde)}
-.opcao[data-estado="errada"]{background:#FDECEA; border-color:#C8332B}
+.opcao[data-estado="certa"]{background:#E6F4EA; border-color:var(--verde); animation:pulo .35s ease}
+.opcao[data-estado="errada"]{background:#FDECEA; border-color:#C8332B; animation:tremeu .35s ease}
 .retorno{margin:16px 0 0; font-weight:700; font-size:17px}
+@keyframes pulo{
+  0%{transform:scale(1)} 40%{transform:scale(1.035)} 100%{transform:scale(1)}
+}
+@keyframes tremeu{
+  0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)}
+  40%{transform:translateX(5px)} 60%{transform:translateX(-3px)} 80%{transform:translateX(2px)}
+}
 
-.fim{padding:26px 16px 40px; text-align:center}
+.fim{padding:26px 16px 40px; text-align:center; position:relative; overflow:hidden}
 .fim .selo{
   background:var(--amarelo); border:3px solid var(--preto); border-radius:16px;
-  padding:26px 20px; margin-bottom:18px;
+  padding:26px 20px; margin-bottom:18px; position:relative; z-index:1;
 }
 .fim .selo h2{font-family:var(--display); font-size:30px; text-transform:uppercase; margin:0 0 8px; line-height:1}
 .fim .selo p{margin:0; font-weight:600}
+.fim .selo-icone{
+  width:52px; height:52px; color:var(--preto); margin:0 auto 8px; display:block;
+  animation:surge .5s ease;
+}
+@keyframes surge{
+  0%{transform:scale(.4) translateY(14px); opacity:0}
+  70%{transform:scale(1.08) translateY(-3px); opacity:1}
+  100%{transform:scale(1) translateY(0)}
+}
+
+/* confete: só na tela de trilha concluída, decorativo, some sozinho */
+.confete{position:absolute; inset:0 0 auto 0; height:240px; pointer-events:none; z-index:0}
+.confete i{
+  position:absolute; top:-14px; left:50%; width:9px; height:14px; border-radius:2px;
+  opacity:.9; animation:cai 1.4s ease-in forwards;
+}
+@keyframes cai{
+  0%{transform:translate(0,0) rotate(0deg); opacity:1}
+  100%{transform:translate(var(--tx),var(--ty)) rotate(340deg); opacity:0}
+}
 .fim input{
   width:100%; padding:15px; font:inherit; border:2px solid var(--preto);
   border-radius:10px; margin-top:14px; background:var(--branco);
@@ -292,6 +326,15 @@ body.com-convite{padding-bottom:calc(86px + env(safe-area-inset-bottom))}
   .faixa{max-width:640px; margin:0 auto}
 }
 
+/* ---------------- troca de tela ---------------- */
+/* main recebe a classe "entra" a cada navegação (ver pinta() em app.js);
+   é só um leve fade+subida, sem travar o toque em nada. */
+#principal.entra{animation:entrada .22s ease}
+@keyframes entrada{
+  0%{opacity:0; transform:translateY(6px)}
+  100%{opacity:1; transform:translateY(0)}
+}
+
 @media (prefers-reduced-motion:reduce){
   *{transition:none !important; animation:none !important}
   .modulo:active,.material:active,.acao:active{transform:none}
@@ -322,9 +365,11 @@ body.com-convite{padding-bottom:calc(86px + env(safe-area-inset-bottom))}
 /* ---------------- pontos de entrega ---------------- */
 .pontos{padding:4px 16px 30px}
 .pontos h3{
+  display:flex; align-items:center; gap:8px;
   font-family:var(--display); font-size:22px; text-transform:uppercase;
   margin:18px 0 12px; line-height:1;
 }
+.pontos h3 .ic-bloco{width:26px; height:26px; flex:none; color:var(--verde)}
 .ponto{
   background:var(--branco); border:2px solid var(--linha);
   border-radius:12px; padding:16px; margin-bottom:10px;
