@@ -74,6 +74,23 @@
     return String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
 
+  /* escurece uma cor hex em `pct` (0 a 1) \u2014 usado s\u00f3 pra criar o degrad\u00ea nos
+     cart\u00f5es de material e na faixa da ficha a partir da MESMA cor cadastrada
+     em conteudo.js, sem precisar cadastrar uma segunda cor por material. */
+  function escurece(hex, pct) {
+    var h = String(hex).replace('#', '');
+    if (h.length === 3) h = h[0] + h[0] + h[1] + h[1] + h[2] + h[2];
+    var r = parseInt(h.substr(0, 2), 16), g = parseInt(h.substr(2, 2), 16), b = parseInt(h.substr(4, 2), 16);
+    r = Math.max(0, Math.round(r * (1 - pct)));
+    g = Math.max(0, Math.round(g * (1 - pct)));
+    b = Math.max(0, Math.round(b * (1 - pct)));
+    function h2(n) { var s = n.toString(16); return s.length < 2 ? '0' + s : s; }
+    return '#' + h2(r) + h2(g) + h2(b);
+  }
+  function gradCor(hex) {
+    return 'linear-gradient(135deg,' + hex + ' 0%,' + escurece(hex, 0.22) + ' 100%)';
+  }
+
   /* ---------- progresso da trilha, guardado no próprio aparelho ---------- */
   function lerProgresso() {
     try { return JSON.parse(localStorage.getItem(CHAVE)) || {}; }
@@ -89,6 +106,7 @@
     var t = C.textos;
     return '' +
       '<section class="abertura">' +
+        '<span class="marca-agua" aria-hidden="true">R</span>' +
         '<h1>' + esc(t.subtitulo) + '</h1>' +
       '</section>' +
       campoBusca(t) +
@@ -136,6 +154,7 @@
     if (st) {
       var pct = Math.max(2, Math.min(100, Math.round(st.arvoresPlantadas / st.arvoresMeta * 100)));
       stat = '<div class="parceria-stat reveal">' +
+        '<span class="marca-agua" aria-hidden="true">R</span>' +
         icone('arvore', 'ic-stat') +
         '<h3>' + esc(t.parceriaStatTitulo) + '</h3>' +
         '<p class="parceria-numero">' + st.arvoresPlantadas.toLocaleString('pt-BR') + '</p>' +
@@ -156,6 +175,7 @@
       : '';
 
     var energia = '<div class="parceria-energia reveal">' +
+      '<span class="marca-agua" aria-hidden="true">P</span>' +
       icone('energiaSolar', 'ic-energia') +
       '<h3>' + esc(t.parceriaEnergiaTitulo) + '</h3>' +
       '<p>' + esc(t.parceriaEnergiaTexto) + '</p>' +
@@ -163,6 +183,7 @@
 
     return '<section class="parceria">' +
       '<div class="faixa-parceria reveal">' +
+        '<span class="marca-agua" aria-hidden="true">P</span>' +
         '<h3>' + esc(t.parceriaTitulo) + '</h3>' +
         '<p>' + esc(t.parceriaIntro) + '</p>' +
       '</div>' +
@@ -171,6 +192,7 @@
   }
   function botaoModulo(cls, destino, nome, desc) {
     return '<button class="modulo reveal ' + cls + '" data-ir="' + destino + '">' +
+      (cls === 'm1' ? '<span class="marca-agua" aria-hidden="true">R</span>' : '') +
       '<span class="nome">' + esc(nome) + '</span>' +
       '<span class="desc">' + esc(desc) + '</span></button>';
   }
@@ -185,7 +207,7 @@
   function telaMateriais() {
     var itens = C.materiais.map(function (m) {
       return '<button class="material reveal ' + m.texto + (m.foraDoCodigo ? ' fora' : '') +
-        '" style="background:' + m.cor + '" data-ir="#material/' + m.id + '">' +
+        '" style="background:' + gradCor(m.cor) + '" data-ir="#material/' + m.id + '">' +
         icone(m.simbolo) + '<span class="nome">' + esc(m.nome) + '</span>' +
         (m.foraDoCodigo ? '<span class="marca-fora">' + esc(C.textos.foraDoCodigo) + '</span>' : '') +
         '</button>';
@@ -267,7 +289,7 @@
     var it = (C.itens || [])[Number(n)];
     if (!it) return telaMateriais();
     var d = destinoDe(it);
-    return '<div class="faixa reveal" style="background:var(--preto)">' +
+    return '<div class="faixa reveal">' +
         '<h2>' + esc(it.nome) + '</h2>' +
         '<p class="oquetem"><span class="chip ' + d.texto + '" style="background:' + d.cor + '">' + esc(d.rot) + '</span></p>' +
       '</div>' +
@@ -279,7 +301,7 @@
   function telaMaterial(id) {
     var m = acha(C.materiais, id);
     if (!m) return telaMateriais();
-    return '<div class="faixa reveal ' + m.texto + (m.foraDoCodigo ? ' fora' : '') + '" style="background:' + m.cor + '">' +
+    return '<div class="faixa reveal ' + m.texto + (m.foraDoCodigo ? ' fora' : '') + '" style="background:' + gradCor(m.cor) + '">' +
         '<span class="faixa-selo">' + icone(m.simbolo) + '</span>' +
         '<h2>' + esc(m.nome) + '</h2>' +
         (m.foraDoCodigo ? '<p class="oquetem">' + esc(C.textos.foraDoCodigo) +
@@ -344,7 +366,7 @@
     return '<h1 class="titulo-secao">' + esc(C.textos.modulo2) + '</h1>' +
       '<p class="sub-secao">O que cada material tem dentro e como manusear sem se machucar.</p>' +
       '<div class="riscos">' + itens + '</div>' +
-      '<section class="protecao reveal"><h3>Sempre que for trabalhar</h3><ul>' + epi + '</ul></section>' +
+      '<section class="protecao reveal"><span class="marca-agua" aria-hidden="true">R</span><h3>Sempre que for trabalhar</h3><ul>' + epi + '</ul></section>' +
       '<div class="leitura"><button class="acao urgente" data-ir="#emergencia">' +
         esc(C.textos.emergencia) + '</button></div>';
   }
@@ -352,7 +374,7 @@
   function telaRisco(id) {
     var r = acha(C.riscos, id);
     if (!r) return telaRiscos();
-    return '<div class="faixa reveal risco-faixa" style="background:var(--laranja)">' +
+    return '<div class="faixa reveal risco-faixa">' +
         '<span class="faixa-selo">' + icone(r.id, 'ic-faixa') + '</span>' +
         '<h2>' + esc(r.nome) + '</h2>' +
         '<p class="oquetem">' + esc(r.oQueTem) + '</p></div>' +
@@ -447,7 +469,7 @@
       ver = '<button class="link-ver" data-ir="' + alvo + '">Ver a ficha completa</button>';
     }
     return '<h1 class="titulo-secao com-icone">' + icone(iconeEtapa(e), 'ic-titulo') + '<span>' + esc(e.titulo) + '</span></h1>' +
-      '<div class="leitura"><p>' + esc(e.texto) + '</p>' + ver +
+      '<div class="leitura reveal"><p>' + esc(e.texto) + '</p>' + ver +
       '<button class="acao" data-concluir="' + e.id + '">Marcar como lida</button></div>';
   }
 
@@ -471,7 +493,7 @@
     }).join('');
     return '<h1 class="titulo-secao com-icone">' + icone('verificacao', 'ic-titulo') + '<span>Verificação</span></h1>' +
       '<p class="sub-secao">Pergunta ' + (qAtual + 1) + ' de ' + C.perguntas.length + '</p>' +
-      '<section class="pergunta"><h3>' + esc(q.p) + '</h3>' +
+      '<section class="pergunta reveal"><h3>' + esc(q.p) + '</h3>' +
       '<div class="opcoes">' + ops + '</div><p class="retorno" id="retorno" role="status"></p></section>';
   }
 

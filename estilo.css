@@ -93,16 +93,45 @@ button{font:inherit; color:inherit; cursor:pointer; border:none; background:none
 .voltar svg{width:26px; height:26px}
 .voltar:active{background:rgba(0,0,0,.12)}
 
-/* ---------------- tela inicial ---------------- */
-.abertura{padding:22px 16px 8px}
-.abertura h1{
-  font-family:var(--display); font-size:clamp(30px,8.6vw,42px); line-height:.95;
-  text-transform:uppercase; margin:0 0 10px;
+/* letra gigante recortada ao fundo — recurso visual do próprio guia de marca
+   (slide "solta o 'P', brasil!": uma letra grande da fonte de título, em
+   baixo destaque, atrás do texto principal). Reaproveita a fonte de título
+   que o app já carrega, sem pedir nenhuma imagem nova. Todo bloco que usa
+   isto já tem position:relative, overflow:hidden e isolation:isolate — é o
+   que recorta a letra na borda do bloco e garante que o texto de verdade
+   (z-index:1) sempre fique por cima, legível. */
+.marca-agua{
+  position:absolute; z-index:0; top:50%; right:-.08em; transform:translateY(-50%);
+  font-family:var(--display); font-size:min(58vw,300px); line-height:1;
+  color:rgba(255,255,255,.08); pointer-events:none; user-select:none;
+  -webkit-user-select:none;
 }
-.abertura p{margin:0; font-size:17px; color:#4A4A45; max-width:34ch}
+.modulo .marca-agua{font-size:min(70vw,190px); right:-.1em}
+.parceria-energia .marca-agua{font-size:min(60vw,220px)}
+
+/* ---------------- tela inicial ---------------- */
+/* Abertura vira um pequeno "herói": bloco cheio escuro com o mesmo tipo de
+   contraste que a Papelito usa nos blocos de abertura do site oficial dela
+   (tipografia grande, uma cor só, uma letra gigante meio apagada no fundo).
+   Fica curto de propósito — o campo de busca e os três módulos, que são a
+   função de verdade do app, continuam visíveis logo abaixo, sem precisar
+   rolar a tela pra achar o que importa. */
+.abertura{
+  position:relative; overflow:hidden; isolation:isolate;
+  padding:34px 16px 26px; margin-bottom:2px;
+  background:linear-gradient(160deg,var(--preto) 0%,#141110 100%);
+  color:var(--branco);
+}
+.abertura h1{
+  position:relative; z-index:1;
+  font-family:var(--display); font-size:clamp(32px,9.2vw,46px); line-height:.95;
+  text-transform:uppercase; margin:0;
+}
+.abertura p{position:relative; z-index:1; margin:10px 0 0; font-size:17px; color:rgba(255,255,255,.78); max-width:34ch}
 
 .modulos{display:grid; gap:14px; padding:16px}
 .modulo{
+  position:relative; overflow:hidden; isolation:isolate;
   display:block; width:100%; text-align:left;
   border-radius:14px; padding:20px 18px; color:var(--branco);
   border-bottom:6px solid rgba(0,0,0,.35);
@@ -113,10 +142,11 @@ button{font:inherit; color:inherit; cursor:pointer; border:none; background:none
   text-transform:uppercase; display:block;
 }
 .modulo .desc{display:block; margin-top:8px; font-size:16px; line-height:1.4; opacity:.95}
-.m1{background:var(--preto)}
+.modulo .nome,.modulo .desc{position:relative; z-index:1}
+.m1{background:linear-gradient(135deg,var(--preto) 0%,#100e0c 100%)}
 .m1 .nome{color:var(--amarelo)}
-.m2{background:var(--laranja)}
-.m3{background:var(--verde)}
+.m2{background:linear-gradient(135deg,var(--laranja) 0%,#D4470E 100%)}
+.m3{background:linear-gradient(135deg,var(--verde) 0%,#0B7C3F 100%)}
 
 .aviso-offline{
   margin:4px 16px 0; padding:12px 14px; border-radius:12px;
@@ -192,13 +222,20 @@ button{font:inherit; color:inherit; cursor:pointer; border:none; background:none
 #grade[hidden]{display:none}
 
 /* ---------------- ficha de material e risco ---------------- */
-.faixa{padding:20px 16px; color:var(--branco)}
+.faixa{
+  position:relative; overflow:hidden; isolation:isolate;
+  padding:20px 16px; color:var(--branco);
+  background:linear-gradient(135deg,var(--preto) 0%,#141110 100%);
+}
 .faixa.escuro{color:var(--preto)}
+.faixa.risco-faixa{background:linear-gradient(135deg,var(--laranja) 0%,#D4470E 100%)}
 .faixa h2{
+  position:relative; z-index:1;
   font-family:var(--display); font-size:clamp(28px,8vw,38px); line-height:.98;
   text-transform:uppercase; margin:10px 0 0;
 }
-.faixa .oquetem{margin:8px 0 0; font-size:16px; font-weight:600; opacity:.95}
+.faixa .oquetem{position:relative; z-index:1; margin:8px 0 0; font-size:16px; font-weight:600; opacity:.95}
+.faixa .faixa-selo{position:relative; z-index:1}
 .faixa svg{width:44px; height:44px}
 .faixa-selo{
   width:64px; height:64px; border-radius:50%; background:rgba(255,255,255,.2);
@@ -241,9 +278,13 @@ button{font:inherit; color:inherit; cursor:pointer; border:none; background:none
 .risco-mais{position:absolute; right:14px; bottom:14px; color:var(--cinza)}
 .risco-mais svg{width:18px; height:18px; display:block}
 
-.protecao{margin:6px 16px 34px; background:var(--preto); color:var(--branco); border-radius:14px; padding:20px 18px}
-.protecao h3{font-family:var(--display); font-size:22px; text-transform:uppercase; margin:0 0 12px; color:var(--amarelo)}
-.protecao ul{margin:0; padding:0; list-style:none}
+.protecao{
+  position:relative; overflow:hidden; isolation:isolate;
+  margin:6px 16px 34px; color:var(--branco); border-radius:14px; padding:20px 18px;
+  background:linear-gradient(150deg,var(--preto) 0%,#141110 100%);
+}
+.protecao h3{position:relative; z-index:1; font-family:var(--display); font-size:22px; text-transform:uppercase; margin:0 0 12px; color:var(--amarelo)}
+.protecao ul{position:relative; z-index:1; margin:0; padding:0; list-style:none}
 .protecao li{display:flex; align-items:center; gap:12px; padding:8px 0; font-size:16px; line-height:1.45}
 .protecao .ic-epi{width:24px; height:24px; flex:none; color:var(--verde)}
 
@@ -383,10 +424,10 @@ body.com-convite{padding-bottom:calc(86px + env(safe-area-inset-bottom))}
    navegador sem IntersectionObserver, app.js já entrega tudo com .mostrar —
    então isto aqui nunca pode ser a única forma de o conteúdo aparecer. */
 .reveal{
-  opacity:0; transform:translateY(16px);
-  transition:opacity .5s ease, transform .5s ease;
+  opacity:0; transform:translateY(28px) scale(.96);
+  transition:opacity .6s ease, transform .6s cubic-bezier(.16,.8,.3,1);
 }
-.reveal.mostrar{opacity:1; transform:translateY(0)}
+.reveal.mostrar{opacity:1; transform:translateY(0) scale(1)}
 /* atraso crescente entre itens de uma mesma grade/lista, pra criar o efeito
    de cascata em vez de tudo aparecer de uma vez só */
 .modulos .reveal:nth-child(2){transition-delay:.08s}
@@ -492,32 +533,37 @@ body.com-convite{padding-bottom:calc(86px + env(safe-area-inset-bottom))}
    fica sempre escuro sobre claro, só o selo do ícone muda de cor. */
 .parceria{margin:28px 0 0}
 .faixa-parceria{
-  background:var(--preto); color:var(--branco); padding:26px 16px;
+  position:relative; overflow:hidden; isolation:isolate;
+  background:linear-gradient(135deg,var(--preto) 0%,#141110 100%); color:var(--branco); padding:26px 16px;
 }
 .faixa-parceria h3{
+  position:relative; z-index:1;
   font-family:var(--display); font-size:clamp(24px,7vw,30px); line-height:1;
   text-transform:uppercase; margin:0 0 10px; color:var(--amarelo);
 }
-.faixa-parceria p{margin:0; font-size:16px; line-height:1.5; max-width:46ch; opacity:.95}
+.faixa-parceria p{position:relative; z-index:1; margin:0; font-size:16px; line-height:1.5; max-width:46ch; opacity:.95}
 
 /* bloco de número em destaque (árvores plantadas), igual ao formato de
    estatística grande da página oficial de sustentabilidade da marca */
 .parceria-stat{
-  background:var(--verde); color:var(--branco); padding:30px 16px; text-align:center;
+  position:relative; overflow:hidden; isolation:isolate;
+  background:linear-gradient(135deg,var(--verde) 0%,#0B7C3F 100%); color:var(--branco); padding:30px 16px; text-align:center;
 }
-.parceria-stat .ic-stat{width:34px; height:34px; margin:0 auto 6px; display:block}
+.parceria-stat .ic-stat{position:relative; z-index:1; width:34px; height:34px; margin:0 auto 6px; display:block}
 .parceria-stat h3{
+  position:relative; z-index:1;
   font-family:var(--display); font-size:clamp(20px,6vw,26px); line-height:1.1;
   text-transform:uppercase; margin:0 0 14px;
 }
 .parceria-numero{
+  position:relative; z-index:1;
   font-family:var(--display); font-size:clamp(44px,16vw,64px); line-height:1;
   margin:0; letter-spacing:-.01em;
 }
-.parceria-legenda{margin:4px 0 16px; font-size:15px; font-weight:700; text-transform:uppercase; letter-spacing:.02em; opacity:.9}
-.barra-stat{height:12px; border-radius:99px; background:rgba(255,255,255,.28); overflow:hidden; max-width:340px; margin:0 auto}
+.parceria-legenda{position:relative; z-index:1; margin:4px 0 16px; font-size:15px; font-weight:700; text-transform:uppercase; letter-spacing:.02em; opacity:.9}
+.barra-stat{position:relative; z-index:1; height:12px; border-radius:99px; background:rgba(255,255,255,.28); overflow:hidden; max-width:340px; margin:0 auto}
 .barra-stat i{display:block; height:100%; background:var(--amarelo); border-radius:99px}
-.parceria-meta{margin:10px 0 0; font-size:14px; opacity:.9}
+.parceria-meta{position:relative; z-index:1; margin:10px 0 0; font-size:14px; opacity:.9}
 
 /* compromisso de reciclagem (Recicla 200% / ACOBRAZ) — texto em destaque,
    não é um cartão da grade, é a "prova" de que o compromisso é concreto */
@@ -555,15 +601,17 @@ body.com-convite{padding-bottom:calc(86px + env(safe-area-inset-bottom))}
 /* energia solar sozinha, como bloco de fechamento da seção — mesmo espírito
    do bloco isolado que a página oficial usa pra esse mesmo assunto */
 .parceria-energia{
+  position:relative; overflow:hidden; isolation:isolate;
   margin:18px 16px 0; padding:26px 20px; text-align:center;
-  background:var(--preto); color:var(--branco); border-radius:16px;
+  background:linear-gradient(135deg,var(--preto) 0%,#141110 100%); color:var(--branco); border-radius:16px;
 }
-.parceria-energia svg{width:38px; height:38px; margin:0 auto 10px; display:block; color:var(--amarelo)}
+.parceria-energia svg{position:relative; z-index:1; width:38px; height:38px; margin:0 auto 10px; display:block; color:var(--amarelo)}
 .parceria-energia h3{
+  position:relative; z-index:1;
   font-family:var(--display); font-size:clamp(20px,6vw,25px); line-height:1;
   text-transform:uppercase; margin:0 0 8px; color:var(--amarelo);
 }
-.parceria-energia p{margin:0; font-size:15.5px; line-height:1.5; max-width:38ch; margin:0 auto; opacity:.95}
+.parceria-energia p{position:relative; z-index:1; margin:0; font-size:15.5px; line-height:1.5; max-width:38ch; margin:0 auto; opacity:.95}
 
 /* ---------------- crédito discreto da Papelito ---------------- */
 /* Selo pequeno na tela inicial. O ReciclaLito é a marca principal do app;

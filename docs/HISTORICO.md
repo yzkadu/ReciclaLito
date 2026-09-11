@@ -475,6 +475,67 @@ passando. `VERSAO` de v12 para v13.
 
 ---
 
+### Identidade visual do app inteira revista, não só a seção nova
+
+Depois de v13, a coordenação avisou que a "identidade do site" não tinha
+mudado de verdade — só uma seção nova tinha entrado, o resto do app
+continuava com a cara antiga. Pedido explícito: efeito tipo "rolagem estilo
+Apple", mais elementos da marca espalhados pelo app inteiro, usando o site
+oficial da Papelito como referência de forma mais agressiva.
+
+Fui direto no material de marca oficial (`assets/manual/pages/grid3.jpg`,
+`grid6.jpg` — páginas extraídas do guia de marca) atrás de um recurso
+gráfico de verdade, em vez de inventar um motivo qualquer. Achei dois: bloco
+de cor cheia com um leve gradiente diagonal (não é cor chapada pura), e uma
+letra gigante recortada da fonte de título usada como textura de fundo num
+bloco de cor (visto num slide do próprio guia, "solta o 'P', brasil!"). Os
+dois viraram a base desta mudança:
+
+1. **Gradiente em vez de cor chapada.** Função nova `gradCor(hex)` em
+   `app.js` (com `escurece(hex,pct)` de apoio) recebe a cor já cadastrada em
+   `conteudo.js` (ex.: a cor de cada material) e gera automaticamente um
+   `linear-gradient` de dois tons — sem precisar cadastrar uma segunda cor
+   em lugar nenhum. Aplicado nos blocos de cor cheia que já existiam:
+   `.modulo` (os três módulos da tela inicial), `.faixa` (cabeçalho da ficha
+   de material e de risco), `.abertura` (agora um "herói" escuro cheio,
+   texto grande, no lugar do bloco simples de antes) e `.protecao` (bloco
+   de EPI da tela de riscos), além de `.faixa-parceria`, `.parceria-stat` e
+   `.parceria-energia`, que ainda estavam com cor chapada da v13.
+2. **Letra-marca-d'água.** Classe nova `.marca-agua`: usa a própria fonte
+   Beastly (já carregada, nenhuma imagem nova) numa letra enorme, quase
+   transparente, encostada na borda do bloco, absoluta e recortada pelo
+   `overflow:hidden` do bloco-pai. Colocada num "R" (de ReciclaLito) na
+   abertura, no primeiro módulo, no bloco de EPI e no bloco de estatística
+   de árvores, e num "P" (de Papelito) nos dois blocos da seção "Sobre a
+   parceria" que falam da marca. Todo bloco que ganhou isso já precisou (ou
+   já tinha) `position:relative; overflow:hidden; isolation:isolate`, com
+   `z-index:1` no texto de verdade por cima — sem isso a letra ficaria por
+   cima do texto em vez de atrás.
+3. **Rolagem mais forte.** `.reveal` (efeito de "aparecer ao descer a
+   tela", já existente) ganhou mais distância (16px → 28px), um leve
+   `scale(.96)→1` e uma curva de easing com leve "estouro" no final
+   (`cubic-bezier(.16,.8,.3,1)`), pra ficar mais parecido com o tipo de
+   revelação usado em página de produto estilo Apple. Continua
+   JavaScript-livre no sentido que importa: nenhum listener de scroll
+   contínuo foi adicionado — a rolagem em si não roda nenhum código, só o
+   `IntersectionObserver` que já existia decide quando ligar a classe
+   `.mostrar`. Decisão deliberada: JS de parallax ligado a scroll é
+   exatamente o tipo de coisa que pesa em celular básico com sinal fraco
+   (o público declarado no topo deste arquivo e no `CLAUDE.md`), então não
+   entrou, mesmo sendo um efeito comum em site "estilo Apple".
+4. Duas telas que ainda não tinham `.reveal` ganharam (`.leitura` da
+   trilha e `.pergunta` da verificação), pra cascata de entrada ficar
+   consistente em todo o app, não só nas telas que já tinham isso.
+
+Nenhum texto do app mudou de sentido nesta passada — foi tratamento visual
+em cima do que já existia. `@media (prefers-reduced-motion:reduce)` continua
+desligando toda a animação, incluindo a nova, com `.reveal{opacity:1;
+transform:none}` reforçado pra cobrir o `scale` novo. 73 verificações
+continuam passando (nenhum teste depende de cor de fundo ou de transform
+exatos). `VERSAO` de v13 para v14.
+
+---
+
 ## Testes
 
 73 verificações em cinco baterias, com Playwright. `cd testes && python3 rodar-tudo.py`

@@ -1,7 +1,7 @@
 /* ReciclaLito — funcionamento sem internet.
    Ao publicar uma alteração, troque o número da VERSAO abaixo.
    Isso faz o celular baixar a versão nova em vez de usar a antiga. */
-const VERSAO = 'reciclalito-v13';
+const VERSAO = 'reciclalito-v14';
 
 const ARQUIVOS = [
   './',
