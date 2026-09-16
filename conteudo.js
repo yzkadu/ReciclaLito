@@ -380,6 +380,7 @@ const CONTEUDO = {
     valorAviso: 'Preço muda toda semana e varia de cooperativa para cooperativa. Confirme na sua antes de fechar negócio.',
     foraDoCodigo: 'Fora do código de cores',
     rodape: 'Projeto de extensão universitária — Universidade Católica de Brasília, em parceria com a Papelito Brasil.',
+    verParceria: 'Ver o compromisso de sustentabilidade da parceria',
     parceriaTitulo: 'Sobre a parceria',
     parceriaIntro: 'A Papelito Brasil, que apoia este projeto, também declara compromissos próprios com reciclagem e meio ambiente — no mesmo formato que a empresa usa na própria página de sustentabilidade dela:',
     parceriaStatTitulo: 'Reflorestamento em números',

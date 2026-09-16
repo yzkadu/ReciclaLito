@@ -123,6 +123,10 @@
       '</nav>' +
       '</div>' +
       '<p class="rodape">' + esc(t.rodape) + '</p>' +
+      '<button class="ver-parceria" data-rolar="#parceria">' +
+        '<span>' + esc(t.verParceria) + '</span>' +
+        '<span class="seta-baixo" aria-hidden="true">' + SETA + '</span>' +
+      '</button>' +
       blocoParceria() +
       LOGO_PAPELITO;
   }
@@ -181,7 +185,7 @@
       '<p>' + esc(t.parceriaEnergiaTexto) + '</p>' +
     '</div>';
 
-    return '<section class="parceria">' +
+    return '<section class="parceria" id="parceria">' +
       '<div class="faixa-parceria reveal">' +
         '<span class="marca-agua" aria-hidden="true">P</span>' +
         '<h3>' + esc(t.parceriaTitulo) + '</h3>' +
@@ -194,7 +198,8 @@
     return '<button class="modulo reveal ' + cls + '" data-ir="' + destino + '">' +
       (cls === 'm1' ? '<span class="marca-agua" aria-hidden="true">R</span>' : '') +
       '<span class="nome">' + esc(nome) + '</span>' +
-      '<span class="desc">' + esc(desc) + '</span></button>';
+      '<span class="desc">' + esc(desc) + '</span>' +
+      '<span class="modulo-mais" aria-hidden="true">' + SETA + '</span></button>';
   }
 
   /* selo discreto de apoio da Papelito (a pedido: crédito pequeno, o
@@ -615,6 +620,13 @@
   document.addEventListener('click', function (ev) {
     var alvo = ev.target.closest('[data-ir]');
     if (alvo) { irPara(alvo.dataset.ir); return; }
+
+    var rolar = ev.target.closest('[data-rolar]');
+    if (rolar) {
+      var destinoRolagem = document.querySelector(rolar.dataset.rolar);
+      if (destinoRolagem) destinoRolagem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
 
     var conc = ev.target.closest('[data-concluir]');
     if (conc) {

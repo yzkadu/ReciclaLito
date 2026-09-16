@@ -133,7 +133,7 @@ button{font:inherit; color:inherit; cursor:pointer; border:none; background:none
 .modulo{
   position:relative; overflow:hidden; isolation:isolate;
   display:block; width:100%; text-align:left;
-  border-radius:14px; padding:20px 18px; color:var(--branco);
+  border-radius:14px; padding:20px 46px 20px 18px; color:var(--branco);
   border-bottom:6px solid rgba(0,0,0,.35);
 }
 .modulo:active{transform:translateY(2px); border-bottom-width:4px}
@@ -143,6 +143,12 @@ button{font:inherit; color:inherit; cursor:pointer; border:none; background:none
 }
 .modulo .desc{display:block; margin-top:8px; font-size:16px; line-height:1.4; opacity:.95}
 .modulo .nome,.modulo .desc{position:relative; z-index:1}
+/* seta que sinaliza "isto abre outra tela" — mesma convenção do .risco-mais */
+.modulo-mais{
+  position:absolute; z-index:1; right:16px; top:50%; transform:translateY(-50%);
+  color:rgba(255,255,255,.75);
+}
+.modulo-mais svg{width:22px; height:22px; display:block}
 .m1{background:linear-gradient(135deg,var(--preto) 0%,#100e0c 100%)}
 .m1 .nome{color:var(--amarelo)}
 .m2{background:linear-gradient(135deg,var(--laranja) 0%,#D4470E 100%)}
@@ -156,6 +162,23 @@ button{font:inherit; color:inherit; cursor:pointer; border:none; background:none
 .aviso-offline svg{width:20px; height:20px; flex:none; margin-top:2px}
 
 .rodape{padding:26px 16px 34px; color:var(--cinza); font-size:14px; line-height:1.5}
+
+/* botão que leva até "sobre a parceria", já que a seção fica abaixo da
+   dobra e o simples texto do rodapé não deixava claro que dava pra descer
+   até ela. A seta anima sutilmente para chamar atenção sem irritar. */
+.ver-parceria{
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  width:calc(100% - 32px); margin:0 16px 30px; min-height:var(--toque);
+  background:var(--branco); border:2px solid var(--linha); border-radius:99px;
+  padding:12px 20px; font-weight:800; font-size:15px; color:var(--preto);
+}
+.ver-parceria:active{transform:translateY(2px)}
+.seta-baixo{display:flex; transform:rotate(90deg); animation:desce 1.6s ease-in-out infinite}
+.seta-baixo svg{width:16px; height:16px; display:block}
+@keyframes desce{
+  0%,100%{transform:rotate(90deg) translateX(0)}
+  50%{transform:rotate(90deg) translateX(4px)}
+}
 
 /* ---------------- título de seção ---------------- */
 .titulo-secao{
