@@ -528,7 +528,10 @@ body.com-convite{padding-bottom:calc(86px + env(safe-area-inset-bottom))}
 .parceria{margin:28px 0 0}
 .faixa-parceria{
   position:relative; overflow:hidden; isolation:isolate;
-  background:linear-gradient(135deg,var(--preto) 0%,#141110 100%); color:var(--branco); padding:26px 16px;
+  background-color:var(--preto);
+  background-image:linear-gradient(135deg,rgba(35,31,32,.86) 0%,rgba(20,17,16,.90) 100%), url('fotos/fevereiro-verde.jpg');
+  background-size:cover; background-position:center;
+  color:var(--branco); padding:26px 16px;
 }
 .faixa-parceria h3{
   position:relative; z-index:1;
@@ -541,7 +544,10 @@ body.com-convite{padding-bottom:calc(86px + env(safe-area-inset-bottom))}
    estatística grande da página oficial de sustentabilidade da marca */
 .parceria-stat{
   position:relative; overflow:hidden; isolation:isolate;
-  background:linear-gradient(135deg,var(--verde) 0%,#0B7C3F 100%); color:var(--branco); padding:30px 16px; text-align:center;
+  background-color:var(--verde);
+  background-image:linear-gradient(135deg,rgba(16,169,88,.85) 0%,rgba(11,124,63,.90) 100%), url('fotos/cem-mil-arvores.jpg');
+  background-size:cover; background-position:center;
+  color:var(--branco); padding:30px 16px; text-align:center;
 }
 .parceria-stat .ic-stat{position:relative; z-index:1; width:34px; height:34px; margin:0 auto 6px; display:block}
 .parceria-stat h3{
@@ -597,7 +603,10 @@ body.com-convite{padding-bottom:calc(86px + env(safe-area-inset-bottom))}
 .parceria-energia{
   position:relative; overflow:hidden; isolation:isolate;
   margin:18px 16px 0; padding:26px 20px; text-align:center;
-  background:linear-gradient(135deg,var(--preto) 0%,#141110 100%); color:var(--branco); border-radius:16px;
+  background-color:var(--preto);
+  background-image:linear-gradient(135deg,rgba(35,31,32,.86) 0%,rgba(20,17,16,.90) 100%), url('fotos/energia-limpa.jpg');
+  background-size:cover; background-position:center;
+  color:var(--branco); border-radius:16px;
 }
 .parceria-energia svg{position:relative; z-index:1; width:38px; height:38px; margin:0 auto 10px; display:block; color:var(--amarelo)}
 .parceria-energia h3{
