@@ -85,7 +85,5 @@ Publicar é seguro. Divulgar ainda não:
 
 1. O bloco `emergencia` do `conteudo.js` são primeiros socorros **sem revisão de
    profissional de saúde**.
-2. O bloco `pontos` do `conteudo.js` tem **dois endereços inventados**, marcados com
-   tarja laranja na tela.
 
 A lista completa de pendências está no fim do [`docs/HISTORICO.md`](docs/HISTORICO.md).

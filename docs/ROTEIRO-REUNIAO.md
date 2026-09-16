@@ -144,7 +144,6 @@ retorno queima a confiança para o projeto inteiro, não só para o app.
 - [ ] Trocar o vocabulário no `conteudo.js` pelas palavras que eles usam.
 - [ ] Acrescentar os itens novos ao bloco `itens`.
 - [ ] Corrigir o que a lista de busca errou sobre a cooperativa.
-- [ ] Preencher o bloco `pontos` com os endereços confirmados e apagar os exemplos.
 - [ ] Levar o bloco `emergencia` para revisão da saúde.
 - [ ] Trocar a `VERSAO` no `sw.js` e publicar.
 - [ ] Marcar a segunda rodada de teste.

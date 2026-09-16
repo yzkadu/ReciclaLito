@@ -22,7 +22,7 @@ primeiro acesso, via service worker.
 ## Regras que não devem ser quebradas
 
 **Conteúdo só se muda no `conteudo.js`.** Textos, materiais, riscos, itens da busca,
-etapas da trilha, perguntas, pontos de entrega e primeiros socorros estão todos lá,
+etapas da trilha, perguntas e primeiros socorros estão todos lá,
 com comentários explicando cada campo. Não mova conteúdo para dentro do `app.js`: a
 Papelito edita esse arquivo pelo navegador do GitHub, sem saber programar, e é isso
 que mantém o projeto vivo depois da entrega.
@@ -66,18 +66,24 @@ Nenhum commit deve ser feito com teste falhando. Se um teste falhar depois de um
 mudança sua, investigue se o teste está errado ou se o app está — os dois já
 aconteceram neste projeto e estão registrados no histórico.
 
-## Duas pendências que bloqueiam a divulgação do endereço
+## Pendência que bloqueia a divulgação do endereço
 
-Não são bloqueio para publicar. São bloqueio para mandar o link para alguém.
+Não é bloqueio para publicar. É bloqueio para mandar o link para alguém.
 
 1. **`conteudo.js`, bloco `emergencia`.** Primeiros socorros escritos a partir de
    orientação geral, sem revisão de profissional de saúde. É o único conteúdo do app
    em que um erro machuca alguém. Precisa da revisão antes de circular.
-2. **`conteudo.js`, bloco `pontos`.** Contém dois endereços inventados, marcados com
-   `exemplo: true`, que aparecem com tarja laranja na tela. Apagar assim que os
-   pontos reais forem levantados.
 
-Se a pessoa pedir para divulgar antes disso, avise sobre as duas.
+Se a pessoa pedir para divulgar antes disso, avise sobre isso.
+
+## Não existe rede de pontos de entrega
+
+O app já teve uma seção "Onde entregar perto de você" (bloco `pontos` em
+`conteudo.js`, função `blocoPontos` em `app.js`), pensada para quem precisa achar um
+local físico para deixar um material. Foi removida: o fluxo real é a RCS reciclar
+tudo e entregar direto aos catadores da ACOBRAZ, não uma rede pública de pontos de
+coleta espalhados. Não reintroduza essa seção sem confirmar antes com a coordenação
+do projeto que o fluxo mudou.
 
 ## Mapa dos arquivos
 

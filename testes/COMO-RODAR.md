@@ -18,7 +18,7 @@ As capturas de tela caem em `testes/capturas/`, que está no `.gitignore`.
 | Script | O que verifica |
 |---|---|
 | `teste_1_navegacao.py` | Rotas, busca, embaralhamento do gabarito, comprovante, botão voltar. |
-| `teste_2_recursos.py` | Busca na tela inicial, óleo fora do código de cores, quanto rende, pontos de entrega, tela de emergência. |
+| `teste_2_recursos.py` | Busca na tela inicial, óleo fora do código de cores, quanto rende, tela de emergência. |
 | `teste_3_offline.py` | Modo avião depois do primeiro acesso. |
 | `teste_4_subpasta.py` | Deploy em subpasta, como acontece no GitHub Pages. |
 | `teste_5_atualizacao.py` | Se editar o conteúdo chega no celular, com e sem trocar a `VERSAO`. |

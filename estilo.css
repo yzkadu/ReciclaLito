@@ -469,35 +469,6 @@ body.com-convite{padding-bottom:calc(86px + env(safe-area-inset-bottom))}
 }
 .ressalva{margin:10px 0 0; font-size:14px; line-height:1.45; color:#5A5A54}
 
-/* ---------------- pontos de entrega ---------------- */
-.pontos{padding:4px 16px 30px}
-.pontos h3{
-  display:flex; align-items:center; gap:8px;
-  font-family:var(--display); font-size:22px; text-transform:uppercase;
-  margin:18px 0 12px; line-height:1;
-}
-.pontos h3 .ic-bloco{width:26px; height:26px; flex:none; color:var(--verde)}
-.ponto{
-  background:var(--branco); border:2px solid var(--linha);
-  border-radius:12px; padding:16px; margin-bottom:10px;
-}
-.ponto.exemplo{border-color:var(--laranja); background:#FFF6F1}
-.tarja{
-  display:inline-block; background:var(--laranja); color:var(--branco);
-  font-size:12px; font-weight:800; text-transform:uppercase;
-  padding:4px 9px; border-radius:99px; margin-bottom:9px;
-}
-.ponto h4{margin:0 0 4px; font-size:17px; line-height:1.3}
-.ponto p{margin:0; font-size:16px; line-height:1.45}
-.ponto .hora{margin-top:4px; color:#5A5A54; font-size:15px}
-.ponto .tel,.ponto .mapa{
-  display:inline-flex; align-items:center; justify-content:center;
-  min-height:var(--toque); margin-top:10px; margin-right:8px;
-  padding:12px 18px; border-radius:10px; font-weight:800; text-decoration:none;
-}
-.ponto .mapa{background:var(--preto); color:var(--amarelo)}
-.ponto .tel{background:var(--branco); color:var(--preto); border:2px solid var(--preto)}
-
 /* ---------------- deu errado: primeiros socorros ---------------- */
 .acao.urgente{background:#C8332B; color:var(--branco)}
 .urgencia{

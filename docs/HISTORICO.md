@@ -591,13 +591,30 @@ Papelito.
 
 ---
 
+## Pontos de entrega removidos
+
+O app tinha uma seção "Onde entregar perto de você" (bloco `pontos` em
+`conteudo.js`, função `blocoPontos` em `app.js`, mais o CSS `.pontos`/`.ponto`),
+pensada para quem precisa achar um local físico para deixar um material — com
+busca por endereço, horário, telefone e botão de mapa. Vinha com dois endereços de
+exemplo marcados com tarja laranja, aguardando os pontos reais serem levantados.
+
+Não existe essa rede de pontos. O fluxo real do projeto é a RCS reciclar tudo e
+entregar direto aos catadores da ACOBRAZ — não uma rede pública de pontos de coleta
+espalhados pela cidade. Manter a seção mantendo endereços inventados ficaria incoerente
+com o funcionamento real, então a seção inteira foi removida em vez de preenchida:
+bloco `pontos`, textos `pontosRotulo`/`pontosVazio`, função `blocoPontos` e o CSS
+correspondente. O teste que cobria a seção (`teste_2_recursos.py`, item 4) também
+foi removido. Documentação atualizada: `CLAUDE.md`, `README.md`, `LEIA-ME.md` e
+`docs/ROTEIRO-REUNIAO.md` não mencionam mais o bloco `pontos`.
+
+---
+
 ## Pendências
 
 - [ ] Revisão do bloco `emergencia` por profissional de saúde. **Bloqueia divulgação.**
-- [ ] Apagar os dois pontos de exemplo. **Bloqueia divulgação.**
 - [ ] Validar conteúdo e vocabulário com os catadores. Usar `docs/ROTEIRO-REUNIAO.md`.
 - [ ] Conferir a lista `itens` com a cooperativa, começando por isopor, canudo, papel
       alumínio e longa vida.
-- [ ] Levantar os pontos de entrega reais do DF.
 - [ ] Testar em Android simples de verdade, incluindo modo avião pelo ícone instalado.
 - [ ] Passar o repositório para a Papelito.

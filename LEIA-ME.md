@@ -104,25 +104,6 @@ conteúdo. Não precisa de `id`.
 > aceita a outra recusa — isopor e canudo são os casos mais comuns. Confira com os
 > catadores antes de entregar.
 
-### Os pontos de entrega (`pontos`)
-
-O app dizia "ponto de logística reversa" e deixava o **onde** no ar — que é justamente
-o que a pessoa com a lâmpada na mão precisa saber. Preencha o bloco `pontos` e o
-endereço passa a aparecer dentro da ficha de cada material que aquele ponto recebe,
-com botão que abre o aplicativo de mapas.
-
-| Campo | Para que serve |
-|---|---|
-| `nome` | Nome do ponto ou da loja. |
-| `endereco` | Endereço completo. É o que vai para o mapa, então escreva como você escreveria na busca do Google Maps. |
-| `horario` | Opcional. |
-| `telefone` | Opcional. Vira botão de ligar. Deixe `''` se não tiver. |
-| `recebe` | Lista dos `id` que aquele ponto aceita, usando os mesmos ids dos blocos `materiais` e `riscos`. Ex.: `['eletronico', 'baterias', 'lampadas']`. |
-| `exemplo` | Deixe `true` só nos exemplos. Faz aparecer uma tarja laranja de aviso na tela. |
-
-> **Vêm dois exemplos prontos, com tarja laranja.** São endereços inventados, para
-> você ver o recurso funcionando. **Apague os dois** assim que puser os de verdade.
-
 ### Os primeiros socorros (`emergencia`)
 
 Bloco novo, no fim do módulo 2, atrás do botão vermelho "Deu errado. E agora?".
@@ -239,10 +220,8 @@ tratamento de dados e mantém o app funcionando offline.
 - [ ] Validar o conteúdo com os catadores na reunião de diagnóstico. Use o
       `ROTEIRO-REUNIAO.md`. Os textos atuais são um ponto de partida técnico e
       precisam da conferência de quem faz o trabalho.
-- [ ] Preencher o bloco `pontos` e **apagar os dois exemplos** com tarja laranja.
 - [ ] Conferir a lista `itens` da busca com os catadores, principalmente isopor,
       canudo, papel alumínio e longa vida, que variam de cooperativa para cooperativa.
-- [ ] Confirmar se os pontos de entrega mencionados existem na região.
 - [ ] Testar num celular Android simples, não só no computador.
 - [ ] Testar em modo avião depois do primeiro acesso, para conferir o offline.
       (Já conferido em navegador: abre em 0,1s sem rede e 0,0s com sinal fraco.

@@ -306,36 +306,6 @@ const CONTEUDO = {
   ],
 
   /* ----------------------------------------------------------
-     PONTOS DE ENTREGA DA REGIÃO
-     O app hoje diz "ponto de logística reversa" e deixa o ONDE no
-     ar — que é justamente o que a pessoa com a lâmpada na mão
-     precisa saber. Preencha aqui e o endereço passa a aparecer
-     dentro da ficha de cada material.
-
-     'recebe' usa os mesmos id dos blocos materiais e riscos.
-     'exemplo: true' faz aparecer um aviso laranja na tela.
-     APAGUE os dois exemplos abaixo assim que puser os de verdade.
-     ---------------------------------------------------------- */
-  pontos: [
-    {
-      nome: 'EXEMPLO — trocar por um ponto de verdade',
-      endereco: 'SCS Quadra 1, Brasília, DF',
-      horario: 'Segunda a sexta, 8h às 17h',
-      telefone: '',
-      recebe: ['eletronico', 'baterias', 'lampadas', 'placas', 'telas', 'toner'],
-      exemplo: true
-    },
-    {
-      nome: 'EXEMPLO — trocar por um ponto de verdade',
-      endereco: 'Feira do Guará, Brasília, DF',
-      horario: 'Todo dia, 7h às 18h',
-      telefone: '',
-      recebe: ['oleo'],
-      exemplo: true
-    }
-  ],
-
-  /* ----------------------------------------------------------
      MÓDULO 3 — INTEGRAÇÃO DA EQUIPE
      Trilha para quem está começando. Cada etapa aponta para
      um conteúdo que já existe nos módulos 1 e 2.
@@ -408,8 +378,6 @@ const CONTEUDO = {
     emergenciaAviso: 'Isto não substitui atendimento. Em caso grave, SAMU 192 ou Bombeiros 193.',
     valorRotulo: 'Quanto rende',
     valorAviso: 'Preço muda toda semana e varia de cooperativa para cooperativa. Confirme na sua antes de fechar negócio.',
-    pontosRotulo: 'Onde entregar perto de você',
-    pontosVazio: 'Os pontos da região ainda não foram cadastrados. Pergunte na cooperativa ou na administração regional.',
     foraDoCodigo: 'Fora do código de cores',
     rodape: 'Projeto de extensão universitária — Universidade Católica de Brasília, em parceria com a Papelito Brasil.',
     parceriaTitulo: 'Sobre a parceria',

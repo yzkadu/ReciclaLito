@@ -311,8 +311,7 @@
         campo('Onde entregar', m.entregar, false, 'entregar') +
         blocoRende(m) +
         campo('Atenção', m.atencao, true, 'atencao') +
-      '</div>' +
-      blocoPontos(m.id);
+      '</div>';
   }
 
   /* ---------- quanto rende ---------- */
@@ -330,26 +329,6 @@
         barras + '<span>' + esc(m.valor || '') + '</span></div>' +
       '<p>' + esc(m.rende) + '</p>' +
       '<p class="ressalva">' + esc(C.textos.valorAviso) + '</p></section>';
-  }
-
-  /* ---------- pontos de entrega da região ---------- */
-  function blocoPontos(id) {
-    var lista = (C.pontos || []).filter(function (p) {
-      return p.recebe && p.recebe.indexOf(id) !== -1;
-    });
-    if (!lista.length) return '';
-    return '<section class="pontos"><h3>' + icone('entregar', 'ic-bloco') + '<span>' + esc(C.textos.pontosRotulo) + '</span></h3>' +
-      lista.map(function (p) {
-        var mapa = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(p.endereco);
-        return '<article class="ponto reveal' + (p.exemplo ? ' exemplo' : '') + '">' +
-          (p.exemplo ? '<span class="tarja">Exemplo — substituir</span>' : '') +
-          '<h4>' + esc(p.nome) + '</h4>' +
-          '<p>' + esc(p.endereco) + '</p>' +
-          (p.horario ? '<p class="hora">' + esc(p.horario) + '</p>' : '') +
-          (p.telefone ? '<a class="tel" href="tel:' + esc(p.telefone) + '">' + esc(p.telefone) + '</a>' : '') +
-          '<a class="mapa" href="' + esc(mapa) + '" target="_blank" rel="noopener">Abrir no mapa</a>' +
-          '</article>';
-      }).join('') + '</section>';
   }
 
   function telaRiscos() {
@@ -382,8 +361,7 @@
         campo('Como manusear', r.manusear, false, 'manusear') +
         campo('Atenção', r.alerta, true, 'atencao') +
         campo('Onde entregar', r.entregar, false, 'entregar') +
-      '</div>' +
-      blocoPontos(r.id);
+      '</div>';
   }
 
   /* ícone de cada situação de primeiro socorro, pelo id em C.emergencia.

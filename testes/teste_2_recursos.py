@@ -59,18 +59,7 @@ with sync_playwright() as p:
     v(pg.locator("#principal .medida i.cheia").count()==1, "vidro com 1 barra cheia")
     pg.screenshot(path=os.path.join(CAP,"material-metal.png"), full_page=True)
 
-    # ---- 4. pontos de entrega ----
-    pg.goto(BASE+"#material/eletronico", wait_until="networkidle"); pg.wait_for_timeout(200)
-    v(pg.locator(".ponto").count()>=1, "ficha de eletrônico lista ponto de entrega")
-    v("EXEMPLO" in pg.inner_text(".tarja").upper(), "ponto de exemplo vem com tarja de aviso")
-    href=pg.locator(".mapa").first.get_attribute("href")
-    v(href.startswith("https://www.google.com/maps/search/"), "botão abre o mapa")
-    pg.goto(BASE+"#risco/baterias", wait_until="networkidle"); pg.wait_for_timeout(200)
-    v(pg.locator(".ponto").count()>=1, "ficha de risco também lista ponto")
-    pg.goto(BASE+"#material/papel", wait_until="networkidle"); pg.wait_for_timeout(200)
-    v(pg.locator(".ponto").count()==0, "material sem ponto cadastrado não mostra bloco vazio")
-
-    # ---- 5. deu errado ----
+    # ---- 4. deu errado ----
     pg.goto(BASE+"#riscos", wait_until="networkidle"); pg.wait_for_timeout(200)
     v(pg.locator(".acao.urgente").is_visible(), "botão de emergência no fim do módulo 2")
     pg.locator(".acao.urgente").click(); pg.wait_for_timeout(300)
