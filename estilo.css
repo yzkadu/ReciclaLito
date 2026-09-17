@@ -53,6 +53,9 @@
 }
 
 *{box-sizing:border-box}
+
+/* Toda tela é injetada dentro de #principal (ver app.js), então centralizar aqui garante que NENHUMA tela fique desalinhada em telas largas — sem precisar listar classe por classe. Em celular (largura menor que o max-width) isto não muda nada, some sozinho. */
+#principal,.topo-interno{max-width:960px; margin-left:auto; margin-right:auto; width:100%}
 html{-webkit-text-size-adjust:100%}
 body{
   margin:0; background:var(--fundo); color:var(--preto);
@@ -75,7 +78,11 @@ button{font:inherit; color:inherit; cursor:pointer; border:none; background:none
 .topo{
   position:sticky; top:0; z-index:10;
   background:var(--amarelo); border-bottom:3px solid var(--preto);
-  padding:10px 16px calc(10px + env(safe-area-inset-top)) 16px;
+}
+.topo-interno{
+  max-width:960px; margin-left:auto; margin-right:auto; width:100%;
+  box-sizing:border-box;
+  padding:10px 16px calc(10px) 16px;
   padding-top:calc(10px + env(safe-area-inset-top));
   display:flex; align-items:center; gap:12px; min-height:60px;
 }
@@ -149,10 +156,22 @@ button{font:inherit; color:inherit; cursor:pointer; border:none; background:none
   color:rgba(255,255,255,.75);
 }
 .modulo-mais svg{width:22px; height:22px; display:block}
-.m1{background:linear-gradient(135deg,var(--preto) 0%,#100e0c 100%)}
+.m1{
+  background-color:var(--preto);
+  background-image:linear-gradient(135deg,rgba(35,31,32,.85) 0%,rgba(16,14,12,.92) 100%), url('fotos/reciclagem.jpg');
+  background-size:cover; background-position:center;
+}
 .m1 .nome{color:var(--amarelo)}
-.m2{background:linear-gradient(135deg,var(--laranja) 0%,#D4470E 100%)}
-.m3{background:linear-gradient(135deg,var(--verde) 0%,#0B7C3F 100%)}
+.m2{
+  background-color:var(--laranja);
+  background-image:linear-gradient(135deg,rgba(255,96,25,.82) 0%,rgba(212,71,14,.90) 100%), url('fotos/seguranca-epi.jpg');
+  background-size:cover; background-position:center;
+}
+.m3{
+  background-color:var(--verde);
+  background-image:linear-gradient(135deg,rgba(16,169,88,.82) 0%,rgba(11,124,63,.90) 100%), url('fotos/treinamento.jpg');
+  background-size:cover; background-position:center;
+}
 
 .aviso-offline{
   margin:4px 16px 0; padding:12px 14px; border-radius:12px;
@@ -188,6 +207,38 @@ button{font:inherit; color:inherit; cursor:pointer; border:none; background:none
 .sub-secao{margin:0 16px 16px; color:#4A4A45; font-size:16px}
 .titulo-secao.com-icone{display:flex; align-items:center; gap:10px}
 .titulo-secao.com-icone .ic-titulo{width:30px; height:30px; flex:none; color:var(--verde)}
+
+/* ---------------- cabeçalho de seção com foto ---------------- */
+/* mesmo espírito da ".abertura" da tela inicial — foto de fundo real com um
+   degradê da cor do módulo por cima, texto sempre branco e legível. Cada
+   módulo reaproveita a mesma cor do botão dele na tela inicial, pra ficar
+   claro que é a mesma seção. */
+.secao-banner{
+  position:relative; overflow:hidden; isolation:isolate;
+  padding:30px 16px 26px; margin-bottom:2px; color:var(--branco);
+  background-size:cover; background-position:center;
+}
+.secao-banner h1{
+  position:relative; z-index:1;
+  font-family:var(--display); font-size:clamp(26px,7.4vw,34px); line-height:1;
+  text-transform:uppercase; margin:0;
+}
+.secao-banner.cor-m1{
+  background-color:var(--preto);
+  background-image:linear-gradient(160deg,rgba(35,31,32,.86) 0%,rgba(16,14,12,.92) 100%), url('fotos/reciclagem.jpg');
+}
+.secao-banner.cor-m2{
+  background-color:var(--laranja);
+  background-image:linear-gradient(135deg,rgba(255,96,25,.83) 0%,rgba(212,71,14,.90) 100%), url('fotos/seguranca-epi.jpg');
+}
+.secao-banner.cor-m3{
+  background-color:var(--verde);
+  background-image:linear-gradient(135deg,rgba(16,169,88,.83) 0%,rgba(11,124,63,.90) 100%), url('fotos/treinamento.jpg');
+}
+.secao-banner.cor-emergencia{
+  background-color:#C8332B;
+  background-image:linear-gradient(135deg,rgba(200,51,43,.85) 0%,rgba(160,40,34,.92) 100%), url('fotos/primeiros-socorros.jpg');
+}
 
 /* ---------------- grade de materiais ---------------- */
 .materiais{
@@ -423,13 +474,21 @@ body.com-convite{padding-bottom:calc(86px + env(safe-area-inset-bottom))}
 
 @media (min-width:640px){
   body{font-size:18px}
-  .topo,.abertura,.modulos,.rodape,.materiais,.blocos,.riscos,.etapas,.leitura,.pergunta,.fim,
-  .parceria,.credito-papelito{
-    max-width:640px; margin-left:auto; margin-right:auto;
-  }
-  .topo{max-width:none}
-  .faixa{max-width:640px; margin:0 auto}
-  .faixa-parceria,.parceria-stat{border-radius:14px}
+}
+
+/* tablet: os 3 módulos da tela inicial cabem lado a lado */
+@media (min-width:700px){
+  .modulos{grid-template-columns:repeat(3,1fr)}
+}
+
+/* desktop: #principal (regra lá em cima) já centraliza a coluna de
+   conteúdo; aqui só o que muda de verdade num monitor — blocos que eram
+   coloridos de ponta a ponta ganham cantos arredondados porque agora sobra
+   fundo da página nas laterais, e a lista de primeiros socorros usa duas
+   colunas em vez de uma só bem comprida. */
+@media (min-width:960px){
+  .faixa-parceria,.parceria-stat,.abertura,.secao-banner{border-radius:16px}
+  .socorros{grid-template-columns:repeat(2,1fr)}
 }
 
 /* ---------------- troca de tela ---------------- */

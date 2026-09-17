@@ -202,6 +202,16 @@
       '<span class="modulo-mais" aria-hidden="true">' + SETA + '</span></button>';
   }
 
+  /* cabeçalho com foto no topo das telas de lista (materiais, riscos,
+     trilha, emergência) — mesma cor do botão correspondente na tela
+     inicial, pra ficar claro que é a mesma seção "por dentro". */
+  function faixaSecao(cor, titulo) {
+    return '<section class="secao-banner ' + cor + ' reveal">' +
+      '<span class="marca-agua" aria-hidden="true">R</span>' +
+      '<h1>' + esc(titulo) + '</h1>' +
+    '</section>';
+  }
+
   /* selo discreto de apoio da Papelito (a pedido: crédito pequeno, o
      ReciclaLito continua sendo a marca principal do app). Um único <path>
      do logo oficial, em currentColor para seguir a cor neutra do selo. */
@@ -218,7 +228,7 @@
         '</button>';
     }).join('');
     var t = C.textos;
-    return '<h1 class="titulo-secao">' + esc(t.modulo1) + '</h1>' +
+    return faixaSecao('cor-m1', t.modulo1) +
       campoBusca(t) +
       '<div id="resultados" role="region" aria-live="polite"></div>' +
       '<div id="grade">' +
@@ -347,7 +357,7 @@
     var epi = C.protecao.map(function (i) {
       return '<li>' + icone('manusear', 'ic-epi') + '<span>' + esc(i) + '</span></li>';
     }).join('');
-    return '<h1 class="titulo-secao">' + esc(C.textos.modulo2) + '</h1>' +
+    return faixaSecao('cor-m2', C.textos.modulo2) +
       '<p class="sub-secao">O que cada material tem dentro e como manusear sem se machucar.</p>' +
       '<div class="riscos">' + itens + '</div>' +
       '<section class="protecao reveal"><span class="marca-agua" aria-hidden="true">R</span><h3>Sempre que for trabalhar</h3><ul>' + epi + '</ul></section>' +
@@ -391,7 +401,7 @@
         '<p class="nunca"><b>Nunca:</b> ' + esc(e.nunca) + '</p>' + ver +
         '</section>';
     }).join('');
-    return '<h1 class="titulo-secao">' + esc(C.textos.emergencia) + '</h1>' +
+    return faixaSecao('cor-emergencia', C.textos.emergencia) +
       '<div class="urgencia">' +
         '<p>' + esc(C.textos.emergenciaAviso) + '</p>' +
         '<div class="fones"><a href="tel:192">SAMU 192</a><a href="tel:193">Bombeiros 193</a></div>' +
@@ -432,7 +442,7 @@
     }).join('');
     var fim = (feitas === C.trilha.length)
       ? '<div class="leitura"><button class="acao claro" data-ir="#concluido">Ver meu comprovante</button></div>' : '';
-    return '<h1 class="titulo-secao">' + esc(C.textos.modulo3) + '</h1>' +
+    return faixaSecao('cor-m3', C.textos.modulo3) +
       '<p class="sub-secao">' + C.trilha.length + ' etapas curtas. O progresso fica salvo neste celular.</p>' +
       '<div class="barra"><i style="width:' + pct + '%"></i></div>' +
       '<p class="barra-rot">' + feitas + ' de ' + C.trilha.length + ' concluídas</p>' +

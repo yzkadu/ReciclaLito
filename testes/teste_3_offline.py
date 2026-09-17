@@ -27,8 +27,8 @@ with sync_playwright() as p:
     pg.wait_for_function("navigator.serviceWorker.controller !== null", timeout=10000)
     # espera o cache terminar de encher
     pg.wait_for_function(
-        "caches.open('reciclalito-v17').then(c=>c.keys()).then(k=>k.length>=10)", timeout=10000)
-    n = pg.evaluate("caches.open('reciclalito-v17').then(c=>c.keys()).then(k=>k.length)")
+        "caches.open('reciclalito-v18').then(c=>c.keys()).then(k=>k.length>=10)", timeout=10000)
+    n = pg.evaluate("caches.open('reciclalito-v18').then(c=>c.keys()).then(k=>k.length)")
     v(n >= 10, f"cache guardou {n} arquivos no primeiro acesso")
 
     # ---- MODO AVIÃO ----

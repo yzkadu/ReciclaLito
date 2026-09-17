@@ -1,7 +1,7 @@
 /* ReciclaLito — funcionamento sem internet.
    Ao publicar uma alteração, troque o número da VERSAO abaixo.
    Isso faz o celular baixar a versão nova em vez de usar a antiga. */
-const VERSAO = 'reciclalito-v17';
+const VERSAO = 'reciclalito-v18';
 
 const ARQUIVOS = [
   './',
@@ -21,7 +21,11 @@ const ARQUIVOS = [
   './icones/apple-touch-icon.png',
   './fotos/fevereiro-verde.jpg',
   './fotos/energia-limpa.jpg',
-  './fotos/cem-mil-arvores.jpg'
+  './fotos/cem-mil-arvores.jpg',
+  './fotos/reciclagem.jpg',
+  './fotos/seguranca-epi.jpg',
+  './fotos/treinamento.jpg',
+  './fotos/primeiros-socorros.jpg'
 ];
 
 self.addEventListener('install', e => {
