@@ -136,6 +136,17 @@ button{font:inherit; color:inherit; cursor:pointer; border:none; background:none
 }
 .abertura p{position:relative; z-index:1; margin:10px 0 0; font-size:17px; color:rgba(255,255,255,.78); max-width:34ch}
 
+/* assinatura pequena da Papelito dentro do herói — o ReciclaLito continua
+   sendo a marca principal (título grande, letra própria); isto aqui só
+   deixa claro, já na abertura, quem apoia o projeto (item 4 do pedido de
+   redesign: "by Papelito" como assinatura secundária). */
+.assinatura-papelito{
+  position:relative; z-index:1; margin:8px 0 0;
+  display:inline-flex; align-items:center; gap:6px;
+  font-family:var(--texto); font-size:12px; font-weight:700;
+  text-transform:uppercase; letter-spacing:.06em; color:var(--amarelo);
+}
+
 .modulos{display:grid; gap:14px; padding:16px}
 .modulo{
   position:relative; overflow:hidden; isolation:isolate;
@@ -330,6 +341,17 @@ button{font:inherit; color:inherit; cursor:pointer; border:none; background:none
 .bloco.perigo{background:#FFF1EA; border-left:7px solid var(--laranja)}
 .bloco.perigo h3{color:#B03C08}
 .bloco.perigo h3 .ic-bloco{color:var(--laranja)}
+
+/* bloco "Na Papelito": mesma família visual do .bloco, mas com o amarelo da
+   marca em vez do laranja de alerta — sinaliza "prática específica daqui",
+   não risco. Selo preto-no-amarelo em vez de ícone, pro rótulo ficar
+   inconfundível mesmo passando o olho rápido pela tela. */
+.bloco.na-papelito{background:#FFFBE9; border-left:7px solid var(--amarelo)}
+.selo-papelito{
+  display:inline-block; background:var(--preto); color:var(--amarelo);
+  font-family:var(--texto); font-weight:700; font-size:11px; text-transform:uppercase;
+  letter-spacing:.05em; padding:5px 11px; border-radius:999px;
+}
 
 /* ---------------- lista de riscos ---------------- */
 .riscos{

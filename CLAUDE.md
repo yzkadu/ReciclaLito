@@ -85,6 +85,12 @@ tudo e entregar direto aos catadores da ACOBRAZ, não uma rede pública de ponto
 coleta espalhados. Não reintroduza essa seção sem confirmar antes com a coordenação
 do projeto que o fluxo mudou.
 
+Isso é diferente do bloco `pontosInternos` (adicionado depois, ver
+`docs/HISTORICO.md`): aquele é um único ponto de descarte DENTRO da própria empresa
+(sala do Financeiro, para pilha e eletrônico pequeno, recolhido pela ACOBRAZ), não uma
+rede pública de coleta. Confirmado com a coordenação antes de adicionar. Mesma regra
+vale para ele: não adicione outro ponto interno sem confirmação.
+
 ## Mapa dos arquivos
 
 | Caminho | O que é |

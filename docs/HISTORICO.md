@@ -610,6 +610,48 @@ foi removido. Documentação atualizada: `CLAUDE.md`, `README.md`, `LEIA-ME.md` 
 
 ---
 
+## Papelito mais presente + primeiros blocos de "na empresa" (v19)
+
+Pedido: transformar o ReciclaLito no guia prático de sustentabilidade da Papelito,
+sem virar site institucional nem perder a identidade do app. Fase 1, feita sem
+inventar nenhum dado novo:
+
+- Assinatura "uma iniciativa Papelito" no herói da tela inicial (`.assinatura-papelito`),
+  além do selo que já existia no rodapé (`LOGO_PAPELITO`).
+- Bloco novo "Na Papelito" (`campoPapelito()` em `app.js`, campo `naPapelito` em
+  `conteudo.js`, classe `.bloco.na-papelito` + selo `.selo-papelito`): aparece na
+  ficha de um material ou risco só quando existe uma prática específica da empresa
+  para aquele item. Só renderiza se o campo existir — nunca mostra bloco vazio.
+- `pontosInternos` (novo, em `conteudo.js`): um único ponto de descarte dentro da
+  empresa — sala do Financeiro, para pilha, bateria e eletrônico pequeno — recolhido
+  pela ACOBRAZ. Confirmado com a coordenação antes de adicionar (ver nota em
+  `CLAUDE.md`: isto **não** é a mesma coisa que a antiga seção "pontos de entrega"
+  pública que foi removida — aqui é um ponto interno só, não uma rede pública).
+  Usado agora nos itens "Eletrônicos" (`materiais`) e "Pilhas e baterias" (`riscos`).
+- Etapa "Pilhas, lâmpadas e óleo" da trilha (`t7`) ganhou uma frase sobre esse ponto
+  interno.
+- Estruturas criadas em `conteudo.js`, mas **sem conteúdo e sem renderização** — só
+  a arquitetura, esperando dado aprovado pela Papelito (ver Pendências):
+  - `certificacoes` (vazio) — para a seção de certificações/selos pedida, começando
+    pela FSC. Nada foi inventado (número, escopo, data, status): a lista fica vazia
+    até a Papelito aprovar o texto.
+  - `parcerias` — já tem a Poiato Recicla cadastrada com `pendente:true` e
+    `descricao:null`, esperando a descrição aprovada da parceria.
+  - `bitucas` — confirmado que existe programa de coleta de bituca com a Poiato
+    Recicla, mas sem os dados operacionais ainda (onde ficam os coletores, o que
+    pode/não pode descartar, o que acontece depois). `pendente:true`. Enquanto isso,
+    o item "Bituca de cigarro" na busca continua respondendo "vai no lixo comum",
+    que é a orientação geral válida até a ficha específica da Papelito entrar no ar.
+
+O restante do pedido (redesenho visual completo da home, trilha de integração
+reestruturada, tira de certificações, "Na prática", etc.) fica para as próximas
+fases, á medida que o conteúdo aprovado for chegando — ver Pendências.
+
+`sw.js`: `VERSAO` de `v18` para `v19`. Nenhum arquivo novo em `ARQUIVOS` (não houve
+imagem nova nesta fase).
+
+---
+
 ## Pendências
 
 - [ ] Revisão do bloco `emergencia` por profissional de saúde. **Bloqueia divulgação.**
@@ -618,3 +660,9 @@ foi removido. Documentação atualizada: `CLAUDE.md`, `README.md`, `LEIA-ME.md` 
       alumínio e longa vida.
 - [ ] Testar em Android simples de verdade, incluindo modo avião pelo ícone instalado.
 - [ ] Passar o repositório para a Papelito.
+- [ ] Conteúdo aprovado da certificação FSC (escopo, número de licença, data, status)
+      para preencher `certificacoes` em `conteudo.js`.
+- [ ] Descrição aprovada da parceria Poiato Recicla, para preencher `parcerias`.
+- [ ] Dados operacionais da coleta de bituca (local dos coletores, o que pode/não pode
+      descartar, o que acontece depois da coleta), para preencher `bitucas` e tirar
+      `pendente:true`.

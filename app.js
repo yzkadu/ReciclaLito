@@ -108,6 +108,7 @@
       '<section class="abertura">' +
         '<span class="marca-agua" aria-hidden="true">R</span>' +
         '<h1>' + esc(t.subtitulo) + '</h1>' +
+        '<p class="assinatura-papelito">uma iniciativa Papelito</p>' +
       '</section>' +
       campoBusca(t) +
       '<div id="resultados" role="region" aria-live="polite"></div>' +
@@ -324,6 +325,7 @@
       '<div class="blocos">' +
         campo('Como separar', m.separar, false, 'separar') +
         campo('Onde entregar', m.entregar, false, 'entregar') +
+        campoPapelito(m.naPapelito) +
         blocoRende(m) +
         campo('Atenção', m.atencao, true, 'atencao') +
       '</div>';
@@ -376,6 +378,7 @@
         campo('Como manusear', r.manusear, false, 'manusear') +
         campo('Atenção', r.alerta, true, 'atencao') +
         campo('Onde entregar', r.entregar, false, 'entregar') +
+        campoPapelito(r.naPapelito) +
       '</div>';
   }
 
@@ -412,6 +415,16 @@
   function campo(rot, txt, perigo, iconeNome) {
     return '<section class="bloco reveal' + (perigo ? ' perigo' : '') + '">' +
       '<h3>' + (iconeNome ? icone(iconeNome, 'ic-bloco') : '') + '<span>' + esc(rot) + '</span></h3>' +
+      '<p>' + esc(txt) + '</p></section>';
+  }
+
+  /* bloco "Na Papelito": só aparece quando o material ou risco tem um
+     campo 'naPapelito' preenchido em conteudo.js (prática específica da
+     empresa). Sem o campo, não renderiza nada — nunca mostra bloco vazio. */
+  function campoPapelito(txt) {
+    if (!txt) return '';
+    return '<section class="bloco reveal na-papelito">' +
+      '<h3><span class="selo-papelito">Na Papelito</span></h3>' +
       '<p>' + esc(txt) + '</p></section>';
   }
 

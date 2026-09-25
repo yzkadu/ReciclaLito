@@ -67,7 +67,8 @@ const CONTEUDO = {
       entregar: 'Ponto de logística reversa: loja de eletrônicos, fabricante ou ponto autorizado pela prefeitura.',
       valor: 'medio',
       rende: 'Depende muito da peça. O valor está no cobre e nas placas, não no plástico da carcaça.',
-      atencao: 'Contém chumbo, mercúrio e cádmio. Nunca vai no lixo comum e nunca é queimado. Veja o módulo Segurança antes de manusear.'
+      atencao: 'Contém chumbo, mercúrio e cádmio. Nunca vai no lixo comum e nunca é queimado. Veja o módulo Segurança antes de manusear.',
+      naPapelito: 'Eletrônico pequeno (celular, fone, controle) tem ponto de descarte interno na sala do Financeiro, dentro da empresa. A ACOBRAZ recolhe e faz o descarte correto. Aparelho grande, combine a retirada com o responsável.'
     },
     {
       id: 'oleo',
@@ -192,7 +193,8 @@ const CONTEUDO = {
       oQueTem: 'Chumbo, cádmio, mercúrio e lítio.',
       manusear: 'Use luva resistente a corte. Não perfure, não amasse e não queime. Guarde separado dos outros materiais, num recipiente que não seja de metal.',
       alerta: 'Bateria inchada, quente ou vazando pode pegar fogo. Isole longe de papel e plástico, proteja os polos com fita e avise o responsável.',
-      entregar: 'Ponto de logística reversa. Fabricantes e importadores são obrigados a receber de volta.'
+      entregar: 'Ponto de logística reversa. Fabricantes e importadores são obrigados a receber de volta.',
+      naPapelito: 'Na Papelito, pilha e bateria pequena têm ponto de descarte interno na sala do Financeiro. A ACOBRAZ recolhe e faz o descarte correto.'
     },
     {
       id: 'lampadas',
@@ -335,7 +337,7 @@ const CONTEUDO = {
     { id: 't6', titulo: 'Cabos e fios: nunca queimar', ver: { modulo: 'riscos', id: 'cabos' },
       texto: 'Fio e cabo têm cobre por dentro e plástico ou retardante de chama por fora. O jeito certo de separar os dois é descascar com alicate ou descascador — é mais seguro e o cobre limpo vale mais na venda. Queimar o fio para tirar o plástico continua sendo um erro que aparece de vez em quando: a fumaça solta dioxina, que faz mal ao pulmão e é cancerígena, e o cobre queimado ainda sai valendo menos. Cobre limpo vai direto para o ferro-velho ou para a cooperativa.' },
     { id: 't7', titulo: 'Pilhas, lâmpadas e óleo', ver: { modulo: 'riscos', id: 'lampadas' },
-      texto: 'São os três casos em que o descarte errado causa dano imediato: bateria que pega fogo, lâmpada que solta mercúrio e óleo que contamina a água. Bateria inchada, quente ou vazando isola-se longe de papel e plástico, com os polos protegidos por fita — nunca se perfura nem se queima. Lâmpada fluorescente quebrada pede o oposto do instinto: não varrer nem aspirar, porque isso espalha o pó de mercúrio; areja-se o local por uns 15 minutos e recolhe-se com papelão rígido e luva. Óleo de cozinha usado vai em garrafa PET bem fechada — um litro dele jogado na pia contamina milhares de litros de água.' },
+      texto: 'São os três casos em que o descarte errado causa dano imediato: bateria que pega fogo, lâmpada que solta mercúrio e óleo que contamina a água. Bateria inchada, quente ou vazando isola-se longe de papel e plástico, com os polos protegidos por fita — nunca se perfura nem se queima. Lâmpada fluorescente quebrada pede o oposto do instinto: não varrer nem aspirar, porque isso espalha o pó de mercúrio; areja-se o local por uns 15 minutos e recolhe-se com papelão rígido e luva. Óleo de cozinha usado vai em garrafa PET bem fechada — um litro dele jogado na pia contamina milhares de litros de água. Na Papelito, pilha e eletrônico pequeno têm ponto de descarte interno na sala do Financeiro, recolhido pela ACOBRAZ.' },
     { id: 't8', titulo: 'Verificação final',
       texto: 'Perguntas rápidas para confirmar o que você viu.' }
   ],
@@ -426,5 +428,86 @@ const CONTEUDO = {
       texto: 'A empresa destaca a produção nacional como parte do seu compromisso declarado.',
       icone: 'industria'
     }
-  ]
+  ],
+
+  /* ----------------------------------------------------------
+     PONTOS DE DESCARTE NA PAPELITO
+     Diretório de pontos internos de descarte DENTRO da empresa.
+     Isto não é mapa nem geolocalização — é só uma lista de onde
+     entregar dentro do prédio. Só cadastre aqui um local
+     confirmado pela coordenação do projeto. Ver CLAUDE.md sobre
+     por que a antiga seção "pontos de entrega" pública foi
+     removida: isto aqui é outra coisa (um único ponto interno,
+     não uma rede pública).
+     ---------------------------------------------------------- */
+  pontosInternos: [
+    {
+      id: 'financeiro-pilhas',
+      tipo: 'pilhas-eletronicos',
+      titulo: 'Pilhas e eletrônicos pequenos',
+      local: 'Sala do Financeiro',
+      descricao: 'Ponto de coleta dentro da Papelito (RCS) para pilha, bateria e eletrônico pequeno. A ACOBRAZ recolhe e faz o descarte correto.',
+      aceita: ['Pilha', 'Bateria pequena', 'Eletrônico pequeno (celular, fone, controle)'],
+      naoAceita: ['Eletrônico grande (monitor, CPU, TV) — combine a retirada com o responsável'],
+      destino: 'ACOBRAZ'
+    }
+  ],
+
+  /* ----------------------------------------------------------
+     CERTIFICAÇÕES & SELOS
+     Estrutura pronta para novas certificações (ex.: FSC), a
+     pedido da Papelito. NÃO renderize nada daqui até o texto e o
+     selo oficial serem aprovados — ver docs/HISTORICO.md,
+     pendência "Certificação FSC". Lista vazia de propósito.
+
+     TODO PAPELITO: confirmar escopo, número de licença, data e
+     status da certificação FSC antes de publicar este bloco.
+     Formato pronto para quando o dado chegar:
+     { id, nome, descricao, imagem, link, tipo }
+     ---------------------------------------------------------- */
+  certificacoes: [],
+
+  /* ----------------------------------------------------------
+     PARCERIAS
+     Parcerias de sustentabilidade além da ACOBRAZ (já citada em
+     parceriaImpactoTexto). NÃO renderize a Poiato Recicla até a
+     descrição da parceria ser aprovada — ver docs/HISTORICO.md.
+
+     TODO PAPELITO: descrição aprovada da parceria Poiato Recicla
+     (o que ela faz, desde quando, o que recebe).
+     ---------------------------------------------------------- */
+  parcerias: [
+    {
+      id: 'poiato-recicla',
+      nome: 'Poiato Recicla',
+      categoria: 'Reciclagem de bitucas',
+      descricao: null,
+      pendente: true
+    }
+  ],
+
+  /* ----------------------------------------------------------
+     BITUCAS DE CIGARRO — coleta na Papelito
+     Confirmado pela coordenação que existe um programa real de
+     coleta de bitucas em parceria com a Poiato Recicla. Os
+     detalhes operacionais (onde ficam os coletores, o que pode e
+     não pode ir junto, o que acontece depois da coleta) ainda não
+     foram enviados. Enquanto isso, 'pendente:true' e o app.js NÃO
+     deve mostrar este bloco nem trocar a resposta de busca de
+     "Bituca de cigarro" (que hoje diz "vai no lixo comum") até
+     'pendente' virar false.
+
+     TODO PAPELITO: enviar local dos coletores, o que pode/não
+     pode descartar, e o que acontece depois da coleta.
+     ---------------------------------------------------------- */
+  bitucas: {
+    pendente: true,
+    titulo: 'Bitucas de cigarro',
+    descricao: null,
+    coletores: [],
+    podeDescartar: [],
+    naoPodeDescartar: [],
+    depoisDaColeta: null,
+    parceria: { nome: 'Poiato Recicla', descricao: null }
+  }
 };
