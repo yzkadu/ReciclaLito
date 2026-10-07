@@ -666,3 +666,7 @@ imagem nova nesta fase).
 - [ ] Dados operacionais da coleta de bituca (local dos coletores, o que pode/não pode
       descartar, o que acontece depois da coleta), para preencher `bitucas` e tirar
       `pendente:true`.
+
+## 30/09/2026 — Integração da versão final desenvolvida no Sites
+
+Importa a versão 3f74e683914c48d1fd6de3e0a67d5cc76a08d8a0 do Site: identidade visual Papelito, imagens locais com créditos, descarte de bitucas em coletores distribuídos pela empresa, segurança do catador e trilha com dez leituras e onze perguntas. Mantém arquitetura estática, caminhos relativos e cache v22. Não inclui configuração de hospedagem Sites nem credenciais.

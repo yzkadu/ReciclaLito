@@ -136,17 +136,6 @@ button{font:inherit; color:inherit; cursor:pointer; border:none; background:none
 }
 .abertura p{position:relative; z-index:1; margin:10px 0 0; font-size:17px; color:rgba(255,255,255,.78); max-width:34ch}
 
-/* assinatura pequena da Papelito dentro do herói — o ReciclaLito continua
-   sendo a marca principal (título grande, letra própria); isto aqui só
-   deixa claro, já na abertura, quem apoia o projeto (item 4 do pedido de
-   redesign: "by Papelito" como assinatura secundária). */
-.assinatura-papelito{
-  position:relative; z-index:1; margin:8px 0 0;
-  display:inline-flex; align-items:center; gap:6px;
-  font-family:var(--texto); font-size:12px; font-weight:700;
-  text-transform:uppercase; letter-spacing:.06em; color:var(--amarelo);
-}
-
 .modulos{display:grid; gap:14px; padding:16px}
 .modulo{
   position:relative; overflow:hidden; isolation:isolate;
@@ -341,17 +330,6 @@ button{font:inherit; color:inherit; cursor:pointer; border:none; background:none
 .bloco.perigo{background:#FFF1EA; border-left:7px solid var(--laranja)}
 .bloco.perigo h3{color:#B03C08}
 .bloco.perigo h3 .ic-bloco{color:var(--laranja)}
-
-/* bloco "Na Papelito": mesma família visual do .bloco, mas com o amarelo da
-   marca em vez do laranja de alerta — sinaliza "prática específica daqui",
-   não risco. Selo preto-no-amarelo em vez de ícone, pro rótulo ficar
-   inconfundível mesmo passando o olho rápido pela tela. */
-.bloco.na-papelito{background:#FFFBE9; border-left:7px solid var(--amarelo)}
-.selo-papelito{
-  display:inline-block; background:var(--preto); color:var(--amarelo);
-  font-family:var(--texto); font-weight:700; font-size:11px; text-transform:uppercase;
-  letter-spacing:.05em; padding:5px 11px; border-radius:999px;
-}
 
 /* ---------------- lista de riscos ---------------- */
 .riscos{
@@ -706,3 +684,251 @@ body.com-convite{padding-bottom:calc(86px + env(safe-area-inset-bottom))}
 }
 .credito-papelito svg{width:64px; height:auto; flex:none; opacity:.55}
 .credito-papelito span{font-size:12px; font-weight:700; letter-spacing:.02em}
+
+/* Evolução editorial Papelito: contraste, tipografia e orientação interna. */
+:root{--fundo:#f7f6f2}
+#principal,.topo-interno{max-width:1240px}
+#principal{padding:0 36px}
+a{color:inherit;text-underline-offset:4px}
+.topo{background:var(--fundo);border-bottom:1px solid var(--linha)}
+.topo-interno{padding:20px 36px;min-height:90px;gap:24px}
+.marca{text-decoration:none;font-size:25px;white-space:nowrap;line-height:1.2}
+.marca span{background:var(--amarelo);padding:2px 3px;margin-left:2px}
+.navegacao-topo{display:flex;gap:24px;margin-left:auto;align-items:center}
+.navegacao-topo a{font-size:14px;font-weight:500;text-decoration:none;min-height:56px;display:flex;align-items:center;border-bottom:2px solid transparent}
+.navegacao-topo a:hover,.navegacao-topo a[aria-current]{border-color:var(--preto)}
+.assinatura-topo{font-size:12px;line-height:1.4;max-width:90px;border-left:1px solid var(--linha);padding-left:18px}
+.abertura{display:grid;grid-template-columns:1.25fr 1fr;background:var(--amarelo);color:var(--preto);margin:30px 0 0;padding:0;min-height:300px;border-radius:4px}
+.abertura-texto{padding:32px 36px;align-self:center}
+.sobretitulo{font-size:12px;letter-spacing:.12em;font-weight:700;text-transform:uppercase;display:block;line-height:1.5}
+.abertura h1{font-family:var(--display);font-size:clamp(30px,3.3vw,47px);line-height:1.1;max-width:15ch;margin:18px 0 12px;letter-spacing:0}
+.abertura p{color:var(--preto);font-size:16px;max-width:36ch;line-height:1.45;margin:0}
+.abertura-foto{position:relative;margin:0;overflow:hidden;min-width:0}
+.abertura-foto img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;filter:saturate(.7)}
+.abertura-foto figcaption{position:absolute;bottom:20px;left:20px;right:20px;background:var(--preto);color:var(--branco);font-size:12px;font-weight:700;letter-spacing:.08em;padding:10px 14px;max-width:max-content}
+.busca{margin:0;padding:24px 0 0}
+.busca label{display:block;font-size:19px;font-weight:700;margin:0 0 10px}
+.campo-busca{border:1px solid var(--preto);background:white;border-radius:4px;box-shadow:none;min-height:64px}
+.campo-busca input{font-size:17px;min-height:62px;background:transparent}
+.campo-busca:focus-within{outline:3px solid var(--amarelo);outline-offset:3px}
+.atalhos{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:8px 0 14px}
+.atalhos>span{font-size:13px;color:#565652}
+.atalhos a{font-size:14px;text-decoration:none;display:flex;align-items:center;gap:18px;padding:8px 12px;min-height:48px;border-bottom:1px solid #b9b9b1}
+.atalhos a:hover{background:var(--amarelo)}
+.modulos{padding:0;grid-template-columns:1.15fr 1fr 1fr;gap:16px}
+.modulo{border:1px solid var(--linha);border-radius:4px;padding:24px 25px 22px;min-height:214px;background-image:none;display:flex;flex-direction:column;align-items:flex-start;transition:transform .18s,box-shadow .18s}
+.modulo:hover{transform:translateY(-3px);box-shadow:0 8px 0 #231f2012}
+.modulo:active{border-bottom-width:1px}
+.modulo .marca-agua{display:none}
+.modulo-numero{display:block;font-size:13px;font-weight:500;letter-spacing:.1em;margin-bottom:22px}
+.modulo .nome{font-family:var(--texto);font-size:26px;font-weight:700;line-height:1.05;text-transform:none;max-width:12ch;letter-spacing:-.02em}
+.modulo .desc{font-size:14px;line-height:1.4;max-width:24ch;margin-top:13px}
+.modulo-mais{right:20px;top:28px;transform:none;color:inherit}
+.modulo-mais svg{width:19px;height:19px;transform:rotate(-45deg)}
+.m1{background:var(--preto);color:white}.m1 .nome{color:var(--amarelo)}
+.m2{background:#fff;color:var(--preto);border-top:4px solid var(--laranja)}
+.m3{background:#ecece4;color:var(--preto);border-top:4px solid var(--verde)}
+.aviso-offline{font-size:13px;background:none;color:#52554b;padding:12px 0;margin:0;align-items:center;gap:8px}
+.aviso-offline svg{width:17px;height:17px;margin:0;color:#257545}
+.pontos-internos{padding:38px 0 40px;border-top:1px solid var(--linha);margin-top:20px}
+.cabecalho-bloco{display:flex;align-items:end;justify-content:space-between;gap:25px;margin-bottom:24px}
+.cabecalho-bloco h2{font-family:var(--texto);font-size:28px;font-weight:700;line-height:1.15;letter-spacing:-.02em;margin:8px 0 0;max-width:23ch}
+.cabecalho-bloco>p{font-size:14px;line-height:1.5;color:#5e5e59;max-width:30ch;margin:0}
+.pontos-grade{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ponto-interno{background:#fff;border:1px solid var(--linha);border-radius:4px;display:flex;gap:18px;align-items:center;padding:24px;min-width:0}
+.local-icone{width:50px;height:50px;display:grid;place-items:center;background:var(--amarelo);flex:none}
+.local-icone svg{width:28px;height:28px}
+.ponto-interno h3{font-size:22px;line-height:1.2;margin:6px 0}
+.ponto-interno p{font-size:14px;margin:0;color:#55554f}
+.ponto-interno .sobretitulo{font-size:12px;color:#595952}
+.ponto-interno a{margin-left:auto;min-width:56px;min-height:56px;display:grid;place-items:center;text-decoration:none;font-size:25px}
+.ponto-interno a:hover{background:var(--amarelo)}
+.impacto{background:var(--preto);color:#fff;margin:0;padding:35px 32px;border-radius:4px;overflow:hidden}
+.impacto .sobretitulo{color:var(--amarelo)}
+.impacto .cabecalho-bloco>p{color:#d0d0c8}
+.impacto-grade{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:30px}
+.impacto-grade article{border-top:1px solid #5e5a5b;padding-top:20px}
+.impacto-grade strong{font-family:var(--display);font-size:clamp(34px,4vw,54px);line-height:1.15;color:var(--amarelo);display:block;font-weight:400;white-space:nowrap}
+.impacto-grade h3{font-size:17px;font-weight:700;margin:12px 0 8px}
+.impacto-grade p{font-size:14px;color:#deded6;line-height:1.5;margin:0;max-width:31ch}
+.nota-impacto{font-size:12px;color:#c4c4bc;margin:25px 0 0}
+.certificacoes{padding:40px 0}
+.selos-grade{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.selos-grade article{padding:24px;border:1px solid var(--linha);border-radius:4px}
+.selos-grade h3{font-size:22px;margin:14px 0 8px}
+.selos-grade p{font-size:16px;margin:0;line-height:1.5;max-width:46ch}
+.selos-grade a{font-size:14px;display:inline-flex;align-items:center;min-height:56px;margin-top:8px;font-weight:700}
+.selos-grade .sobretitulo{color:#55554c}
+.rodape{border-top:1px solid var(--linha);padding:26px 0;display:grid;grid-template-columns:1fr 2fr 1fr;gap:25px;align-items:center}
+.rodape>strong{font-family:var(--display);font-weight:400;color:var(--preto);font-size:20px}
+.rodape p{font-size:13px;line-height:1.5;margin:0}
+.rodape .credito-papelito{margin:0;padding:0;opacity:1;text-align:right;align-items:flex-end;display:flex;flex-direction:column;gap:6px}
+.rodape .credito-papelito svg{width:120px;height:28px}.rodape .credito-papelito span{font-size:12px}
+.secao-banner{margin:30px 0 20px;border-radius:4px;padding:32px}
+.secao-banner h1{font-size:clamp(28px,4vw,42px);line-height:1.15}
+.faixa{margin-top:28px;border-radius:4px}.faixa h2{line-height:1.15}
+.materiais,.riscos{padding:12px 0;gap:16px}
+.material,.risco{border-radius:5px}
+.material .nome{line-height:1.2}
+.blocos{padding:24px 0;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.bloco{border-radius:4px;margin:0;padding:25px;border:1px solid var(--linha)}
+.bloco h3{line-height:1.25}.bloco p{line-height:1.65}
+.empresa{background:var(--amarelo);border:none;margin:20px 0;padding:26px}
+.blocos .empresa{grid-column:1/-1;margin:0}
+.empresa h3{font-family:var(--texto);font-size:24px;font-weight:700;margin:12px 0}
+.empresa p{font-size:16px;margin:10px 0}
+.locais-inline{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.locais-inline span{background:var(--preto);color:#fff;font-weight:700;padding:10px 20px;border-radius:3px}
+body[data-tela="emergencia"] .reveal{opacity:1;transform:none;transition:none}
+body[data-tela="emergencia"] main{animation:none}
+body[data-tela="emergencia"] .secao-banner{background-image:none}
+@media(min-width:1600px){#principal,.topo-interno{max-width:1360px}.abertura{min-height:325px}}
+@media(max-width:1050px){.navegacao-topo{display:none}.assinatura-topo{margin-left:auto}.abertura-texto{padding:28px}.modulo{padding:22px 18px}.modulo .nome{font-size:24px}.ponto-interno{padding:18px;gap:12px}.local-icone{width:38px;height:44px}.ponto-interno a{min-width:42px}}
+@media(max-width:760px){#principal{padding:0 20px}.topo-interno{padding:16px 20px;min-height:78px;gap:12px}.marca{font-size:21px}.assinatura-topo{padding-left:12px}.abertura{grid-template-columns:1.25fr 1fr;min-height:240px;margin-top:20px}.abertura-texto{padding:25px}.abertura h1{font-size:30px}.abertura-foto figcaption{font-size:12px;left:12px;right:12px;bottom:12px}.abertura p{font-size:14px}.modulos{grid-template-columns:1fr;gap:12px}.modulo{min-height:134px;padding:20px 60px 20px 60px}.modulo-numero{position:absolute;left:20px;top:23px;margin:0}.modulo .nome{font-size:25px;max-width:none}.modulo .desc{max-width:none;font-size:15px;margin-top:9px}.modulo-mais{top:24px}.cabecalho-bloco{display:block}.cabecalho-bloco>p{margin-top:12px;max-width:none}.pontos-grade{grid-template-columns:1fr}.impacto{padding:28px}.impacto-grade{gap:20px}.impacto-grade strong{font-size:32px}.impacto-grade h3{font-size:16px}.rodape{grid-template-columns:1fr 1fr}.rodape p{grid-row:2;grid-column:1/-1}.rodape .credito-papelito{grid-row:1;grid-column:2}.blocos{grid-template-columns:1fr}.cabecalho-bloco h2{font-size:26px}}
+@media(max-width:480px){#principal{padding:0 16px}.topo-interno{padding:14px 16px;gap:8px}.marca{font-size:19px}.assinatura-topo{font-size:12px;max-width:78px}.voltar{min-height:56px;padding-right:0;font-size:14px}.voltar span{display:none}.abertura{display:block;min-height:0}.abertura-texto{padding:25px 24px}.abertura h1{font-size:30px;max-width:15ch;margin:14px 0}.abertura-foto{display:none}.abertura p{font-size:16px}.busca{padding-top:22px}.busca label{font-size:18px}.campo-busca input{font-size:16px;min-width:0}.atalhos{gap:5px}.atalhos>span{width:100%;margin-top:4px}.atalhos a{padding:7px 9px;gap:10px;font-size:14px;min-height:56px}.pontos-internos{padding-top:28px}.impacto-grade{grid-template-columns:1fr;gap:24px}.impacto-grade article{display:grid;grid-template-columns:100px 1fr;gap:8px 18px}.impacto-grade strong{grid-row:1/3;font-size:30px;white-space:normal;align-self:center}.impacto-grade h3{margin:0}.impacto-grade p{margin:0;max-width:none}.impacto{padding:26px 22px}.selos-grade{grid-template-columns:1fr}.ponto-interno{padding:18px 14px}.ponto-interno h3{font-size:22px}.ponto-interno a{min-width:40px}.local-icone{display:none}.ponto-interno p{font-size:14px}.rodape>strong{font-size:18px}.secao-banner{padding:26px 20px}.cabecalho-bloco h2{font-size:25px}.bloco{padding:22px}.modulo .nome{font-size:24px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1!important;transform:none!important}.modulo:hover{transform:none}}
+@media print{.navegacao-topo,.assinatura-topo{display:none}#principal{padding:0}}
+
+/* Foco de navegação: preservar o destino sem moldura em volta de toda a página. */
+#principal:focus{outline:none}
+.modulo.reveal{opacity:1;transform:none}
+
+/* Papelito de ponta a ponta: acervo oficial, recortes e assinatura ampla. */
+body{background:#fff}
+.topo{background:var(--amarelo);border-bottom:2px solid var(--preto)}
+.topo-interno{min-height:86px}
+.marca span{background:var(--preto);color:var(--amarelo);padding:3px 5px}
+.assinatura-topo{max-width:none;border-left:1px solid #231f2066;padding-left:22px}
+.assinatura-topo .credito-papelito{padding:0;margin:0;opacity:1;display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--preto)}
+.assinatura-topo svg{width:106px;height:26px}
+.assinatura-topo span{font-size:12px;white-space:nowrap}
+.abertura{background:var(--amarelo);border-radius:0;margin-top:24px;grid-template-columns:1.2fr 1fr;min-height:326px}
+.abertura-texto{padding:30px 32px}
+.abertura h1{font-size:clamp(32px,3.8vw,52px);line-height:1.06;max-width:15ch}
+.abertura-foto{margin:16px 16px 16px 0;transform:rotate(1deg)}
+.abertura-foto img{filter:none;object-position:center 40%;border-radius:2px}
+.abertura-foto figcaption{left:0;bottom:12px;right:auto;max-width:95%;padding:9px 12px;transform:rotate(-2deg);font-size:12px;background:var(--preto);color:var(--amarelo)}
+.modulo{border-radius:0;border:0;min-height:230px;padding:25px;box-shadow:none}
+.modulo .nome{font-family:var(--display);font-size:25px;font-weight:400;line-height:1.18;text-transform:uppercase;letter-spacing:0;max-width:14ch}
+.modulo .desc{font-size:16px;max-width:27ch}.modulo-numero{margin-bottom:20px}
+.m1{background:var(--preto)}.m2{background:var(--amarelo)}.m3{background:#ae69ff}
+.modulo:hover{box-shadow:5px 5px 0 var(--preto);transform:translate(-2px,-2px)}
+.pontos-internos{border-top:2px solid var(--preto);margin-top:26px}
+.cabecalho-bloco h2{font-family:var(--display);font-weight:400;text-transform:uppercase;line-height:1.15;font-size:29px}
+.ponto-interno{border:1px solid var(--preto);border-radius:0;background:#f7f6f2}
+.ponto-interno .local-icone{background:var(--amarelo)}
+.impacto{border-radius:0;padding:38px 30px 30px;position:relative;background:var(--preto)}
+.impacto .cabecalho-bloco h2{font-size:clamp(30px,3vw,43px);color:var(--amarelo);max-width:19ch}
+.impacto-grade{gap:24px}
+.impacto-grade article{padding-top:0;border:none;min-width:0}
+.impacto-imagem{height:195px;margin-bottom:25px;overflow:hidden;background:#fcd930;display:flex;align-items:center;justify-content:center;transform:rotate(-1deg)}
+.impacto-imagem img{width:100%;height:100%;object-fit:cover}
+.impacto-grade article:nth-child(2) .impacto-imagem{background:#ae69ff;transform:rotate(1deg)}
+.impacto-grade article:nth-child(2) .impacto-imagem img{object-fit:contain;padding:12px}
+.impacto-grade strong{font-size:clamp(35px,3.7vw,51px)}
+.impacto-grade p{font-size:16px;line-height:1.5}.impacto-grade h3{font-size:20px}
+.fonte-marca{font-size:14px;display:inline-flex;align-items:center;min-height:56px;color:var(--amarelo)}
+.certificacoes{padding:45px 0}
+.selos-grade{grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--preto);border-bottom:1px solid var(--preto)}
+.selos-grade article{border:0;border-right:1px solid var(--linha);border-radius:0;display:flex;flex-direction:column;padding:25px 22px;min-width:0;align-items:flex-start}
+.selos-grade article:last-child{border-right:0}
+.selos-grade img{width:100%;height:104px;object-fit:contain;order:-1;margin:0 0 24px}
+.selos-grade article:has(img) .sobretitulo{margin-top:0}
+.selos-grade article:not(:has(img)){background:var(--amarelo);justify-content:center}
+.selos-grade h3{font-size:23px}.selos-grade p{font-size:15px}
+.fechamento-marca{background:var(--amarelo);display:grid;grid-template-columns:1.3fr 1fr;align-items:center;gap:20px;padding:40px;overflow:hidden}
+.fechamento-marca h2{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(30px,3.3vw,46px);line-height:1.12;max-width:19ch;margin:18px 0}
+.fechamento-marca p{max-width:45ch;font-size:17px}
+.fechamento-marca>a,.fechamento-marca div>a{display:inline-flex;min-height:56px;align-items:center;background:var(--preto);color:var(--amarelo);padding:14px 20px;text-decoration:none;font-weight:700;margin-top:10px}
+.fechamento-marca img{width:100%;height:auto;max-height:320px;object-fit:contain}
+.rodape{background:var(--amarelo);border:0;margin-bottom:24px;padding:30px 40px 15px;grid-template-columns:1fr 2fr;gap:20px}
+.rodape .credito-papelito{grid-column:1/-1;grid-row:auto;align-items:center;border-top:1px solid #231f2040;padding-top:30px;color:var(--preto)}
+.rodape .credito-papelito svg{width:100%;height:auto;max-height:210px;opacity:1}
+.rodape .credito-papelito span{font-size:13px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
+.secao-banner{border-radius:0}.secao-banner .marca-agua{color:rgba(255,255,255,.16)}
+@media(max-width:1050px){.selos-grade{grid-template-columns:repeat(2,1fr)}.selos-grade article{border-bottom:1px solid var(--linha)}.impacto-imagem{height:150px}}
+@media(max-width:760px){.abertura{min-height:300px;grid-template-columns:1.3fr 1fr}.abertura-texto{padding:24px}.abertura h1{font-size:31px}.abertura-foto{margin:12px 12px 12px 0}.modulo{min-height:145px;padding:22px 45px 22px 60px}.modulo .nome{font-size:23px;max-width:none}.modulo .desc{font-size:16px}.impacto-grade{grid-template-columns:1fr}.impacto-grade article{display:grid;grid-template-columns:170px 1fr;gap:8px 20px}.impacto-imagem{grid-row:1/4;margin:0;height:190px}.impacto-grade strong{grid-row:auto;font-size:38px}.impacto-grade h3,.impacto-grade p{margin:0}.fechamento-marca{padding:28px;grid-template-columns:1.3fr 1fr}.fechamento-marca h2{font-size:30px}.rodape{padding:26px}.cabecalho-bloco h2{font-size:26px}}
+@media(max-width:480px){.topo-interno{min-height:76px}.assinatura-topo{padding-left:12px}.assinatura-topo svg{width:75px;height:22px}.assinatura-topo span{font-size:10px}.abertura{display:grid;grid-template-columns:1fr;min-height:0;margin-top:16px}.abertura-texto{padding:22px}.abertura h1{font-size:29px;max-width:16ch}.abertura-texto p{font-size:16px}.abertura-foto{display:block;height:128px;margin:0 14px 14px;transform:none}.abertura-foto img{object-position:center 37%}.abertura-foto figcaption{font-size:10px;bottom:6px}.modulo .nome{font-size:21px;line-height:1.2}.modulo{padding-left:48px}.modulo-numero{left:16px}.impacto{padding:28px 22px}.impacto-grade article{display:block}.impacto-imagem{height:180px;margin:0 0 18px}.impacto-grade strong{font-size:39px;white-space:nowrap}.impacto-grade h3{margin:12px 0 8px}.impacto-grade p{font-size:16px}.impacto-grade{gap:32px}.selos-grade article{padding:22px 15px}.selos-grade h3{font-size:21px}.selos-grade p{font-size:15px}.selos-grade img{height:86px}.fechamento-marca{grid-template-columns:1fr;padding:25px}.fechamento-marca img{height:190px;max-width:260px;justify-self:center}.fechamento-marca h2{font-size:29px}.rodape{padding:25px 20px 10px;gap:14px}.rodape p{grid-column:1/-1;grid-row:2}.rodape .credito-papelito{grid-column:1/-1;grid-row:3}.rodape .credito-papelito span{font-size:12px;letter-spacing:.06em}.cabecalho-bloco h2{font-size:24px}}
+@media(max-width:480px){.assinatura-topo span{font-size:12px;white-space:normal;max-width:82px;text-align:center;line-height:1.15}.abertura-foto figcaption{font-size:12px}}
+
+/* Fotografias locais e jornada de segurança do catador. */
+.materiais{grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.material{padding:0;overflow:hidden;justify-content:flex-start;min-height:0}
+.foto-guia{display:block;width:100%;height:170px;object-fit:cover;background:#eee9df}
+.material-legenda{display:flex;gap:10px;align-items:center;padding:16px;width:100%;min-height:88px}
+.material-legenda svg{flex:none;width:27px;height:27px}
+.material .nome{margin:0;font-size:18px}
+.material .marca-fora{margin:0 16px 12px}
+.foto-ficha{margin:0 16px 24px;border-radius:16px;overflow:hidden;background:#eee9df}
+.foto-ficha .foto-guia{height:300px;object-fit:contain}
+.foto-ficha figcaption{padding:10px 16px;font-size:12px;line-height:1.5;color:#514e49}
+.foto-ficha a{text-decoration:underline;color:inherit}
+.seguranca-intro,.seguranca-cabecalho{margin:26px 16px}
+.seguranca-intro{max-width:750px}
+.seguranca-intro h2{font-size:clamp(30px,4vw,48px);letter-spacing:-1.5px;margin:12px 0}
+.seguranca-intro p,.seguranca-cabecalho p,.seguranca-entrega p{font-size:17px;line-height:1.6}
+.seguranca-etapas{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;padding:0;margin:28px 16px 40px}
+.seguranca-etapas li{padding:24px;background:#f0eaf7;border-radius:16px;border-top:4px solid #7750a5}
+.etapa-numero{font-size:28px;font-weight:800;color:#7750a5}
+.seguranca-etapas h3{font-size:20px;margin:14px 0 10px}
+.seguranca-etapas p{font-size:16px;line-height:1.55;margin:0}
+.seguranca-cabecalho h2{font-size:26px;margin-bottom:8px}
+.riscos{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.risco{padding:0;overflow:hidden;gap:0;border-bottom-color:#7750a5}
+.risco-texto{display:flex;flex-direction:column;gap:12px;padding:20px;flex:1}
+.risco .nome{font-size:21px;padding:0}
+.risco-resumo{font-size:16px;line-height:1.5;font-weight:400}
+.risco-link{font-size:14px;font-weight:700;margin-top:auto;color:#62408b}
+.seguranca-entrega{margin:0 16px 28px;padding:28px;background:var(--amarelo);border-radius:16px}
+.seguranca-entrega h2{margin:10px 0;font-size:28px}
+.seguranca-entrega a{display:inline-block;font-weight:700;color:inherit;text-decoration:underline;padding:10px 0}
+.referencias-guia{margin:0 16px 30px;font-size:14px;line-height:1.7}
+.referencias-guia a{color:inherit;text-decoration:underline}
+@media(max-width:800px){.materiais,.riscos{grid-template-columns:repeat(2,minmax(0,1fr))}.seguranca-etapas{grid-template-columns:1fr}.seguranca-etapas li{padding:20px}.foto-ficha .foto-guia{height:250px}}
+@media(max-width:420px){.materiais{gap:12px}.material-legenda{padding:12px;gap:6px;min-height:90px}.material-legenda svg{width:22px;height:22px}.material .nome{font-size:16px}.material .foto-guia{height:130px}.riscos{grid-template-columns:1fr}.risco .foto-guia{height:190px}.foto-ficha .foto-guia{height:210px}}
+
+/* Integração da equipe: jornada de aprendizado e prática no setor. */
+.integracao-abertura{display:grid;grid-template-columns:1.1fr 1fr;gap:36px;margin:28px 16px 40px;align-items:center}
+.integracao-abertura h2{font-size:clamp(28px,3.2vw,44px);line-height:1.12;letter-spacing:-1px;margin:16px 0}
+.integracao-abertura p{font-size:18px;line-height:1.6}
+.integracao-abertura figure{margin:0;border-radius:18px;overflow:hidden;background:var(--amarelo)}
+.integracao-abertura img{display:block;width:100%;height:340px;object-fit:cover}
+.integracao-abertura figcaption{padding:14px 18px;font-size:12px;letter-spacing:1px;font-weight:700}
+.integracao-abertura .integracao-tempo{font-size:14px;font-weight:700}
+.integracao-abertura .acao{font-size:18px}
+.integracao-progresso{margin:0 16px 24px;padding:24px;background:var(--preto);color:white;border-radius:16px}
+.integracao-progresso h2{margin:0 0 10px;font-size:25px;color:var(--amarelo)}
+.integracao-progresso p{font-size:16px;line-height:1.5}
+.integracao-progresso .barra{margin:20px 0 0;background:#514f4c}
+.integracao-progresso .barra i{background:var(--amarelo)}
+.integracao-progresso .barra-rot{margin:10px 0 0;color:white}
+.integracao-dica{margin:0 16px 24px;padding:20px 24px;border-left:4px solid var(--verde);background:#eef5ee;font-size:16px;line-height:1.6}
+.integracao-dica p{margin:6px 0 0}
+.etapas{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.etapa{padding:22px;align-items:flex-start}
+.etapa-conteudo{display:flex;flex-direction:column;gap:8px;flex:1;min-width:0}
+.etapa-status{font-size:12px;letter-spacing:1px;text-transform:uppercase;font-weight:700;color:#5a5954}
+.etapa .tt{font-size:20px}
+.etapa-resumo{font-size:16px;line-height:1.45;font-weight:400}
+.etapa .mk{background:var(--amarelo);color:var(--preto);width:34px;height:34px}
+.etapa-cabecalho{margin:26px 16px}
+.etapa-cabecalho .titulo-secao{padding:0;margin:14px 0}
+.etapa-cabecalho>p{font-size:18px;line-height:1.5}
+.etapa-aula{display:grid;grid-template-columns:.85fr 1.15fr;gap:24px;margin:0 16px 28px;align-items:start}
+.etapa-visual .foto-ficha{margin:0}
+.etapa-visual .foto-guia{height:330px}
+.etapa-aula .leitura{padding:0}
+.etapa-contexto{margin-top:0}
+.etapa-aula h2{font-size:21px;line-height:1.3;margin:0 0 14px}
+.etapa-passos{padding:24px;background:#f4f4ef;border-radius:16px;margin:22px 0}
+.etapa-passos ol{padding-left:24px;margin:0}
+.etapa-passos li{padding:0 0 14px 8px;font-size:17px;line-height:1.6}
+.etapa-passos li:last-child{padding-bottom:0}
+.etapa-passos li::marker{font-weight:800;color:#3e7950}
+.etapa-exemplo,.etapa-pratica{padding:24px;border-radius:16px;margin:20px 0}
+.etapa-exemplo{border:1px solid #d7d7cf}
+.etapa-pratica{background:var(--amarelo)}
+.etapa-aula .etapa-exemplo p,.etapa-aula .etapa-pratica p{font-size:17px;margin:0}
+.etapa-ja-lida{font-weight:700;color:#27663b}
+.resultado-nota{font-size:15px!important;line-height:1.6;max-width:640px;margin:22px auto}
+@media(max-width:760px){.integracao-abertura,.etapa-aula{grid-template-columns:1fr;gap:22px}.integracao-abertura{margin-top:24px}.integracao-abertura img{height:220px}.etapas{grid-template-columns:1fr}.etapa{padding:18px}.etapa-visual .foto-guia{height:230px}.etapa-passos,.etapa-pratica,.etapa-exemplo{padding:20px}.integracao-progresso{padding:22px}}

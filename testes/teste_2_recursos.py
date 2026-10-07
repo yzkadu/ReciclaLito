@@ -45,7 +45,7 @@ with sync_playwright() as p:
     pg.screenshot(path=os.path.join(CAP,"material-oleo.png"), full_page=True)
     pg.goto(BASE+"#etapa/t2", wait_until="networkidle"); pg.wait_for_timeout(200)
     t2=pg.inner_text("main").upper()
-    v("CINZA É REJEITO" in t2, "trilha t2 ensina o cinza")
+    v("CINZA PARA REJEITOS" in t2, "trilha t2 ensina o cinza")
     v("ÓLEO DE COZINHA NÃO TEM COR" in t2, "trilha t2 avisa da exceção do óleo")
 
     # ---- 3. quanto rende ----

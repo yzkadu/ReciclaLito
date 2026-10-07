@@ -77,6 +77,17 @@ with sync_playwright() as p:
     pg.locator("#voltar").click(); pg.wait_for_timeout(250)
     v(pg.evaluate("location.hash") == "#inicio", "voltar da lista vai para o início")
 
+    pg.evaluate("localStorage.setItem('reciclalito.trilha', JSON.stringify({t1:1,t8:1,acertos:8,total:8}))")
+    pg.goto(BASE + "#trilha", wait_until="networkidle")
+    v(pg.locator('.etapa').count() == 11, 'trilha com dez leituras e verificação')
+    v(pg.locator('[data-ir="#etapa/t8"]').get_attribute('data-feita') == '0', 'quiz antigo pede nova verificação')
+    pg.get_by_role('button', name='Continuar de onde parei', exact=True).click()
+    v(pg.evaluate('location.hash') == '#etapa/t2', 'retomada abre a primeira etapa pendente')
+    pg.get_by_role('button', name='Marcar como lida', exact=True).click()
+    pg.wait_for_timeout(200)
+    v(pg.locator('[data-ir="#etapa/t2"].etapa').get_attribute('data-feita') == '1', 'leitura continua salvando progresso')
+    pg.evaluate('localStorage.clear()')
+
     # ---------- QUIZ EMBARALHADO ----------
     posicoes = set()
     for _ in range(12):
@@ -90,24 +101,22 @@ with sync_playwright() as p:
     # ---------- COMPROVANTE HONESTO ----------
     pg.evaluate("localStorage.clear()")
     pg.goto(BASE + "#etapa/t8", wait_until="networkidle")
-    for i in range(8):
-        certa = pg.locator('.opcao').nth(0)
-        # acha a opção certa de verdade pelo texto
-        gabarito = ["Azul", "Descascar com alicate", "Não, vira rejeito",
-                    "Arejar o lugar e recolher com luva e papelão",
-                    "Em garrafa PET fechada, no ponto de coleta",
-                    "Isolada longe de papel e levada ao ponto de coleta",
-                    "Não, vai separado",
-                    "Solta fumaça que faz mal e ainda desvaloriza o cobre"][i]
+    gabaritos = ["Azul", "Separar sem queimar e confirmar o destino", "Não, deve ficar separado",
+        "Afastar as pessoas e pedir orientação à equipe", "Em garrafa fechada, no ponto de coleta próprio",
+        "Afasta-se e avisa a equipe antes de manusear", "Não, precisa de orientação de descarte separada",
+        "A fumaça faz mal e a prática coloca pessoas em risco", "Financeiro e Marketing",
+        "Nos coletores específicos distribuídos pela empresa", "Avisar a equipe e combinar a entrega"]
+    for gabarito in gabaritos:
         pg.get_by_role("button", name=gabarito, exact=True).click()
+        v(len(pg.inner_text('#retorno')) > 30, 'cada resposta traz explicação')
         pg.wait_for_timeout(120)
         pg.locator("section.pergunta button.acao").click()
         pg.wait_for_timeout(250)
 
     texto = pg.inner_text("main").upper()
     v("VERIFICAÇÃO FEITA" in texto, "comprovante NÃO mente dizendo trilha concluída")
-    v("8 DE 8" in texto, "comprovante mostra o placar certo")
-    v("FALTAM 7 ETAPAS" in texto, "comprovante avisa quantas etapas faltam")
+    v("11 DE 11" in texto, "comprovante mostra o placar certo")
+    v("FALTAM 10 ETAPAS" in texto, "comprovante avisa quantas etapas faltam")
     pg.screenshot(path=os.path.join(CAP,"comprovante-parcial.png"), full_page=True)
 
     # nome persiste
@@ -115,10 +124,10 @@ with sync_playwright() as p:
     pg.goto(BASE + "#inicio", wait_until="networkidle")
     pg.goto(BASE + "#concluido", wait_until="networkidle")
     v(pg.input_value("#nomePessoa") == "Maria da Silva", "nome do comprovante fica salvo")
-    v("8 DE 8" in pg.inner_text("main").upper(), "placar sobrevive ao recarregar a página")
+    v("11 DE 11" in pg.inner_text("main").upper(), "placar sobrevive ao recarregar a página")
 
     # trilha completa -> comprovante completo
-    pg.evaluate("localStorage.setItem('reciclalito.trilha', JSON.stringify({t1:1,t2:1,t3:1,t4:1,t5:1,t6:1,t7:1,t8:1,acertos:8,total:8,data:'08/09/2026',nome:'Maria da Silva'}))")
+    pg.evaluate("localStorage.setItem('reciclalito.trilha', JSON.stringify({t1:1,t2:1,t3:1,t4:1,t5:1,t6:1,t7:1,t8:1,t9:1,t10:1,t11:1,acertos:11,total:11,data:'08/09/2026',nome:'Maria da Silva'}))")
     pg.goto(BASE + "#inicio", wait_until="networkidle")
     pg.goto(BASE + "#concluido", wait_until="networkidle")
     v("TRILHA CONCLUÍDA" in pg.inner_text("main").upper(), "trilha completa mostra comprovante cheio")

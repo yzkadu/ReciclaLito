@@ -11,13 +11,15 @@ em parceria com a Papelito Brasil.
 
 ## 1. Publicar pela primeira vez
 
+Para atualizar o projeto existente `yzkadu/ReciclaLito`, use [o guia de atualização](docs/PUBLICAR-GITHUB.md).
+
 O jeito mais simples é o GitHub Pages: é gratuito, dá endereço com HTTPS (obrigatório
 para o app funcionar sem internet) e depois você edita tudo pelo próprio navegador.
 
 1. Crie uma conta em github.com, se ainda não tiver.
 2. Clique em **New repository**. Nome: `reciclalito`. Marque **Public**. Crie.
 3. Na tela do repositório, clique em **uploading an existing file**.
-4. Arraste **todos** os arquivos e as duas pastas (`fontes` e `icones`). Confirme em
+4. Arraste os arquivos públicos e as pastas `fotos`, `fontes` e `icones`. Confirme em
    **Commit changes**.
 5. Vá em **Settings → Pages**. Em *Source*, escolha **Deploy from a branch**,
    branch `main`, pasta `/ (root)`. Salve.

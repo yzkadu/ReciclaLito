@@ -1,9 +1,32 @@
 /* ReciclaLito — funcionamento sem internet.
    Ao publicar uma alteração, troque o número da VERSAO abaixo.
    Isso faz o celular baixar a versão nova em vez de usar a antiga. */
-const VERSAO = 'reciclalito-v19';
+const VERSAO = 'reciclalito-v22';
 
 const ARQUIVOS = [
+  './fotos/materiais/papel.webp',
+  './fotos/materiais/plastico.webp',
+  './fotos/materiais/vidro.webp',
+  './fotos/materiais/metal.webp',
+  './fotos/materiais/eletronico.webp',
+  './fotos/materiais/oleo.webp',
+  './fotos/materiais/organico.webp',
+  './fotos/materiais/baterias.webp',
+  './fotos/materiais/lampadas.webp',
+  './fotos/materiais/cabos.webp',
+  './fotos/materiais/placas.webp',
+  './fotos/materiais/toner.webp',
+  './fotos/materiais/bitucas.webp',
+
+  './fotos/marca/acao.webp',
+  './fotos/marca/arvore.svg',
+  './fotos/marca/arvores-selo.svg',
+  './fotos/marca/brasil.svg',
+  './fotos/marca/carbono.svg',
+  './fotos/marca/energia.webp',
+  './fotos/marca/floresta.webp',
+  './fotos/marca/reciclagem.svg',
+  './fotos/marca/sol.svg',
   './',
   './index.html',
   './estilo.css',

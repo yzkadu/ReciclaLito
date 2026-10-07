@@ -67,8 +67,7 @@ const CONTEUDO = {
       entregar: 'Ponto de logística reversa: loja de eletrônicos, fabricante ou ponto autorizado pela prefeitura.',
       valor: 'medio',
       rende: 'Depende muito da peça. O valor está no cobre e nas placas, não no plástico da carcaça.',
-      atencao: 'Contém chumbo, mercúrio e cádmio. Nunca vai no lixo comum e nunca é queimado. Veja o módulo Segurança antes de manusear.',
-      naPapelito: 'Eletrônico pequeno (celular, fone, controle) tem ponto de descarte interno na sala do Financeiro, dentro da empresa. A ACOBRAZ recolhe e faz o descarte correto. Aparelho grande, combine a retirada com o responsável.'
+      atencao: 'Contém chumbo, mercúrio e cádmio. Nunca vai no lixo comum e nunca é queimado. Veja o módulo Segurança antes de manusear.'
     },
     {
       id: 'oleo',
@@ -176,7 +175,7 @@ const CONTEUDO = {
 
     /* ---- não recicláveis e orgânicos ---- */
     { nome: 'Fralda e absorvente', busca: 'fralda absorvente descartavel', resposta: 'Vai no lixo comum. Não é reciclável e contamina o material que estiver junto.', destino: 'Rejeito' },
-    { nome: 'Bituca de cigarro', busca: 'bituca cigarro guimba filtro', resposta: 'Vai no lixo comum. O filtro é plástico, mas não tem como reciclar.', destino: 'Rejeito' },
+    { nome: 'Bituca de cigarro', busca: 'bituca cigarro guimba filtro', vai: { modulo: 'materiais', id: 'bitucas' } },
     { nome: 'Esponja e escova de dente', busca: 'esponja bucha escova dente', resposta: 'Vai no lixo comum. Material misturado, sem separação possível.', destino: 'Rejeito' },
     { nome: 'Resto de comida e casca', busca: 'comida resto casca fruta legume borra cafe organico', vai: { modulo: 'materiais', id: 'organico' } },
     { nome: 'Poda de quintal e folha seca', busca: 'poda galho folha grama jardim quintal', vai: { modulo: 'materiais', id: 'organico' } },
@@ -193,8 +192,7 @@ const CONTEUDO = {
       oQueTem: 'Chumbo, cádmio, mercúrio e lítio.',
       manusear: 'Use luva resistente a corte. Não perfure, não amasse e não queime. Guarde separado dos outros materiais, num recipiente que não seja de metal.',
       alerta: 'Bateria inchada, quente ou vazando pode pegar fogo. Isole longe de papel e plástico, proteja os polos com fita e avise o responsável.',
-      entregar: 'Ponto de logística reversa. Fabricantes e importadores são obrigados a receber de volta.',
-      naPapelito: 'Na Papelito, pilha e bateria pequena têm ponto de descarte interno na sala do Financeiro. A ACOBRAZ recolhe e faz o descarte correto.'
+      entregar: 'Ponto de logística reversa. Fabricantes e importadores são obrigados a receber de volta.'
     },
     {
       id: 'lampadas',
@@ -324,43 +322,304 @@ const CONTEUDO = {
      que a verificação final cubra o assunto novo.
      ---------------------------------------------------------- */
   trilha: [
-    { id: 't1', titulo: 'Por que separar resíduo',
-      texto: 'Material separado na origem chega limpo na cooperativa e vale mais. Material misturado se contamina: um papelão molhado de óleo deixa de ser reciclável e vira rejeito. Separar bem é o que transforma resíduo em renda para quem trabalha com ele. Também é o que evita acidente: material revirado às pressas, sem saber o que tem dentro do saco, é a situação em que mais se corta a mão ou se espeta em agulha escondida. Cada minuto gasto separando na origem é um minuto a menos catando depois, no meio do lixo misturado.' },
-    { id: 't2', titulo: 'As cores da coleta seletiva',
-      texto: 'O código de cores é nacional e está na Resolução CONAMA 275. Azul é papel, vermelho é plástico, verde é vidro, amarelo é metal, laranja é resíduo perigoso, marrom é orgânico e cinza é rejeito — o que não entra em nenhuma das outras categorias e vai para o lixo comum mesmo. Quem conhece as cores acha o lugar certo sem precisar perguntar, na rua e nos módulos deste app. Uma coisa importante: o óleo de cozinha não tem cor no código. Ele não é orgânico, não vai em lixeira nenhuma e só entra em ponto de coleta próprio. No app ele aparece de fundo claro justamente para não ser confundido com o marrom.' },
-    { id: 't3', titulo: 'Papel e papelão na prática', ver: { modulo: 'materiais', id: 'papel' },
-      texto: 'É o material de maior volume no dia a dia. Seco e desmontado ocupa menos espaço e rende mais por viagem: desmonte as caixas, tire fita adesiva e grampo grande antes de amarrar o fardo. Papel molhado ou engordurado não tem conserto, vira rejeito na hora. Papel higiênico, guardanapo sujo, papel plastificado e fotografia também não entram — parecem papel, mas o processo de reciclagem não aceita.' },
-    { id: 't4', titulo: 'Vidro e metal na prática', ver: { modulo: 'materiais', id: 'vidro' },
-      texto: 'Vidro mantém-se inteiro sempre que der, enxaguado e embrulhado em papelão grosso, com "vidro" escrito por fora — caco corta luva fina, e o aviso protege quem for manusear depois. Espelho, lâmpada, cerâmica e vidro de box não entram junto com vidro comum, mesmo parecendo o mesmo material. Metal rende mais por quilo do que qualquer outro material do dia a dia: lata de alimento enxaguada, tampa guardada junto e latinha de alumínio amassada dão o melhor retorno do galpão. A borda de lata recém-aberta corta fácil — dobrar a tampa para dentro antes de guardar evita boa parte dos cortes.' },
-    { id: 't5', titulo: 'Eletrônicos: riscos e cuidados', ver: { modulo: 'riscos', id: 'placas' },
-      texto: 'Eletrônico não é lixo comum. Tem metal pesado dentro — chumbo, mercúrio e cádmio — e exige luva, cuidado no transporte e ponto de entrega específico. Separe do resto assim que perceber que é eletrônico, sem abrir nem quebrar o aparelho; tire a bateria só se ela sair com a mão, sem forçar. O valor está no cobre e nas placas, não na carcaça de plástico, então não compensa arriscar a mão para render mais rápido. Ao manusear placa de circuito, segure pelas laterais e lave bem as mãos antes de comer, beber ou fumar.' },
-    { id: 't6', titulo: 'Cabos e fios: nunca queimar', ver: { modulo: 'riscos', id: 'cabos' },
-      texto: 'Fio e cabo têm cobre por dentro e plástico ou retardante de chama por fora. O jeito certo de separar os dois é descascar com alicate ou descascador — é mais seguro e o cobre limpo vale mais na venda. Queimar o fio para tirar o plástico continua sendo um erro que aparece de vez em quando: a fumaça solta dioxina, que faz mal ao pulmão e é cancerígena, e o cobre queimado ainda sai valendo menos. Cobre limpo vai direto para o ferro-velho ou para a cooperativa.' },
-    { id: 't7', titulo: 'Pilhas, lâmpadas e óleo', ver: { modulo: 'riscos', id: 'lampadas' },
-      texto: 'São os três casos em que o descarte errado causa dano imediato: bateria que pega fogo, lâmpada que solta mercúrio e óleo que contamina a água. Bateria inchada, quente ou vazando isola-se longe de papel e plástico, com os polos protegidos por fita — nunca se perfura nem se queima. Lâmpada fluorescente quebrada pede o oposto do instinto: não varrer nem aspirar, porque isso espalha o pó de mercúrio; areja-se o local por uns 15 minutos e recolhe-se com papelão rígido e luva. Óleo de cozinha usado vai em garrafa PET bem fechada — um litro dele jogado na pia contamina milhares de litros de água. Na Papelito, pilha e eletrônico pequeno têm ponto de descarte interno na sala do Financeiro, recolhido pela ACOBRAZ.' },
-    { id: 't8', titulo: 'Verificação final',
-      texto: 'Perguntas rápidas para confirmar o que você viu.' }
-  ],
+  {
+    "id": "t1",
+    "titulo": "Seu papel na cadeia da reciclagem",
+    "resumo": "Entenda quem recebe o material depois de você.",
+    "imagem": "papel",
+    "texto": "A separação começa em quem gera o resíduo e continua com quem coleta, transporta e faz a triagem. Um material bem separado facilita o trabalho e ajuda a proteger as pessoas em cada etapa.",
+    "passos": [
+      "Observe o que você está descartando antes de escolher o recipiente.",
+      "Separe os recicláveis de restos de alimentos e resíduos que exigem coleta própria.",
+      "Pense em quem vai abrir o recipiente: ninguém deve encontrar cacos ou pontas escondidos."
+    ],
+    "exemplo": "Uma caixa limpa misturada com restos de comida pode perder a condição de reciclagem. Separar na origem evita esse problema.",
+    "pratica": "Observe um descarte comum no seu setor e identifique quem recebe esse material na próxima etapa.",
+    "ver": {
+      "modulo": "materiais",
+      "id": "papel"
+    }
+  },
+  {
+    "id": "t2",
+    "titulo": "Leia a cor e a identificação",
+    "resumo": "Reconheça os materiais e as exceções.",
+    "imagem": "plastico",
+    "texto": "As cores ajudam a reconhecer os recipientes: azul para papel, vermelho para plástico, verde para vidro, amarelo para metal, marrom para orgânico, laranja para resíduos perigosos e cinza para rejeitos. Confira também o rótulo e as orientações do ponto de coleta.",
+    "passos": [
+      "Identifique o material e consulte a aba Onde descarto? quando houver dúvida.",
+      "Não escolha só pela aparência: espelho e lâmpada não entram junto com garrafas de vidro.",
+      "Óleo de cozinha não tem cor própria nesse código. Use um ponto específico. Bitucas também têm coletores exclusivos na Papelito."
+    ],
+    "exemplo": "Uma embalagem com restos de alimento não está pronta só porque a lixeira tem a cor certa. Primeiro, confira como separar aquele material.",
+    "pratica": "Encontre um recipiente identificado no seu setor e confira quais itens ele recebe.",
+    "ver": {
+      "modulo": "materiais",
+      "id": "plastico"
+    }
+  },
+  {
+    "id": "t3",
+    "titulo": "Papel e papelão bem separados",
+    "resumo": "Mantenha o material seco e organize o volume.",
+    "imagem": "papel",
+    "texto": "Papel e papelão precisam chegar secos e separados de sujeira e gordura. Caixas desmontadas ocupam menos espaço e deixam a área de coleta mais organizada.",
+    "passos": [
+      "Esvazie as caixas e separe plásticos e outros materiais que vieram dentro.",
+      "Desmonte sem se expor a grampos ou partes cortantes. Não compacte com os pés.",
+      "Guarde em local seco e consulte a ficha antes de misturar papéis revestidos ou sujos."
+    ],
+    "exemplo": "Caixa de entrega limpa: papelão. Guardanapo usado e papel engordurado: não entram no mesmo recipiente.",
+    "pratica": "Confira se o papelão do seu setor está seco, vazio e separado de outros resíduos.",
+    "ver": {
+      "modulo": "materiais",
+      "id": "papel"
+    }
+  },
+  {
+    "id": "t4",
+    "titulo": "Vidro e metal sem surpresas",
+    "resumo": "Evite cortes em quem coleta e faz a triagem.",
+    "imagem": "vidro",
+    "texto": "Embalagens de vidro e metal podem ser recicláveis, mas bordas e partes quebradas exigem atenção. A forma de entregar importa tanto quanto escolher o destino.",
+    "passos": [
+      "Retire os restos de conteúdo e mantenha o vidro inteiro sempre que possível.",
+      "Não deixe cacos ou tampas cortantes soltos em sacos. Confirme com a equipe a proteção e a identificação adequadas.",
+      "Separe espelhos, cerâmicas e lâmpadas do vidro de embalagem. Consulte a ficha de cada item."
+    ],
+    "exemplo": "Uma garrafa e uma lâmpada são transparentes, mas têm destinos diferentes. Misturá-las cria risco para a triagem.",
+    "pratica": "Confira se há vidro ou metal com pontas expostas e comunique à equipe antes do manuseio.",
+    "ver": {
+      "modulo": "materiais",
+      "id": "vidro"
+    }
+  },
+  {
+    "id": "t5",
+    "titulo": "Eletrônicos: entregar sem desmontar",
+    "resumo": "Reconheça equipamentos que pedem coleta própria.",
+    "imagem": "eletronico",
+    "texto": "Aparelhos contêm diferentes componentes e materiais. Para descartar, mantenha o equipamento inteiro e consulte o destino adequado; não tente retirar peças para aproveitar o metal.",
+    "passos": [
+      "Separe o aparelho dos recicláveis comuns e mantenha-o desligado.",
+      "Não abra, quebre ou force a retirada de baterias e componentes.",
+      "Na Papelito, Financeiro e Marketing recebem pequenos eletrônicos. Para telas, itens grandes ou danificados, confirme a orientação antes de levar."
+    ],
+    "exemplo": "Um pequeno aparelho fora de uso pode seguir para um ponto interno após a conferência. Um monitor quebrado exige uma orientação específica.",
+    "pratica": "Identifique um eletrônico sem uso e consulte a ficha para planejar a entrega.",
+    "ver": {
+      "modulo": "materiais",
+      "id": "eletronico"
+    }
+  },
+  {
+    "id": "t6",
+    "titulo": "Cabos e fios: nunca queimar",
+    "resumo": "Encaminhe sem improvisar a separação.",
+    "imagem": "cabos",
+    "texto": "O metal dentro de fios e cabos tem valor, mas isso não justifica expor pessoas à fumaça ou a cortes. A equipe que faz a destinação precisa receber o material de forma organizada.",
+    "passos": [
+      "Separe apenas cabos fora de uso e desconectados. Não mexa em instalações elétricas.",
+      "Não queime o revestimento nem improvise a retirada do metal.",
+      "Agrupe os cabos sem deixar pontas expostas e confirme se o ponto de entrega recebe esse tipo de material."
+    ],
+    "exemplo": "Encontrou fios encapados? Guarde separados e confirme o destino. Queimar o plástico não é uma etapa de reciclagem segura.",
+    "pratica": "Confira se cabos separados para descarte estão desconectados e não atrapalham a passagem.",
+    "ver": {
+      "modulo": "riscos",
+      "id": "cabos"
+    }
+  },
+  {
+    "id": "t7",
+    "titulo": "Resíduos que pedem cuidado extra",
+    "resumo": "Pilhas, lâmpadas e óleo têm destinos próprios.",
+    "imagem": "baterias",
+    "texto": "Esses resíduos não devem ser misturados aos recicláveis comuns. Consulte a ficha do item e observe seu estado antes de manusear ou transportar.",
+    "passos": [
+      "Pilhas e baterias: não perfure nem amasse. Se houver calor, inchaço ou vazamento, afaste-se e avise a equipe; não coloque no coletor comum do ponto.",
+      "Lâmpadas: evite quebras e mantenha protegidas. Se uma fluorescente quebrar, afaste as pessoas e solicite orientação para a limpeza.",
+      "Óleo de cozinha: espere esfriar e acondicione em garrafa bem fechada para um ponto de coleta próprio. Não despeje na pia."
+    ],
+    "exemplo": "A coleta interna de pequenos eletrônicos não significa que o mesmo recipiente aceite lâmpadas ou óleo. Cada fluxo precisa ser confirmado.",
+    "pratica": "Consulte a ficha de um desses materiais e identifique o cuidado que deve acontecer antes da entrega.",
+    "ver": {
+      "modulo": "riscos",
+      "id": "baterias"
+    }
+  },
+  {
+    "id": "t9",
+    "titulo": "Conheça os pontos da Papelito",
+    "resumo": "Financeiro e Marketing fazem parte da rotina.",
+    "imagem": "eletronico",
+    "texto": "Há dois pontos internos informados para pilhas, baterias e pequenos eletrônicos: Financeiro e Marketing. A equipe orienta o recebimento e o encaminhamento ao coletivo parceiro.",
+    "passos": [
+      "Confira o tipo, o tamanho e o estado do item antes de levá-lo.",
+      "Separe os resíduos de embalagens, líquidos e restos de alimento.",
+      "Se o recipiente estiver cheio ou o material estiver danificado, avise a equipe e combine a entrega. Não deixe no chão ao lado."
+    ],
+    "exemplo": "Você tem pilhas usadas e uma tela quebrada. As pilhas seguem a orientação do ponto interno; a tela precisa ter sua entrega combinada antes.",
+    "pratica": "Localize os pontos do Financeiro e do Marketing e tire dúvidas sobre os itens recebidos.",
+    "ver": {
+      "modulo": "materiais",
+      "id": "eletronico"
+    }
+  },
+  {
+    "id": "t10",
+    "titulo": "Bitucas têm um caminho próprio",
+    "resumo": "Use os coletores distribuídos pela empresa.",
+    "imagem": "bitucas",
+    "texto": "A Papelito tem pontos de descarte de bitucas espalhados pela empresa. A parceria com a Poiato Recicla encaminha esse resíduo para reciclagem especializada.",
+    "passos": [
+      "Apague completamente a bituca antes do descarte.",
+      "Use somente o coletor específico. Não misture bitucas ao papel, ao orgânico ou aos demais recicláveis.",
+      "Não coloque embalagens no coletor de bitucas. Se precisar localizar o mais próximo, peça orientação à equipe."
+    ],
+    "exemplo": "Bituca apagada e embalagem vazia não vão juntas: a bituca tem coletor exclusivo e a embalagem segue a orientação do seu material.",
+    "pratica": "Identifique o coletor de bitucas mais próximo do seu setor.",
+    "ver": {
+      "modulo": "materiais",
+      "id": "bitucas"
+    }
+  },
+  {
+    "id": "t11",
+    "titulo": "Feche o ciclo no seu setor",
+    "resumo": "Faça uma conferência antes da retirada.",
+    "imagem": "papel",
+    "texto": "A integração vira rotina quando a equipe repete os mesmos cuidados. Antes da coleta, uma conferência simples ajuda a evitar mistura de resíduos e problemas para quem transporta.",
+    "passos": [
+      "Confira se os materiais estão separados e os recipientes identificados.",
+      "Mantenha os caminhos livres; comunique recipientes cheios, itens danificados ou misturados.",
+      "Oriente quem estiver chegando: mostre os pontos e use o ReciclaLito para consultar dúvidas."
+    ],
+    "exemplo": "Um recipiente cheio é um sinal para avisar a equipe responsável, não para começar uma pilha de resíduos no corredor.",
+    "pratica": "Converse com alguém do setor e revisem juntos um descarte frequente.",
+    "ver": {
+      "modulo": "materiais",
+      "id": "papel"
+    }
+  },
+  {
+    "id": "t8",
+    "titulo": "Verificação final",
+    "resumo": "Revise as decisões da rotina e veja seu resultado.",
+    "texto": "Responda às situações e leia a explicação de cada resposta."
+  }
+],
 
   /* Perguntas da verificação final do módulo 3 */
   perguntas: [
-    { p: 'Qual cor é usada para papel na coleta seletiva?',
-      opcoes: ['Verde', 'Azul', 'Vermelho'], certa: 1 },
-    { p: 'O que fazer com fio de cobre encapado?',
-      opcoes: ['Queimar para tirar o plástico', 'Descascar com alicate', 'Jogar no lixo comum'], certa: 1 },
-    { p: 'Papelão manchado de óleo pode ser reciclado?',
-      opcoes: ['Sim, normalmente', 'Não, vira rejeito'], certa: 1 },
-    { p: 'Uma lâmpada fluorescente quebrou no galpão. E agora?',
-      opcoes: ['Varrer rápido antes de espalhar', 'Arejar o lugar e recolher com luva e papelão', 'Aspirar'], certa: 1 },
-    { p: 'Onde entra o óleo de cozinha usado?',
-      opcoes: ['Na pia com bastante água', 'Em garrafa PET fechada, no ponto de coleta'], certa: 1 },
-    { p: 'Bateria de celular inchada deve ser:',
-      opcoes: ['Furada para esvaziar', 'Isolada longe de papel e levada ao ponto de coleta', 'Jogada no lixo comum'], certa: 1 },
-    { p: 'Um espelho quebrado pode ir junto com o vidro comum?',
-      opcoes: ['Sim, é o mesmo material', 'Não, vai separado'], certa: 1 },
-    { p: 'Por que não se deve queimar fio para tirar o cobre?',
-      opcoes: ['Demora mais que descascar', 'Solta fumaça que faz mal e ainda desvaloriza o cobre', 'Não faz diferença no preço'], certa: 1 }
-  ],
+  {
+    "p": "Qual cor é usada para papel na coleta seletiva?",
+    "opcoes": [
+      "Verde",
+      "Azul",
+      "Vermelho"
+    ],
+    "certa": 1,
+    "explicacao": "O azul identifica papel. O material também precisa estar seco e separado de sujeira."
+  },
+  {
+    "p": "O que fazer com fio de cobre encapado?",
+    "opcoes": [
+      "Queimar para tirar o plástico",
+      "Separar sem queimar e confirmar o destino",
+      "Jogar no lixo comum"
+    ],
+    "certa": 1,
+    "explicacao": "Mantenha o cabo separado e confirme o recebimento. Não improvise a retirada do revestimento."
+  },
+  {
+    "p": "Papelão manchado de óleo pode ir junto com o papelão limpo?",
+    "opcoes": [
+      "Sim, normalmente",
+      "Não, deve ficar separado"
+    ],
+    "certa": 1,
+    "explicacao": "Gordura contamina o material. Consulte a orientação de descarte e mantenha separado do papel limpo."
+  },
+  {
+    "p": "Uma lâmpada fluorescente quebrou. Qual é o primeiro cuidado?",
+    "opcoes": [
+      "Varrer rápido",
+      "Afastar as pessoas e pedir orientação à equipe",
+      "Aspirar o pó"
+    ],
+    "certa": 1,
+    "explicacao": "Evite contato com o material e não improvise a limpeza. Consulte a orientação para esse resíduo."
+  },
+  {
+    "p": "Onde entra o óleo de cozinha usado e frio?",
+    "opcoes": [
+      "Na pia com bastante água",
+      "Em garrafa fechada, no ponto de coleta próprio"
+    ],
+    "certa": 1,
+    "explicacao": "Espere esfriar e use um recipiente bem fechado. O óleo não vai na pia nem no coletor de orgânicos."
+  },
+  {
+    "p": "Você percebe uma bateria inchada ou quente. O que faz?",
+    "opcoes": [
+      "Fura para esvaziar",
+      "Afasta-se e avisa a equipe antes de manusear",
+      "Coloca no coletor com as outras pilhas"
+    ],
+    "certa": 1,
+    "explicacao": "O estado da bateria muda a forma de recebimento. Não perfure nem coloque um item danificado junto dos demais."
+  },
+  {
+    "p": "Um espelho quebrado pode ir junto com garrafas de vidro?",
+    "opcoes": [
+      "Sim, é o mesmo material",
+      "Não, precisa de orientação de descarte separada"
+    ],
+    "certa": 1,
+    "explicacao": "Espelhos não seguem a mesma coleta das embalagens de vidro. Confira a ficha antes de entregar."
+  },
+  {
+    "p": "Por que não se deve queimar fio para tirar o cobre?",
+    "opcoes": [
+      "Demora mais",
+      "A fumaça faz mal e a prática coloca pessoas em risco",
+      "Não faz diferença"
+    ],
+    "certa": 1,
+    "explicacao": "Recuperar um material não pode colocar em risco quem trabalha ou está por perto."
+  },
+  {
+    "p": "Quais são os pontos internos para pilhas e pequenos eletrônicos?",
+    "opcoes": [
+      "Financeiro e Marketing",
+      "Qualquer lixeira do escritório",
+      "Somente os coletores de bitucas"
+    ],
+    "certa": 0,
+    "explicacao": "Financeiro e Marketing são os dois pontos informados. Confirme o recebimento de itens maiores ou danificados."
+  },
+  {
+    "p": "Onde descartar uma bituca completamente apagada?",
+    "opcoes": [
+      "No coletor de papel",
+      "Nos coletores específicos distribuídos pela empresa",
+      "Junto com os restos de comida"
+    ],
+    "certa": 1,
+    "explicacao": "As bitucas têm fluxo próprio, ligado à parceria com a Poiato Recicla. Embalagens ficam fora desse coletor."
+  },
+  {
+    "p": "O recipiente está cheio. Como agir?",
+    "opcoes": [
+      "Deixar o material no corredor",
+      "Misturar em outro coletor",
+      "Avisar a equipe e combinar a entrega"
+    ],
+    "certa": 2,
+    "explicacao": "Manter a passagem livre e comunicar a situação faz parte da rotina de descarte seguro."
+  }
+],
 
   /* ----------------------------------------------------------
      TEXTOS DA INTERFACE
@@ -369,9 +628,9 @@ const CONTEUDO = {
     subtitulo: 'Descarte certo e trabalho seguro',
     modulo1: 'Onde descarto?',
     modulo1desc: 'Busque o item ou toque no material',
-    buscaRotulo: 'Buscar item',
-    buscaDica: 'Ex.: isopor, fralda, latinha, pilha',
-    buscaVazia: 'Nada encontrado com esse nome. Toque num dos sete materiais abaixo ou pergunte na cooperativa.',
+    buscaRotulo: 'O que você precisa descartar?',
+    buscaDica: 'Busque um item: papel, pilha, bituca…',
+    buscaVazia: 'Nada encontrado com esse nome. Limpe a busca para consultar os materiais ou pergunte à equipe responsável.',
     modulo2: 'Segurança do catador',
     modulo2desc: 'Riscos do eletrônico e proteção no manuseio',
     modulo3: 'Integração da equipe',
@@ -428,86 +687,251 @@ const CONTEUDO = {
       texto: 'A empresa destaca a produção nacional como parte do seu compromisso declarado.',
       icone: 'industria'
     }
+  ]
+};
+
+
+/* EVOLUÇÃO PAPELITO — dados operacionais fornecidos no briefing.
+   Somente locais confirmados são exibidos. Revisar estes dados quando a rotina mudar. */
+CONTEUDO.guia = {
+  chamada: 'Sustentabilidade na prática',
+  apoio: 'Separe com cuidado. Descarte no lugar certo. Faça parte dessa mudança.',
+  foto: 'fotos/reciclagem.jpg', fotoAlt: 'Materiais separados para reciclagem',
+  fotoLegenda: 'CADA MATERIAL TEM SEU CAMINHO.',
+  assinatura: 'Uma iniciativa Papelito',
+  atalhoTitulo: 'No dia a dia',
+  atalhos: [
+    { nome: 'Pilhas e baterias', destino: '#risco/baterias' },
+    { nome: 'Eletrônicos', destino: '#material/eletronico' },
+    { nome: 'Bitucas', destino: '#material/bitucas' }
   ],
+  pontosTitulo: 'Pontos de descarte na Papelito',
+  pontosIntro: 'Perto de você, dentro da empresa.',
+  localRotulo: 'Ponto de coleta', aceitaRotulo: 'Recebe',
+  pontosAcao: 'Ver orientações', naPapelito: 'Na Papelito',
+  naoComum: 'Não jogue no lixo comum',
+  destino: 'A destinação é feita pelo coletivo parceiro responsável pela coleta.',
+  conferir: 'Para outros itens ou materiais danificados, confirme o procedimento com a equipe antes de entregar.',
+  bitucasTitulo: 'Bitucas de cigarro',
+  descarteRotulo: 'Descarte aqui', podeRotulo: 'Pode descartar', naoRotulo: 'Não descarte',
+  depoisRotulo: 'E depois?', parceriaRotulo: 'Parceria',
+  selosTitulo: 'Certificações & compromissos',
+  selosIntro: 'Conheça os compromissos declarados pela Papelito.',
+  mais: 'Saiba mais',
+  impactoTitulo: 'Sustentabilidade que chega à rotina.',
+  impactoIntro: 'Compromissos declarados pela Papelito e registrados neste projeto.',
+  impactoNota: 'Indicadores institucionais, não uma medição em tempo real.',
+  rodapeTitulo: 'ReciclaLito',
+  offline: 'Depois do primeiro acesso, funciona sem internet.'
+};
+CONTEUDO.pontosInternos = [
+  { id: 'financeiro', tipo: 'eletronicos', local: 'Financeiro', aceita: ['Pilhas', 'Baterias', 'Pequenos eletrônicos'], referencia: null, parceiro: null },
+  { id: 'marketing', tipo: 'eletronicos', local: 'Marketing', aceita: ['Pilhas', 'Baterias', 'Pequenos eletrônicos'], referencia: null, parceiro: null }
+];
+// TODO PAPELITO: confirmar limites dos itens aceitos e nome do coletivo parceiro.
+CONTEUDO.bitucas = {
+  coletores: [], // TODO PAPELITO: confirmar locais e referências dos coletores.
+  orientacao: 'A Papelito tem pontos de descarte de bitucas distribuídos pela empresa. Use os coletores específicos, sempre com a bituca completamente apagada. Se precisar encontrar o mais próximo, peça orientação à equipe.',
+  podeDescartar: ['Bitucas completamente apagadas'],
+  naoPodeDescartar: ['Bitucas acesas', 'Embalagens e outros resíduos'],
+  depoisDaColeta: 'As bitucas seguem para reciclagem especializada pela parceria com a Poiato Recicla.',
+  parceria: { nome: 'Poiato Recicla', descricao: 'Parceria de destinação e reciclagem de bitucas informada pela Papelito.' }
+};
+CONTEUDO.certificacoes = [
+  // TODO PAPELITO: conteúdo FSC aprovado, escopo, licença, link e imagem oficial.
+  { nome: 'FSC', tipo: 'Certificação', descricao: null, imagem: null, link: null, aprovado: false },
+  { nome: 'Carbono Zerado', tipo: 'Compromisso', descricao: 'A empresa declara compensar as emissões de carbono da sua produção desde 2021.', aprovado: true },
+  { nome: 'Poiato Recicla', tipo: 'Parceria', descricao: 'Destinação de bitucas para reciclagem especializada.', aprovado: true, destino: '#material/bitucas' }
+];
+CONTEUDO.impacto = [
+  { numero: '100%', titulo: 'Energia solar', texto: 'A empresa afirma que toda a produção é abastecida por energia solar.' },
+  { numero: '2×', titulo: 'Mais reciclagem', texto: 'A empresa declara financiar a reciclagem do dobro do resíduo que produz por mês, desde 2021.' },
+  { numero: '100 mil', titulo: 'Árvores até 2027', texto: 'Meta de plantio declarada pela Papelito.' }
+];
+CONTEUDO.materiais.push({
+  id: 'bitucas', nome: 'Bitucas de cigarro', cor: '#231F20', texto: 'claro', simbolo: 'separar',
+  separar: 'Apague completamente antes de descartar. Separe de embalagens e demais resíduos.',
+  entregar: 'Coletores específicos de bitucas distribuídos pela empresa. Peça à equipe orientação sobre o mais próximo.',
+  atencao: 'Não misture aos recicláveis comuns. Nunca coloque uma bituca acesa no coletor.'
+});
 
-  /* ----------------------------------------------------------
-     PONTOS DE DESCARTE NA PAPELITO
-     Diretório de pontos internos de descarte DENTRO da empresa.
-     Isto não é mapa nem geolocalização — é só uma lista de onde
-     entregar dentro do prédio. Só cadastre aqui um local
-     confirmado pela coordenação do projeto. Ver CLAUDE.md sobre
-     por que a antiga seção "pontos de entrega" pública foi
-     removida: isto aqui é outra coisa (um único ponto interno,
-     não uma rede pública).
-     ---------------------------------------------------------- */
-  pontosInternos: [
-    {
-      id: 'financeiro-pilhas',
-      tipo: 'pilhas-eletronicos',
-      titulo: 'Pilhas e eletrônicos pequenos',
-      local: 'Sala do Financeiro',
-      descricao: 'Ponto de coleta dentro da Papelito (RCS) para pilha, bateria e eletrônico pequeno. A ACOBRAZ recolhe e faz o descarte correto.',
-      aceita: ['Pilha', 'Bateria pequena', 'Eletrônico pequeno (celular, fone, controle)'],
-      naoAceita: ['Eletrônico grande (monitor, CPU, TV) — combine a retirada com o responsável'],
-      destino: 'ACOBRAZ'
-    }
+CONTEUDO.itens.push({ nome: 'Eletrônicos', busca: 'eletronico eletrônicos aparelhos equipamentos', vai: { modulo: 'materiais', id: 'eletronico' } });
+
+
+/* Identidade visual oficial: https://www.papelito.com/sustentabilidade
+   Imagens locais consultadas em 25/09/2026; não alteram o escopo de certificações. */
+CONTEUDO.guia.foto = 'fotos/marca/acao.webp';
+CONTEUDO.guia.fotoAlt = 'Participantes da ação Fevereiro Verde da Papelito em uma praia';
+CONTEUDO.guia.fotoLegenda = 'PAPELITO EM AÇÃO • FEVEREIRO VERDE';
+CONTEUDO.guia.impactoTitulo = 'Nosso papel é cuidar.';
+CONTEUDO.guia.impactoIntro = 'Da energia que move a produção ao cuidado com o destino dos resíduos.';
+CONTEUDO.guia.fonteRotulo = 'Conheça as iniciativas no site da Papelito';
+CONTEUDO.guia.fonteUrl = 'https://www.papelito.com/sustentabilidade';
+CONTEUDO.guia.fechamentoTitulo = 'O próximo passo começa com você.';
+CONTEUDO.guia.fechamentoTexto = 'Um material separado. Um descarte correto. Um cuidado que continua depois de cada consulta.';
+CONTEUDO.guia.fechamentoAcao = 'Encontrar o descarte certo';
+CONTEUDO.guia.fechamentoImagem = 'fotos/marca/arvore.svg';
+CONTEUDO.impacto[0].imagem = 'fotos/marca/energia.webp';
+CONTEUDO.impacto[0].alt = 'Painéis solares na comunicação oficial da Papelito';
+CONTEUDO.impacto[1].imagem = 'fotos/marca/reciclagem.svg';
+CONTEUDO.impacto[1].alt = 'Ilustração oficial Papelito de cuidado com a natureza';
+CONTEUDO.impacto[2].imagem = 'fotos/marca/floresta.webp';
+CONTEUDO.impacto[2].alt = 'Reflorestamento na comunicação oficial da Papelito';
+CONTEUDO.certificacoes[1].imagem = 'fotos/marca/carbono.svg';
+CONTEUDO.certificacoes.push({ nome: '100 mil árvores', tipo: 'Meta até 2027', descricao: 'Meta de plantio divulgada pela Papelito. Cada árvore faz parte de um compromisso de longo prazo.', imagem: 'fotos/marca/arvores-selo.svg', aprovado: true });
+CONTEUDO.certificacoes.push({ nome: 'Indústria brasileira', tipo: 'Origem', descricao: 'Produção nacional e uma identidade conectada à cultura brasileira.', imagem: 'fotos/marca/brasil.svg', aprovado: true });
+
+/* Guia visual e segurança: atualização solicitada em setembro de 2026. */
+CONTEUDO.guia.naoComum = 'Coleta de pilhas e pequenos eletrônicos';
+CONTEUDO.seguranca = {
+  chamada: 'CUIDAR DE QUEM RECICLA',
+  titulo: 'Seu cuidado vem primeiro.',
+  intro: 'Cada material pede um cuidado. Antes de separar, observe o estado do resíduo, prepare o espaço e consulte a ficha para reconhecer os riscos.',
+  etapas: [
+    {titulo: 'Prepare o espaço', texto: 'Mantenha a passagem livre e os recipientes identificados. Separe itens cortantes ou danificados dos demais materiais e avise a equipe.'},
+    {titulo: 'Proteja-se na triagem', texto: 'Use os equipamentos de proteção indicados para a tarefa. Não coloque as mãos em sacos sem enxergar o conteúdo. Não abra, quebre ou queime componentes para retirar metais.'},
+    {titulo: 'Entregue com cuidado', texto: 'Mantenha cada tipo de resíduo separado e avise quem vai receber sobre peças quebradas ou danificadas. Confirme se o destino aceita aquele material antes de transportar.'}
   ],
+  materiaisTitulo: 'Reconheça o material. Confira o cuidado.',
+  materiaisIntro: 'Toque em uma ficha para ver como manusear, o que evitar e onde entregar.',
+  protecaoTitulo: 'Proteção faz parte do trabalho',
+  encerramentoTitulo: 'Ao terminar a separação',
+  encerramento: 'Guarde os materiais de forma estável, sem bloquear a circulação. Higienize as mãos antes de comer ou beber e comunique à equipe recipientes cheios, vazamentos ou situações de risco.',
+  entregaTitulo: 'E dentro da Papelito?',
+  entregaIntro: 'Os pontos abaixo recebem pilhas, baterias e pequenos eletrônicos. Lâmpadas, telas e outros resíduos têm orientações próprias nas fichas. Para um item danificado, combine a entrega com a equipe antes de colocá-lo no coletor.',
+  bitucas: 'Bitucas têm outro destino: os coletores específicos distribuídos pela empresa, com encaminhamento pela parceria com a Poiato Recicla.',
+  bitucasAcao: 'Ver descarte de bitucas',
+  fotoNota: 'Imagem ilustrativa',
+  fonteRotulo: 'Fonte da imagem',
+  riscoAcao: 'Ver cuidados',
+  referenciaRotulo: 'Referências para os cuidados no trabalho',
+  referencias: [
+    {nome: 'Fundacentro · proteção nas cooperativas de reciclagem', url: 'https://www.gov.br/fundacentro/pt-br/comunicacao/noticias/noticias/2022/maio/hq-traz-cipa-equipamento-de-protecao-coletiva-e-individual-nas-cooperativas-de-materiais-reciclaveis'},
+    {nome: 'Green Eletron · dúvidas sobre descarte de eletrônicos', url: 'https://greeneletron.org.br/perguntas-frequentes/'}
+  ]
+};
+CONTEUDO.riscos.forEach(function (r) {
+  var resumos = {
+    baterias: 'Observe o estado da bateria. Não perfure nem amasse.',
+    lampadas: 'Evite quebras. Mantenha as lâmpadas protegidas.',
+    cabos: 'Nunca queime fios para recuperar o metal.',
+    placas: 'Bordas e componentes exigem cuidado no manuseio.',
+    telas: 'Vidro e componentes internos: transporte sem desmontar.',
+    toner: 'Mantenha o cartucho fechado. Evite espalhar o pó.'
+  };
+  r.resumo = resumos[r.id];
+});
 
-  /* ----------------------------------------------------------
-     CERTIFICAÇÕES & SELOS
-     Estrutura pronta para novas certificações (ex.: FSC), a
-     pedido da Papelito. NÃO renderize nada daqui até o texto e o
-     selo oficial serem aprovados — ver docs/HISTORICO.md,
-     pendência "Certificação FSC". Lista vazia de propósito.
-
-     TODO PAPELITO: confirmar escopo, número de licença, data e
-     status da certificação FSC antes de publicar este bloco.
-     Formato pronto para quando o dado chegar:
-     { id, nome, descricao, imagem, link, tipo }
-     ---------------------------------------------------------- */
-  certificacoes: [],
-
-  /* ----------------------------------------------------------
-     PARCERIAS
-     Parcerias de sustentabilidade além da ACOBRAZ (já citada em
-     parceriaImpactoTexto). NÃO renderize a Poiato Recicla até a
-     descrição da parceria ser aprovada — ver docs/HISTORICO.md.
-
-     TODO PAPELITO: descrição aprovada da parceria Poiato Recicla
-     (o que ela faz, desde quando, o que recebe).
-     ---------------------------------------------------------- */
-  parcerias: [
-    {
-      id: 'poiato-recicla',
-      nome: 'Poiato Recicla',
-      categoria: 'Reciclagem de bitucas',
-      descricao: null,
-      pendente: true
-    }
-  ],
-
-  /* ----------------------------------------------------------
-     BITUCAS DE CIGARRO — coleta na Papelito
-     Confirmado pela coordenação que existe um programa real de
-     coleta de bitucas em parceria com a Poiato Recicla. Os
-     detalhes operacionais (onde ficam os coletores, o que pode e
-     não pode ir junto, o que acontece depois da coleta) ainda não
-     foram enviados. Enquanto isso, 'pendente:true' e o app.js NÃO
-     deve mostrar este bloco nem trocar a resposta de busca de
-     "Bituca de cigarro" (que hoje diz "vai no lixo comum") até
-     'pendente' virar false.
-
-     TODO PAPELITO: enviar local dos coletores, o que pode/não
-     pode descartar, e o que acontece depois da coleta.
-     ---------------------------------------------------------- */
-  bitucas: {
-    pendente: true,
-    titulo: 'Bitucas de cigarro',
-    descricao: null,
-    coletores: [],
-    podeDescartar: [],
-    naoPodeDescartar: [],
-    depoisDaColeta: null,
-    parceria: { nome: 'Poiato Recicla', descricao: null }
+CONTEUDO.fotosGuia = {
+  "papel": {
+    "src": "fotos/materiais/papel.webp",
+    "alt": "Papelão separado e empilhado para reciclagem",
+    "fonte": "https://en.wikipedia.org/wiki/File:57_Cardboard_stacked_for_recycling_pick_up_in_Kuala_Lumpur,_Malaysia_-_free_photo_with_attribution_(Creative_Commons).jpg",
+    "credito": "Wikimedia Commons"
+  },
+  "plastico": {
+    "src": "fotos/materiais/plastico.webp",
+    "alt": "Garrafa plástica transparente",
+    "fonte": "https://en.wikipedia.org/wiki/File:Botella_de_plástico_-_PET.jpg",
+    "credito": "Wikimedia Commons"
+  },
+  "vidro": {
+    "src": "fotos/materiais/vidro.webp",
+    "alt": "Garrafas de vidro de diferentes cores",
+    "fonte": "https://en.wikipedia.org/wiki/File:Beer_bottles_2018_G1.jpg",
+    "credito": "Wikimedia Commons"
+  },
+  "metal": {
+    "src": "fotos/materiais/metal.webp",
+    "alt": "Fardos de latas de alumínio prensadas",
+    "fonte": "https://en.wikipedia.org/wiki/File:Compressed_aluminium_cans.jpg",
+    "credito": "Wikimedia Commons"
+  },
+  "eletronico": {
+    "src": "fotos/materiais/eletronico.webp",
+    "alt": "Monitores e equipamentos eletrônicos descartados",
+    "fonte": "https://en.wikipedia.org/wiki/File:Ewaste-pile.jpg",
+    "credito": "Wikimedia Commons"
+  },
+  "oleo": {
+    "src": "fotos/materiais/oleo.webp",
+    "alt": "Óleo de cozinha em recipiente de vidro",
+    "fonte": "https://en.wikipedia.org/wiki/File:Olive_oil_from_Oneglia.jpg",
+    "credito": "Wikimedia Commons"
+  },
+  "organico": {
+    "src": "fotos/materiais/organico.webp",
+    "alt": "Resíduos vegetais em compostagem",
+    "fonte": "https://en.wikipedia.org/wiki/File:Compost_pile.JPG",
+    "credito": "Wikimedia Commons"
+  },
+  "baterias": {
+    "src": "fotos/materiais/baterias.webp",
+    "alt": "Pilhas e baterias de diferentes formatos",
+    "fonte": "https://en.wikipedia.org/wiki/File:6_most_common_battery_types-1.jpg",
+    "credito": "Wikimedia Commons"
+  },
+  "lampadas": {
+    "src": "fotos/materiais/lampadas.webp",
+    "alt": "Lâmpadas fluorescentes de diferentes formatos",
+    "fonte": "https://en.wikipedia.org/wiki/File:Leuchtstofflampen-chtaube050409.jpg",
+    "credito": "Wikimedia Commons"
+  },
+  "cabos": {
+    "src": "fotos/materiais/cabos.webp",
+    "alt": "Detalhe de um cabo elétrico com condutores metálicos",
+    "fonte": "https://en.wikipedia.org/wiki/File:Electric_guide_3×2.5_mm.jpg",
+    "credito": "Wikimedia Commons"
+  },
+  "placas": {
+    "src": "fotos/materiais/placas.webp",
+    "alt": "Placa eletrônica com circuitos e componentes",
+    "fonte": "https://en.wikipedia.org/wiki/File:SEG_DVD_430_-_Printed_circuit_board-4276.jpg",
+    "credito": "Wikimedia Commons"
+  },
+  "toner": {
+    "src": "fotos/materiais/toner.webp",
+    "alt": "Cartucho de toner de impressora",
+    "fonte": "https://en.wikipedia.org/wiki/File:Tonerkassette_Laserdrucker_HP.jpg",
+    "credito": "Wikimedia Commons"
+  },
+  "bitucas": {
+    "src": "fotos/materiais/bitucas.webp",
+    "alt": "Bitucas acumuladas em um cinzeiro",
+    "fonte": "https://www.bundesaerztekammer.de/themen/aerzte/public-health/suchtmedizin/tabak",
+    "credito": "Bundesärztekammer"
+  },
+  "telas": {
+    "src": "fotos/materiais/eletronico.webp",
+    "alt": "Monitores e equipamentos eletrônicos descartados",
+    "fonte": "https://en.wikipedia.org/wiki/File:Ewaste-pile.jpg",
+    "credito": "Wikimedia Commons"
   }
 };
+CONTEUDO.materiais.concat(CONTEUDO.riscos).forEach(function(item) { item.foto = CONTEUDO.fotosGuia[item.id]; });
+
+/* Créditos das fotos; versões locais redimensionadas e convertidas em WebP. */
+CONTEUDO.creditosFotos = {"papel": "Marek Ślusarczyk · CC BY 3.0", "plastico": "Feralbt · CC BY-SA 3.0", "vidro": "George Chernilevsky · domínio público", "metal": "Tycho · CC0", "eletronico": "AvWijk · domínio público", "oleo": "Lemone · CC BY-SA 4.0", "organico": "Ksd5 · CC0", "baterias": "Lead holder · CC BY-SA 3.0", "lampadas": "Christian Taube / Deglr6328 · CC BY-SA 2.0 DE", "cabos": "Petar Milošević · CC BY-SA 4.0", "placas": "Raimond Spekking · CC BY-SA 4.0", "toner": "Sir James · domínio público", "bitucas": "Bundesärztekammer"};
+Object.keys(CONTEUDO.creditosFotos).forEach(function(id) { CONTEUDO.fotosGuia[id].credito = CONTEUDO.creditosFotos[id]; });
+
+/* Integração: textos da jornada, sem cadastro ou envio de dados. */
+CONTEUDO.integracao = {
+  chamada: 'DA SEPARAÇÃO À ENTREGA',
+  titulo: 'Um cuidado que passa de pessoa para pessoa.',
+  intro: 'Conheça os materiais, os pontos da Papelito e os cuidados que fazem diferença para quem coleta. Siga no seu ritmo e coloque cada etapa em prática no seu setor.',
+  tempo: 'Reserve cerca de 20–25 minutos',
+  salvo: 'O progresso fica salvo neste aparelho. Você pode parar e continuar depois.',
+  comecar: 'Começar a integração', continuar: 'Continuar de onde parei',
+  etapasTitulo: 'Sua trilha de integração',
+  antes: 'Antes de começar',
+  antesTexto: 'Pense nos resíduos que aparecem no seu setor. Ao longo da trilha, procure os pontos de descarte e converse com a equipe quando surgir uma dúvida.',
+  passos: 'O que fazer na prática', exemplo: 'Uma situação do dia a dia', pratica: 'Experimente no seu setor',
+  lida: 'Marcar como lida', concluida: 'Etapa já lida', proxima: 'Ir para a próxima etapa',
+  ficha: 'Consultar a ficha do material', voltar: 'Ver todas as etapas',
+  rotulo: 'Etapa', de: 'de', pendente: 'Para ler', feito: 'Lida',
+  verificar: 'Fazer a verificação', quizFeito: 'Respondida',
+  resultadoNota: 'Este é um registro de leitura e participação, não uma certificação profissional. As ações no setor devem seguir a orientação da equipe.',
+  repetir: 'Refazer a verificação',
+  acerto: 'Isso mesmo.', erro: 'A resposta certa está marcada em verde.'
+};
+CONTEUDO.trilha.forEach(function(e) { if(e.imagem) e.foto = CONTEUDO.fotosGuia[e.imagem]; });

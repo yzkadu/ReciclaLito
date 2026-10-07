@@ -38,7 +38,7 @@ E abra `http://localhost:8000`.
 cd testes && python3 rodar-tudo.py
 ```
 
-73 verificações com Playwright: navegação, busca, verificação da trilha, comprovante,
+Verificações com Playwright: navegação, busca, verificação da trilha, comprovante,
 modo avião, deploy em subpasta e propagação de atualização. Se faltar o navegador:
 
 ```bash
@@ -56,6 +56,8 @@ service worker não registra e o app não funciona sem internet. GitHub Pages, V
 Netlify e Cloudflare Pages dão HTTPS de graça.
 
 ### GitHub Pages — o recomendado para este projeto
+
+Para atualizar o repositório existente, siga [`docs/PUBLICAR-GITHUB.md`](docs/PUBLICAR-GITHUB.md).
 
 Settings → Pages → Source: *Deploy from a branch*, branch `main`, pasta `/ (root)`.
 O endereço sai em `https://SEU-USUARIO.github.io/reciclalito/`.

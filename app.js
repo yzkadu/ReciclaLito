@@ -10,6 +10,8 @@
   var main = document.getElementById('principal');
   var btVoltar = document.getElementById('voltar');
   var CHAVE = 'reciclalito.trilha';
+  document.getElementById('navegacaoTopo').innerHTML = '<a href="#materiais">' + esc(C.textos.modulo1) + '</a><a href="#riscos">' + esc(C.textos.modulo2) + '</a><a href="#trilha">' + esc(C.textos.modulo3) + '</a>';
+  document.getElementById('assinaturaTopo').textContent = C.guia.assinatura;
 
   /* ---------- ícones dos materiais (formas simples, alto contraste) ---------- */
   var ICONES = {
@@ -93,7 +95,11 @@
 
   /* ---------- progresso da trilha, guardado no próprio aparelho ---------- */
   function lerProgresso() {
-    try { return JSON.parse(localStorage.getItem(CHAVE)) || {}; }
+    try {
+      var p = JSON.parse(localStorage.getItem(CHAVE)) || {};
+      if (p.total && p.total !== C.perguntas.length) delete p[C.trilha[C.trilha.length - 1].id];
+      return p;
+    }
     catch (e) { return {}; }
   }
   function salvarProgresso(p) {
@@ -103,33 +109,58 @@
   /* ---------- telas ---------- */
 
   function telaInicio() {
-    var t = C.textos;
-    return '' +
-      '<section class="abertura">' +
-        '<span class="marca-agua" aria-hidden="true">R</span>' +
-        '<h1>' + esc(t.subtitulo) + '</h1>' +
-        '<p class="assinatura-papelito">uma iniciativa Papelito</p>' +
-      '</section>' +
-      campoBusca(t) +
-      '<div id="resultados" role="region" aria-live="polite"></div>' +
-      '<div id="grade">' +
-      '<div class="aviso-offline">' +
-        '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4 10-10" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
-        '<span>Depois do primeiro acesso, funciona sem internet.</span>' +
-      '</div>' +
-      '<nav class="modulos">' +
-        botaoModulo('m1', '#materiais', t.modulo1, t.modulo1desc) +
-        botaoModulo('m2', '#riscos', t.modulo2, t.modulo2desc) +
-        botaoModulo('m3', '#trilha', t.modulo3, t.modulo3desc) +
-      '</nav>' +
-      '</div>' +
-      '<p class="rodape">' + esc(t.rodape) + '</p>' +
-      '<button class="ver-parceria" data-rolar="#parceria">' +
-        '<span>' + esc(t.verParceria) + '</span>' +
-        '<span class="seta-baixo" aria-hidden="true">' + SETA + '</span>' +
-      '</button>' +
-      blocoParceria() +
-      LOGO_PAPELITO;
+    var t = C.textos, g = C.guia;
+    return '<section class="abertura">' +
+      '<div class="abertura-texto"><span class="sobretitulo">' + esc(g.chamada) + '</span>' +
+      '<h1>' + esc(t.subtitulo) + '</h1><p>' + esc(g.apoio) + '</p></div>' +
+      '<figure class="abertura-foto"><img src="' + esc(g.foto) + '" alt="' + esc(g.fotoAlt) + '" width="640" height="480"><figcaption>' + esc(g.fotoLegenda) + '</figcaption></figure></section>' +
+      campoBusca(t) + '<div id="resultados" role="region" aria-live="polite"></div>' +
+      '<div id="grade"><div class="atalhos"><span>' + esc(g.atalhoTitulo) + '</span>' +
+      g.atalhos.map(function (x) { return '<a href="' + esc(x.destino) + '">' + esc(x.nome) + '<span aria-hidden="true">↗</span></a>'; }).join('') + '</div>' +
+      '<nav class="modulos">' + botaoModulo('m1', '#materiais', t.modulo1, t.modulo1desc) + botaoModulo('m2', '#riscos', t.modulo2, t.modulo2desc) + botaoModulo('m3', '#trilha', t.modulo3, t.modulo3desc) + '</nav>' +
+      '<div class="aviso-offline">' + icone('manusear') + '<span>' + esc(g.offline) + '</span></div>' +
+      blocoPontosInternos() + blocoImpacto() + blocoCertificacoes() + blocoFechamento() +
+      '<footer class="rodape"><strong>' + esc(g.rodapeTitulo) + '</strong><p>' + esc(t.rodape) + '</p>' + LOGO_PAPELITO + '</footer></div>';
+  }
+
+  function blocoPontosInternos() {
+    var g = C.guia;
+    return '<section class="pontos-internos"><div class="cabecalho-bloco"><div><span class="sobretitulo">' + esc(g.naPapelito) + '</span><h2>' + esc(g.pontosTitulo) + '</h2></div><p>' + esc(g.pontosIntro) + '</p></div><div class="pontos-grade">' +
+      C.pontosInternos.map(function (p) { return '<article class="ponto-interno"><span class="local-icone">' + icone('entregar') + '</span><div><span class="sobretitulo">' + esc(g.localRotulo) + '</span><h3>' + esc(p.local) + '</h3><p>' + esc(p.aceita.join(' · ')) + '</p>' + (p.referencia ? '<p>' + esc(p.referencia) + '</p>' : '') + '</div><a href="#risco/baterias" aria-label="' + esc(g.pontosAcao + ' — ' + p.local) + '">↗</a></article>'; }).join('') + '</div></section>';
+  }
+
+  function blocoEmpresa(id) {
+    if (['eletronico', 'baterias', 'cabos'].indexOf(id) === -1) return '';
+    var g = C.guia;
+    return '<section class="bloco empresa"><span class="sobretitulo">' + esc(g.naPapelito) + '</span><h3>' + esc(g.naoComum) + '</h3><div class="locais-inline">' + C.pontosInternos.map(function(p) { return '<span>' + esc(p.local) + '</span>'; }).join('') + '</div><p>' + esc(C.pontosInternos[0].aceita.join(' · ')) + '</p><p>' + esc(g.conferir) + '</p><p>' + esc(g.destino) + '</p></section>';
+  }
+
+  function blocoImpacto() {
+    var g = C.guia;
+    return '<section id="parceria" class="impacto"><div class="cabecalho-bloco"><div><span class="sobretitulo">' + esc(g.chamada) + '</span><h2>' + esc(g.impactoTitulo) + '</h2></div><p>' + esc(g.impactoIntro) + '</p></div><div class="impacto-grade">' + C.impacto.map(function(i) { return '<article><div class="impacto-imagem"><img src="' + esc(i.imagem) + '" alt="' + esc(i.alt) + '" width="600" height="360" loading="lazy"></div><strong>' + esc(i.numero) + '</strong><h3>' + esc(i.titulo) + '</h3><p>' + esc(i.texto) + '</p></article>'; }).join('') + '</div><p class="nota-impacto">' + esc(g.impactoNota) + '</p><a class="fonte-marca" href="' + esc(g.fonteUrl) + '" target="_blank" rel="noopener noreferrer">' + esc(g.fonteRotulo) + ' ↗</a></section>';
+  }
+
+  function blocoFechamento() {
+    var g = C.guia;
+    return '<section class="fechamento-marca"><div><span class="sobretitulo">' + esc(g.assinatura) + '</span><h2>' + esc(g.fechamentoTitulo) + '</h2><p>' + esc(g.fechamentoTexto) + '</p><a href="#materiais">' + esc(g.fechamentoAcao) + ' ↗</a></div><img src="' + esc(g.fechamentoImagem) + '" alt="" width="420" height="380" loading="lazy"></section>';
+  }
+
+  function blocoCertificacoes() {
+    var lista = (C.certificacoes || []).filter(function(c) { return c.aprovado && c.descricao; });
+    if (!lista.length) return '';
+    return '<section class="certificacoes"><div class="cabecalho-bloco"><h2>' + esc(C.guia.selosTitulo) + '</h2><p>' + esc(C.guia.selosIntro) + '</p></div><div class="selos-grade">' + lista.map(function(c) {
+      return '<article><span class="sobretitulo">' + esc(c.tipo) + '</span>' + (c.imagem ? '<img width="100" height="100" src="' + esc(c.imagem) + '" alt="' + esc(c.nome) + '">' : '') + '<h3>' + esc(c.nome) + '</h3><p>' + esc(c.descricao) + '</p>' + (c.destino || c.link ? '<a href="' + esc(c.destino || c.link) + '">' + esc(C.guia.mais) + ' ↗</a>' : '') + '</article>';
+    }).join('') + '</div></section>';
+  }
+
+  function telaBitucas() {
+    var b = C.bitucas, g = C.guia;
+    return faixaSecao('cor-m1', g.bitucasTitulo) + fotoGuia(acha(C.materiais, 'bitucas'), true) + '<div class="blocos">' +
+      campo(g.descarteRotulo, b.coletores.length ? b.coletores.map(function(c) { return c.local + (c.complemento ? ' — ' + c.complemento : ''); }).join('; ') : b.orientacao, false, 'entregar') +
+      campo(g.podeRotulo, b.podeDescartar.join(' · '), false, 'manusear') +
+      campo(g.naoRotulo, b.naoPodeDescartar.join(' · '), true, 'atencao') +
+      campo(g.depoisRotulo, b.depoisDaColeta, false, 'separar') +
+      campo(g.parceriaRotulo + ' · ' + b.parceria.nome, b.parceria.descricao, false, 'organico') + '</div>';
   }
 
   /* selo de cor de cada item da seção "sobre a parceria" — só o ícone e a
@@ -198,7 +229,7 @@
   function botaoModulo(cls, destino, nome, desc) {
     return '<button class="modulo reveal ' + cls + '" data-ir="' + destino + '">' +
       (cls === 'm1' ? '<span class="marca-agua" aria-hidden="true">R</span>' : '') +
-      '<span class="nome">' + esc(nome) + '</span>' +
+      '<span class="modulo-numero">0' + cls.slice(1) + '</span><span class="nome">' + esc(nome) + '</span>' +
       '<span class="desc">' + esc(desc) + '</span>' +
       '<span class="modulo-mais" aria-hidden="true">' + SETA + '</span></button>';
   }
@@ -220,11 +251,19 @@
     '<svg viewBox="0 0 2000 448" aria-hidden="true"><path fill="currentColor" d="M1407.36,178.69l79.92-6.08,9.27,192.96h77.08l4.2-199.68,72.48-5.74.54-71.71h-243.3l-.19,90.25ZM1147.63,88.44h-105.09v277.13h206.57v-95.97l-148.93,36.29,47.46-217.46ZM1844.02,88.44h-155.37l-20.12,197.37,40.85,79.76h165.63l36.99-137.69c-.53-5.54-67.43-139.36-67.98-139.44M1295.78,88.43l-13.31,277.14h97.72s-13.31-277.14-13.31-277.14h-71.1ZM296.92,88.44H88v277.13h40.81l33.24-93.55,134.86-39.93V88.44ZM386.87,88.44l-111.15,277.13h36.06l78-86.59,10.65-.05,81.66,86.65h72.21l-114.67-277.13h-52.77ZM572.53,365.57h40.84l25.43-82.53,122.29-18.01,19.21-176.59h-218.57l10.8,277.13ZM882.7,261.39l80.39-19.89v-35.21l-80.79-14.82v-32.35l125.26-17.63v-53.05h-193.73v277.13h197.25v-52.83l-128.38-21.8v-29.55Z"/></svg>' +
     '<span>uma iniciativa Papelito</span></div>';
 
+  function fotoGuia(item, detalhe) {
+    var f = item.foto;
+    if (!f) return '';
+    var img = '<img class="foto-guia" src="' + esc(f.src) + '" alt="' + esc(f.alt) + '" width="960" height="640" loading="lazy">';
+    if (!detalhe) return img;
+    return '<figure class="foto-ficha">' + img + '<figcaption>' + esc(C.seguranca.fotoNota) + ' · <a href="' + esc(f.fonte) + '" target="_blank" rel="noopener noreferrer">' + esc(f.credito || C.seguranca.fonteRotulo) + '</a></figcaption></figure>';
+  }
+
   function telaMateriais() {
     var itens = C.materiais.map(function (m) {
       return '<button class="material reveal ' + m.texto + (m.foraDoCodigo ? ' fora' : '') +
         '" style="background:' + gradCor(m.cor) + '" data-ir="#material/' + m.id + '">' +
-        icone(m.simbolo) + '<span class="nome">' + esc(m.nome) + '</span>' +
+        fotoGuia(m, false) + '<span class="material-legenda">' + icone(m.simbolo) + '<span class="nome">' + esc(m.nome) + '</span></span>' +
         (m.foraDoCodigo ? '<span class="marca-fora">' + esc(C.textos.foraDoCodigo) + '</span>' : '') +
         '</button>';
     }).join('');
@@ -315,6 +354,7 @@
   }
 
   function telaMaterial(id) {
+    if (id === 'bitucas') return telaBitucas();
     var m = acha(C.materiais, id);
     if (!m) return telaMateriais();
     return '<div class="faixa reveal ' + m.texto + (m.foraDoCodigo ? ' fora' : '') + '" style="background:' + gradCor(m.cor) + '">' +
@@ -322,10 +362,9 @@
         '<h2>' + esc(m.nome) + '</h2>' +
         (m.foraDoCodigo ? '<p class="oquetem">' + esc(C.textos.foraDoCodigo) +
           '. Não é orgânico e não vai em lixeira comum.</p>' : '') + '</div>' +
-      '<div class="blocos">' +
-        campo('Como separar', m.separar, false, 'separar') +
+      fotoGuia(m, true) + '<div class="blocos">' +
+        blocoEmpresa(id) + campo('Como separar', m.separar, false, 'separar') +
         campo('Onde entregar', m.entregar, false, 'entregar') +
-        campoPapelito(m.naPapelito) +
         blocoRende(m) +
         campo('Atenção', m.atencao, true, 'atencao') +
       '</div>';
@@ -349,22 +388,21 @@
   }
 
   function telaRiscos() {
+    var g = C.seguranca;
     var itens = C.riscos.map(function (r) {
-      return '<button class="risco reveal" data-ir="#risco/' + r.id + '">' +
-        '<span class="risco-selo">' + icone(r.id, 'ic-risco') + '</span>' +
-        '<span class="nome">' + esc(r.nome) + '</span>' +
-        '<span class="risco-mais" aria-hidden="true">' + SETA + '</span>' +
-      '</button>';
+      return '<button class="risco reveal" data-ir="#risco/' + r.id + '">' + fotoGuia(r, false) +
+        '<span class="risco-texto"><span class="nome">' + esc(r.nome) + '</span><span class="risco-resumo">' + esc(r.resumo) + '</span><span class="risco-link">' + esc(g.riscoAcao) + ' ↗</span></span></button>';
     }).join('');
-    var epi = C.protecao.map(function (i) {
-      return '<li>' + icone('manusear', 'ic-epi') + '<span>' + esc(i) + '</span></li>';
-    }).join('');
+    var epi = C.protecao.map(function (i) { return '<li>' + icone('manusear', 'ic-epi') + '<span>' + esc(i) + '</span></li>'; }).join('');
     return faixaSecao('cor-m2', C.textos.modulo2) +
-      '<p class="sub-secao">O que cada material tem dentro e como manusear sem se machucar.</p>' +
-      '<div class="riscos">' + itens + '</div>' +
-      '<section class="protecao reveal"><span class="marca-agua" aria-hidden="true">R</span><h3>Sempre que for trabalhar</h3><ul>' + epi + '</ul></section>' +
-      '<div class="leitura"><button class="acao urgente" data-ir="#emergencia">' +
-        esc(C.textos.emergencia) + '</button></div>';
+      '<section class="seguranca-intro"><span class="sobretitulo">' + esc(g.chamada) + '</span><h2>' + esc(g.titulo) + '</h2><p>' + esc(g.intro) + '</p></section>' +
+      '<ol class="seguranca-etapas">' + g.etapas.map(function(e, i) { return '<li><span class="etapa-numero">0' + (i + 1) + '</span><h3>' + esc(e.titulo) + '</h3><p>' + esc(e.texto) + '</p></li>'; }).join('') + '</ol>' +
+      '<div class="seguranca-cabecalho"><h2>' + esc(g.materiaisTitulo) + '</h2><p>' + esc(g.materiaisIntro) + '</p></div><div class="riscos">' + itens + '</div>' +
+      '<section class="protecao reveal"><span class="marca-agua" aria-hidden="true">R</span><h3>' + esc(g.protecaoTitulo) + '</h3><ul>' + epi + '</ul></section>' +
+      '<div class="blocos">' + campo(g.encerramentoTitulo, g.encerramento, false, 'manusear') + '</div>' +
+      '<section class="seguranca-entrega"><span class="sobretitulo">' + esc(C.guia.naPapelito) + '</span><h2>' + esc(g.entregaTitulo) + '</h2><p>' + esc(g.entregaIntro) + '</p><div class="locais-inline">' + C.pontosInternos.map(function(p) { return '<span>' + esc(p.local) + '</span>'; }).join('') + '</div><p>' + esc(g.bitucas) + '</p><a href="#material/bitucas">' + esc(g.bitucasAcao) + ' ↗</a></section>' +
+      '<div class="leitura"><button class="acao urgente" data-ir="#emergencia">' + esc(C.textos.emergencia) + '</button></div>' +
+      '<details class="referencias-guia"><summary>' + esc(g.referenciaRotulo) + '</summary><ul>' + g.referencias.map(function(f) { return '<li><a href="' + esc(f.url) + '" target="_blank" rel="noopener noreferrer">' + esc(f.nome) + '</a></li>'; }).join('') + '</ul></details>';
   }
 
   function telaRisco(id) {
@@ -374,11 +412,10 @@
         '<span class="faixa-selo">' + icone(r.id, 'ic-faixa') + '</span>' +
         '<h2>' + esc(r.nome) + '</h2>' +
         '<p class="oquetem">' + esc(r.oQueTem) + '</p></div>' +
-      '<div class="blocos">' +
+      fotoGuia(r, true) + '<div class="blocos">' +
         campo('Como manusear', r.manusear, false, 'manusear') +
         campo('Atenção', r.alerta, true, 'atencao') +
-        campo('Onde entregar', r.entregar, false, 'entregar') +
-        campoPapelito(r.naPapelito) +
+        campo('Onde entregar', r.entregar, false, 'entregar') + blocoEmpresa(id) +
       '</div>';
   }
 
@@ -418,16 +455,6 @@
       '<p>' + esc(txt) + '</p></section>';
   }
 
-  /* bloco "Na Papelito": só aparece quando o material ou risco tem um
-     campo 'naPapelito' preenchido em conteudo.js (prática específica da
-     empresa). Sem o campo, não renderiza nada — nunca mostra bloco vazio. */
-  function campoPapelito(txt) {
-    if (!txt) return '';
-    return '<section class="bloco reveal na-papelito">' +
-      '<h3><span class="selo-papelito">Na Papelito</span></h3>' +
-      '<p>' + esc(txt) + '</p></section>';
-  }
-
   /* ícone de cada etapa da trilha: usa o mesmo símbolo do material ou risco
      que ela apresenta (e.ver), a última etapa (verificação) tem ícone
      próprio, e uma etapa sem "ver" cai no ícone genérico. Nada aqui depende
@@ -443,40 +470,42 @@
   }
 
   function telaTrilha() {
-    var p = lerProgresso();
+    var p = lerProgresso(), g = C.integracao;
     var feitas = C.trilha.filter(function (e) { return p[e.id]; }).length;
     var pct = Math.round(feitas / C.trilha.length * 100);
+    var pendentes = C.trilha.filter(function(e) { return !p[e.id]; });
     var itens = C.trilha.map(function (e, i) {
-      var ok = p[e.id] ? '1' : '0';
+      var ok = p[e.id] ? '1' : '0', ultima = i === C.trilha.length - 1;
       return '<button class="etapa reveal" data-feita="' + ok + '" data-ir="#etapa/' + e.id + '">' +
-        icone(iconeEtapa(e), 'ic-etapa') +
         '<span class="mk" aria-hidden="true">' + (ok === '1' ? '✓' : (i + 1)) + '</span>' +
-        '<span class="tt">' + esc(e.titulo) + '</span></button>';
+        '<span class="etapa-conteudo"><span class="etapa-status">' + esc(ok === '1' ? (ultima ? g.quizFeito : g.feito) : (ultima ? g.verificar : g.pendente)) + '</span><span class="tt">' + esc(e.titulo) + '</span><span class="etapa-resumo">' + esc(e.resumo || '') + '</span></span>' +
+        icone(iconeEtapa(e), 'ic-etapa') + '</button>';
     }).join('');
-    var fim = (feitas === C.trilha.length)
-      ? '<div class="leitura"><button class="acao claro" data-ir="#concluido">Ver meu comprovante</button></div>' : '';
+    var acao = pendentes.length ? '<button class="acao" data-ir="#etapa/' + pendentes[0].id + '">' + esc(feitas ? g.continuar : g.comecar) + '</button>' : '<button class="acao claro" data-ir="#concluido">Ver meu comprovante</button>';
     return faixaSecao('cor-m3', C.textos.modulo3) +
-      '<p class="sub-secao">' + C.trilha.length + ' etapas curtas. O progresso fica salvo neste celular.</p>' +
-      '<div class="barra"><i style="width:' + pct + '%"></i></div>' +
-      '<p class="barra-rot">' + feitas + ' de ' + C.trilha.length + ' concluídas</p>' +
-      '<div class="etapas">' + itens + '</div>' + fim;
+      '<section class="integracao-abertura"><div><span class="sobretitulo">' + esc(g.chamada) + '</span><h2>' + esc(g.titulo) + '</h2><p>' + esc(g.intro) + '</p><p class="integracao-tempo">' + esc(g.tempo) + '</p>' + acao + '</div><figure><img src="' + esc(C.guia.foto) + '" alt="' + esc(C.guia.fotoAlt) + '" width="600" height="440"><figcaption>' + esc(C.guia.fotoLegenda) + '</figcaption></figure></section>' +
+      '<section class="integracao-progresso"><h2>' + esc(g.etapasTitulo) + '</h2><p>' + esc(g.salvo) + '</p><div class="barra" role="progressbar" aria-label="' + esc(g.etapasTitulo) + '" aria-valuenow="' + feitas + '" aria-valuemin="0" aria-valuemax="' + C.trilha.length + '"><i style="width:' + pct + '%"></i></div><p class="barra-rot">' + feitas + ' de ' + C.trilha.length + ' concluídas</p></section>' +
+      '<aside class="integracao-dica"><strong>' + esc(g.antes) + '</strong><p>' + esc(g.antesTexto) + '</p></aside><div class="etapas">' + itens + '</div>';
   }
 
   function telaEtapa(id) {
-    var e = acha(C.trilha, id);
+    var e = acha(C.trilha, id), g = C.integracao;
     if (!e) return telaTrilha();
-    /* a verificação é sempre a última etapa da trilha, não um id fixo:
-       assim dá para acrescentar ou remover etapas em conteudo.js sem
-       mexer aqui. */
     if (id === C.trilha[C.trilha.length - 1].id) return telaPerguntas();
+    var indice = C.trilha.indexOf(e), proxima = C.trilha[indice + 1], p = lerProgresso();
     var ver = '';
     if (e.ver) {
       var alvo = (e.ver.modulo === 'materiais' ? '#material/' : '#risco/') + e.ver.id;
-      ver = '<button class="link-ver" data-ir="' + alvo + '">Ver a ficha completa</button>';
+      ver = '<button class="link-ver" data-ir="' + alvo + '">' + esc(g.ficha) + '</button>';
     }
-    return '<h1 class="titulo-secao com-icone">' + icone(iconeEtapa(e), 'ic-titulo') + '<span>' + esc(e.titulo) + '</span></h1>' +
-      '<div class="leitura reveal"><p>' + esc(e.texto) + '</p>' + ver +
-      '<button class="acao" data-concluir="' + e.id + '">Marcar como lida</button></div>';
+    return '<div class="etapa-cabecalho"><span class="sobretitulo">' + esc(g.rotulo) + ' ' + (indice + 1) + ' ' + esc(g.de) + ' ' + C.trilha.length + '</span><h1 class="titulo-secao com-icone">' + icone(iconeEtapa(e), 'ic-titulo') + '<span>' + esc(e.titulo) + '</span></h1><p>' + esc(e.resumo || '') + '</p></div>' +
+      '<div class="etapa-aula"><div class="etapa-visual">' + fotoGuia(e, true) + ver + '</div><div class="leitura reveal"><p class="etapa-contexto">' + esc(e.texto) + '</p>' +
+      '<section class="etapa-passos"><h2>' + esc(g.passos) + '</h2><ol>' + (e.passos || []).map(function(x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ol></section>' +
+      '<section class="etapa-exemplo"><h2>' + esc(g.exemplo) + '</h2><p>' + esc(e.exemplo || '') + '</p></section><section class="etapa-pratica"><h2>' + esc(g.pratica) + '</h2><p>' + esc(e.pratica || '') + '</p></section>' +
+      (p[id] ? '<p class="etapa-ja-lida">✓ ' + esc(g.concluida) + '</p>' : '') +
+      '<button class="acao" data-concluir="' + e.id + '">' + esc(g.lida) + '</button>' +
+      (proxima ? '<button class="link-ver" data-ir="#etapa/' + proxima.id + '">' + esc(g.proxima) + '</button>' : '') +
+      '<button class="link-ver" data-ir="#trilha">' + esc(g.voltar) + '</button></div></div>';
   }
 
   /* ---------- verificação final ---------- */
@@ -515,7 +544,7 @@
     var certo = (escolhida === q.certa);
     if (certo) qAcertos++;
     var ret = document.getElementById('retorno');
-    ret.textContent = certo ? 'Isso mesmo.' : 'A resposta certa está marcada em verde.';
+    ret.textContent = (certo ? C.integracao.acerto : C.integracao.erro) + (q.explicacao ? ' ' + q.explicacao : '');
     var b = document.createElement('button');
     b.className = 'acao';
     b.textContent = (qAtual < C.perguntas.length - 1) ? 'Próxima pergunta' : 'Ver resultado';
@@ -558,6 +587,7 @@
         '<input id="nomePessoa" type="text" placeholder="Escreva seu nome" aria-label="Seu nome" value="' + esc(p.nome || '') + '">' +
       '</div>' +
       (completo ? '<p>Tire um print desta tela e envie ao responsável pela sua equipe.</p>' : pendencia) +
+      '<p class="resultado-nota">' + esc(C.integracao.resultadoNota) + '</p><button class="link-ver" data-ir="#etapa/' + C.trilha[C.trilha.length - 1].id + '">' + esc(C.integracao.repetir) + '</button>' +
       '<button class="acao" data-ir="#inicio">Voltar ao início</button></div>';
   }
 
@@ -621,12 +651,18 @@
   }
 
   function render() {
+    document.getElementById('assinaturaTopo').innerHTML = LOGO_PAPELITO;
     var h = location.hash || '#inicio';
     var parte = h.split('/');
     var raiz = parte[0];
     var id = parte[1];
 
     btVoltar.hidden = (raiz === '#inicio');
+    document.body.dataset.tela = raiz.slice(1);
+    var links = document.querySelectorAll('.navegacao-topo a');
+    for (var n = 0; n < links.length; n++) {
+      if (links[n].getAttribute('href') === raiz) links[n].setAttribute('aria-current', 'page'); else links[n].removeAttribute('aria-current');
+    }
 
     if (raiz === '#materiais') pinta(telaMateriais());
     else if (raiz === '#material') pinta(telaMaterial(id));
