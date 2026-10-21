@@ -65,6 +65,8 @@ with sync_playwright() as p:
     v("LIXO COMUM" in pg.inner_text("main").upper(), "tela do item mostra a resposta")
     pg.screenshot(path=os.path.join(CAP,"item-fralda.png"), full_page=True)
 
+    rota_anterior = pg.evaluate("location.hash")
+
     # item com ficha vai direto para a ficha
     pg.goto(BASE + "#materiais", wait_until="networkidle")
     pg.fill("#q", "latinha"); pg.wait_for_timeout(150)
@@ -75,7 +77,7 @@ with sync_playwright() as p:
     pg.locator("#voltar").click(); pg.wait_for_timeout(250)
     v(pg.evaluate("location.hash") == "#materiais", "voltar da ficha vai para a lista")
     pg.locator("#voltar").click(); pg.wait_for_timeout(250)
-    v(pg.evaluate("location.hash") == "#inicio", "voltar da lista vai para o início")
+    v(pg.evaluate("location.hash") == rota_anterior, "voltar da lista respeita a página anterior do histórico")
 
     pg.evaluate("localStorage.setItem('reciclalito.trilha', JSON.stringify({t1:1,t8:1,acertos:8,total:8}))")
     pg.goto(BASE + "#trilha", wait_until="networkidle")

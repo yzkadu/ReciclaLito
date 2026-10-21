@@ -87,7 +87,7 @@ button{font:inherit; color:inherit; cursor:pointer; border:none; background:none
   display:flex; align-items:center; gap:12px; min-height:60px;
 }
 .marca{
-  font-family:var(--display); font-size:26px; line-height:1;
+  font-family:var(--display); font-weight:400; font-synthesis:none; font-size:26px; line-height:1;
   text-transform:uppercase; margin:0; letter-spacing:-.01em;
 }
 .marca span{color:var(--preto)}
@@ -109,7 +109,7 @@ button{font:inherit; color:inherit; cursor:pointer; border:none; background:none
    (z-index:1) sempre fique por cima, legível. */
 .marca-agua{
   position:absolute; z-index:0; top:50%; right:-.08em; transform:translateY(-50%);
-  font-family:var(--display); font-size:min(58vw,300px); line-height:1;
+  font-family:var(--display); font-weight:400; font-synthesis:none; font-size:min(58vw,300px); line-height:1;
   color:rgba(255,255,255,.08); pointer-events:none; user-select:none;
   -webkit-user-select:none;
 }
@@ -131,7 +131,7 @@ button{font:inherit; color:inherit; cursor:pointer; border:none; background:none
 }
 .abertura h1{
   position:relative; z-index:1;
-  font-family:var(--display); font-size:clamp(32px,9.2vw,46px); line-height:.95;
+  font-family:var(--display); font-weight:400; font-synthesis:none; font-size:clamp(32px,9.2vw,46px); line-height:.95;
   text-transform:uppercase; margin:0;
 }
 .abertura p{position:relative; z-index:1; margin:10px 0 0; font-size:17px; color:rgba(255,255,255,.78); max-width:34ch}
@@ -145,7 +145,7 @@ button{font:inherit; color:inherit; cursor:pointer; border:none; background:none
 }
 .modulo:active{transform:translateY(2px); border-bottom-width:4px}
 .modulo .nome{
-  font-family:var(--display); font-size:27px; line-height:.98;
+  font-family:var(--display); font-weight:400; font-synthesis:none; font-size:27px; line-height:.98;
   text-transform:uppercase; display:block;
 }
 .modulo .desc{display:block; margin-top:8px; font-size:16px; line-height:1.4; opacity:.95}
@@ -201,7 +201,7 @@ button{font:inherit; color:inherit; cursor:pointer; border:none; background:none
 
 /* ---------------- título de seção ---------------- */
 .titulo-secao{
-  font-family:var(--display); font-size:clamp(26px,7.4vw,34px); line-height:1;
+  font-family:var(--display); font-weight:400; font-synthesis:none; font-size:clamp(26px,7.4vw,34px); line-height:1;
   text-transform:uppercase; margin:22px 16px 4px;
 }
 .sub-secao{margin:0 16px 16px; color:#4A4A45; font-size:16px}
@@ -220,7 +220,7 @@ button{font:inherit; color:inherit; cursor:pointer; border:none; background:none
 }
 .secao-banner h1{
   position:relative; z-index:1;
-  font-family:var(--display); font-size:clamp(26px,7.4vw,34px); line-height:1;
+  font-family:var(--display); font-weight:400; font-synthesis:none; font-size:clamp(26px,7.4vw,34px); line-height:1;
   text-transform:uppercase; margin:0;
 }
 .secao-banner.cor-m1{
@@ -305,7 +305,7 @@ button{font:inherit; color:inherit; cursor:pointer; border:none; background:none
 .faixa.risco-faixa{background:linear-gradient(135deg,var(--laranja) 0%,#D4470E 100%)}
 .faixa h2{
   position:relative; z-index:1;
-  font-family:var(--display); font-size:clamp(28px,8vw,38px); line-height:.98;
+  font-family:var(--display); font-weight:400; font-synthesis:none; font-size:clamp(28px,8vw,38px); line-height:.98;
   text-transform:uppercase; margin:10px 0 0;
 }
 .faixa .oquetem{position:relative; z-index:1; margin:8px 0 0; font-size:16px; font-weight:600; opacity:.95}
@@ -357,7 +357,7 @@ button{font:inherit; color:inherit; cursor:pointer; border:none; background:none
   margin:6px 16px 34px; color:var(--branco); border-radius:14px; padding:20px 18px;
   background:linear-gradient(150deg,var(--preto) 0%,#141110 100%);
 }
-.protecao h3{position:relative; z-index:1; font-family:var(--display); font-size:22px; text-transform:uppercase; margin:0 0 12px; color:var(--amarelo)}
+.protecao h3{position:relative; z-index:1; font-family:var(--display); font-weight:400; font-synthesis:none; font-size:22px; text-transform:uppercase; margin:0 0 12px; color:var(--amarelo)}
 .protecao ul{position:relative; z-index:1; margin:0; padding:0; list-style:none}
 .protecao li{display:flex; align-items:center; gap:12px; padding:8px 0; font-size:16px; line-height:1.45}
 .protecao .ic-epi{width:24px; height:24px; flex:none; color:var(--verde)}
@@ -388,7 +388,7 @@ button{font:inherit; color:inherit; cursor:pointer; border:none; background:none
 .leitura p{font-size:18px; line-height:1.6}
 .acao{
   display:block; width:100%; background:var(--preto); color:var(--amarelo);
-  font-family:var(--display); text-transform:uppercase; font-size:20px;
+  font-family:var(--display); font-weight:400; font-synthesis:none; text-transform:uppercase; font-size:20px;
   padding:18px; border-radius:12px; margin-top:18px; min-height:var(--toque);
 }
 .acao.claro{background:var(--verde); color:var(--branco)}
@@ -422,7 +422,7 @@ button{font:inherit; color:inherit; cursor:pointer; border:none; background:none
   background:var(--amarelo); border:3px solid var(--preto); border-radius:16px;
   padding:26px 20px; margin-bottom:18px; position:relative; z-index:1;
 }
-.fim .selo h2{font-family:var(--display); font-size:30px; text-transform:uppercase; margin:0 0 8px; line-height:1}
+.fim .selo h2{font-family:var(--display); font-weight:400; font-synthesis:none; font-size:30px; text-transform:uppercase; margin:0 0 8px; line-height:1}
 .fim .selo p{margin:0; font-weight:600}
 .fim .selo-icone{
   width:52px; height:52px; color:var(--preto); margin:0 auto 8px; display:block;
@@ -563,7 +563,7 @@ body.com-convite{padding-bottom:calc(86px + env(safe-area-inset-bottom))}
   min-height:60px;
   display:flex; align-items:center; justify-content:center;
   background:var(--branco); color:#A82A22; border-radius:10px;
-  font-family:var(--display); font-size:21px; text-transform:uppercase; text-decoration:none;
+  font-family:var(--display); font-weight:400; font-synthesis:none; font-size:21px; text-transform:uppercase; text-decoration:none;
 }
 .socorros{padding:0 16px 34px; display:grid; gap:12px}
 .socorro{
@@ -594,7 +594,7 @@ body.com-convite{padding-bottom:calc(86px + env(safe-area-inset-bottom))}
 }
 .faixa-parceria h3{
   position:relative; z-index:1;
-  font-family:var(--display); font-size:clamp(24px,7vw,30px); line-height:1;
+  font-family:var(--display); font-weight:400; font-synthesis:none; font-size:clamp(24px,7vw,30px); line-height:1;
   text-transform:uppercase; margin:0 0 10px; color:var(--amarelo);
 }
 .faixa-parceria p{position:relative; z-index:1; margin:0; font-size:16px; line-height:1.5; max-width:46ch; opacity:.95}
@@ -611,12 +611,12 @@ body.com-convite{padding-bottom:calc(86px + env(safe-area-inset-bottom))}
 .parceria-stat .ic-stat{position:relative; z-index:1; width:34px; height:34px; margin:0 auto 6px; display:block}
 .parceria-stat h3{
   position:relative; z-index:1;
-  font-family:var(--display); font-size:clamp(20px,6vw,26px); line-height:1.1;
+  font-family:var(--display); font-weight:400; font-synthesis:none; font-size:clamp(20px,6vw,26px); line-height:1.1;
   text-transform:uppercase; margin:0 0 14px;
 }
 .parceria-numero{
   position:relative; z-index:1;
-  font-family:var(--display); font-size:clamp(44px,16vw,64px); line-height:1;
+  font-family:var(--display); font-weight:400; font-synthesis:none; font-size:clamp(44px,16vw,64px); line-height:1;
   margin:0; letter-spacing:-.01em;
 }
 .parceria-legenda{position:relative; z-index:1; margin:4px 0 16px; font-size:15px; font-weight:700; text-transform:uppercase; letter-spacing:.02em; opacity:.9}
@@ -670,7 +670,7 @@ body.com-convite{padding-bottom:calc(86px + env(safe-area-inset-bottom))}
 .parceria-energia svg{position:relative; z-index:1; width:38px; height:38px; margin:0 auto 10px; display:block; color:var(--amarelo)}
 .parceria-energia h3{
   position:relative; z-index:1;
-  font-family:var(--display); font-size:clamp(20px,6vw,25px); line-height:1;
+  font-family:var(--display); font-weight:400; font-synthesis:none; font-size:clamp(20px,6vw,25px); line-height:1;
   text-transform:uppercase; margin:0 0 8px; color:var(--amarelo);
 }
 .parceria-energia p{position:relative; z-index:1; margin:0; font-size:15.5px; line-height:1.5; max-width:38ch; margin:0 auto; opacity:.95}
@@ -701,7 +701,7 @@ a{color:inherit;text-underline-offset:4px}
 .abertura{display:grid;grid-template-columns:1.25fr 1fr;background:var(--amarelo);color:var(--preto);margin:30px 0 0;padding:0;min-height:300px;border-radius:4px}
 .abertura-texto{padding:32px 36px;align-self:center}
 .sobretitulo{font-size:12px;letter-spacing:.12em;font-weight:700;text-transform:uppercase;display:block;line-height:1.5}
-.abertura h1{font-family:var(--display);font-size:clamp(30px,3.3vw,47px);line-height:1.1;max-width:15ch;margin:18px 0 12px;letter-spacing:0}
+.abertura h1{font-family:var(--display); font-weight:400; font-synthesis:none;font-size:clamp(30px,3.3vw,47px);line-height:1.1;max-width:15ch;margin:18px 0 12px;letter-spacing:0}
 .abertura p{color:var(--preto);font-size:16px;max-width:36ch;line-height:1.45;margin:0}
 .abertura-foto{position:relative;margin:0;overflow:hidden;min-width:0}
 .abertura-foto img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;filter:saturate(.7)}
@@ -748,7 +748,7 @@ a{color:inherit;text-underline-offset:4px}
 .impacto .cabecalho-bloco>p{color:#d0d0c8}
 .impacto-grade{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:30px}
 .impacto-grade article{border-top:1px solid #5e5a5b;padding-top:20px}
-.impacto-grade strong{font-family:var(--display);font-size:clamp(34px,4vw,54px);line-height:1.15;color:var(--amarelo);display:block;font-weight:400;white-space:nowrap}
+.impacto-grade strong{font-family:var(--display); font-weight:400; font-synthesis:none;font-size:clamp(34px,4vw,54px);line-height:1.15;color:var(--amarelo);display:block;font-weight:400;white-space:nowrap}
 .impacto-grade h3{font-size:17px;font-weight:700;margin:12px 0 8px}
 .impacto-grade p{font-size:14px;color:#deded6;line-height:1.5;margin:0;max-width:31ch}
 .nota-impacto{font-size:12px;color:#c4c4bc;margin:25px 0 0}
@@ -760,7 +760,7 @@ a{color:inherit;text-underline-offset:4px}
 .selos-grade a{font-size:14px;display:inline-flex;align-items:center;min-height:56px;margin-top:8px;font-weight:700}
 .selos-grade .sobretitulo{color:#55554c}
 .rodape{border-top:1px solid var(--linha);padding:26px 0;display:grid;grid-template-columns:1fr 2fr 1fr;gap:25px;align-items:center}
-.rodape>strong{font-family:var(--display);font-weight:400;color:var(--preto);font-size:20px}
+.rodape>strong{font-family:var(--display); font-weight:400; font-synthesis:none;font-weight:400;color:var(--preto);font-size:20px}
 .rodape p{font-size:13px;line-height:1.5;margin:0}
 .rodape .credito-papelito{margin:0;padding:0;opacity:1;text-align:right;align-items:flex-end;display:flex;flex-direction:column;gap:6px}
 .rodape .credito-papelito svg{width:120px;height:28px}.rodape .credito-papelito span{font-size:12px}
@@ -809,12 +809,12 @@ body{background:#fff}
 .abertura-foto img{filter:none;object-position:center 40%;border-radius:2px}
 .abertura-foto figcaption{left:0;bottom:12px;right:auto;max-width:95%;padding:9px 12px;transform:rotate(-2deg);font-size:12px;background:var(--preto);color:var(--amarelo)}
 .modulo{border-radius:0;border:0;min-height:230px;padding:25px;box-shadow:none}
-.modulo .nome{font-family:var(--display);font-size:25px;font-weight:400;line-height:1.18;text-transform:uppercase;letter-spacing:0;max-width:14ch}
+.modulo .nome{font-family:var(--display); font-weight:400; font-synthesis:none;font-size:25px;font-weight:400;line-height:1.18;text-transform:uppercase;letter-spacing:0;max-width:14ch}
 .modulo .desc{font-size:16px;max-width:27ch}.modulo-numero{margin-bottom:20px}
-.m1{background:var(--preto)}.m2{background:var(--amarelo)}.m3{background:#ae69ff}
+.m1{background:var(--preto)}.m2{background:var(--amarelo)}.m3{background:#e8e6df}
 .modulo:hover{box-shadow:5px 5px 0 var(--preto);transform:translate(-2px,-2px)}
 .pontos-internos{border-top:2px solid var(--preto);margin-top:26px}
-.cabecalho-bloco h2{font-family:var(--display);font-weight:400;text-transform:uppercase;line-height:1.15;font-size:29px}
+.cabecalho-bloco h2{font-family:var(--display); font-weight:400; font-synthesis:none;font-weight:400;text-transform:uppercase;line-height:1.15;font-size:29px}
 .ponto-interno{border:1px solid var(--preto);border-radius:0;background:#f7f6f2}
 .ponto-interno .local-icone{background:var(--amarelo)}
 .impacto{border-radius:0;padding:38px 30px 30px;position:relative;background:var(--preto)}
@@ -823,7 +823,7 @@ body{background:#fff}
 .impacto-grade article{padding-top:0;border:none;min-width:0}
 .impacto-imagem{height:195px;margin-bottom:25px;overflow:hidden;background:#fcd930;display:flex;align-items:center;justify-content:center;transform:rotate(-1deg)}
 .impacto-imagem img{width:100%;height:100%;object-fit:cover}
-.impacto-grade article:nth-child(2) .impacto-imagem{background:#ae69ff;transform:rotate(1deg)}
+.impacto-grade article:nth-child(2) .impacto-imagem{background:var(--amarelo);transform:rotate(1deg)}
 .impacto-grade article:nth-child(2) .impacto-imagem img{object-fit:contain;padding:12px}
 .impacto-grade strong{font-size:clamp(35px,3.7vw,51px)}
 .impacto-grade p{font-size:16px;line-height:1.5}.impacto-grade h3{font-size:20px}
@@ -837,7 +837,7 @@ body{background:#fff}
 .selos-grade article:not(:has(img)){background:var(--amarelo);justify-content:center}
 .selos-grade h3{font-size:23px}.selos-grade p{font-size:15px}
 .fechamento-marca{background:var(--amarelo);display:grid;grid-template-columns:1.3fr 1fr;align-items:center;gap:20px;padding:40px;overflow:hidden}
-.fechamento-marca h2{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(30px,3.3vw,46px);line-height:1.12;max-width:19ch;margin:18px 0}
+.fechamento-marca h2{font-family:var(--display); font-weight:400; font-synthesis:none;font-weight:400;text-transform:uppercase;font-size:clamp(30px,3.3vw,46px);line-height:1.12;max-width:19ch;margin:18px 0}
 .fechamento-marca p{max-width:45ch;font-size:17px}
 .fechamento-marca>a,.fechamento-marca div>a{display:inline-flex;min-height:56px;align-items:center;background:var(--preto);color:var(--amarelo);padding:14px 20px;text-decoration:none;font-weight:700;margin-top:10px}
 .fechamento-marca img{width:100%;height:auto;max-height:320px;object-fit:contain}
@@ -932,3 +932,27 @@ body{background:#fff}
 .etapa-ja-lida{font-weight:700;color:#27663b}
 .resultado-nota{font-size:15px!important;line-height:1.6;max-width:640px;margin:22px auto}
 @media(max-width:760px){.integracao-abertura,.etapa-aula{grid-template-columns:1fr;gap:22px}.integracao-abertura{margin-top:24px}.integracao-abertura img{height:220px}.etapas{grid-template-columns:1fr}.etapa{padding:18px}.etapa-visual .foto-guia{height:230px}.etapa-passos,.etapa-pratica,.etapa-exemplo{padding:20px}.integracao-progresso{padding:22px}}
+
+/* Revisão final do Marketing: paleta institucional e leitura sem negrito sintético. */
+.abertura h1{line-height:1.18}
+.abertura-foto img,.integracao-abertura img{object-fit:contain;padding:28px;background:var(--amarelo)}
+.aviso-offline{color:var(--preto);padding-top:16px}
+.aviso-offline svg{color:var(--preto)}
+.secao-banner.cor-m2,.secao-banner.cor-m3{background:var(--preto);color:var(--amarelo)}
+.seguranca-etapas li{background:#f3f1e9;border-top-color:var(--amarelo)}
+.etapa-numero,.risco-link{color:var(--preto)}
+.risco{border-bottom-color:var(--amarelo)}
+.faixa.risco-faixa{background:var(--preto);color:var(--amarelo)}
+.bloco.perigo{background:#fff8d6;border-left-color:var(--amarelo)}
+.bloco.perigo h3,.bloco.perigo h3 .ic-bloco,.risco-selo svg{color:var(--preto)}
+.risco-selo{background:var(--amarelo)}
+.integracao-dica{border-left-color:var(--amarelo);background:#f3f1e9}
+.etapa[data-feita="1"]{background:#fff8d6;border-color:var(--amarelo)}
+.etapa[data-feita="1"] .mk{background:var(--preto);color:var(--amarelo)}
+.etapa-passos li::marker,.etapa-ja-lida{color:var(--preto)}
+.ic-etapa,.etapa-cabecalho .ic-titulo{filter:grayscale(1)}
+.etapa-navegacao{display:flex;flex-wrap:wrap;gap:12px;margin:20px 0}
+.etapa-navegacao .acao{width:auto;flex:1;min-width:160px;margin:0;font-family:var(--texto);font-size:17px;font-weight:700;text-transform:none;line-height:1.4;padding:16px}
+.etapa-navegacao .acao.claro{background:#eeeae1;color:var(--preto)}
+.selos-grade{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+@media(max-width:480px){.selos-grade{grid-template-columns:1fr}.abertura-foto{height:220px}.abertura-foto img{padding:12px 24px 48px}}

@@ -1,7 +1,7 @@
 /* ReciclaLito — funcionamento sem internet.
    Ao publicar uma alteração, troque o número da VERSAO abaixo.
    Isso faz o celular baixar a versão nova em vez de usar a antiga. */
-const VERSAO = 'reciclalito-v22';
+const VERSAO = 'reciclalito-v23';
 
 const ARQUIVOS = [
   './fotos/materiais/papel.webp',
@@ -18,7 +18,7 @@ const ARQUIVOS = [
   './fotos/materiais/toner.webp',
   './fotos/materiais/bitucas.webp',
 
-  './fotos/marca/acao.webp',
+  './fotos/marca/fsc.svg',
   './fotos/marca/arvore.svg',
   './fotos/marca/arvores-selo.svg',
   './fotos/marca/brasil.svg',

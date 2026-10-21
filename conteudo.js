@@ -453,7 +453,7 @@ const CONTEUDO = {
     "titulo": "Conheça os pontos da Papelito",
     "resumo": "Financeiro e Marketing fazem parte da rotina.",
     "imagem": "eletronico",
-    "texto": "Há dois pontos internos informados para pilhas, baterias e pequenos eletrônicos: Financeiro e Marketing. A equipe orienta o recebimento e o encaminhamento ao coletivo parceiro.",
+    "texto": "Temos dois pontos internos para pilhas, baterias e pequenos eletrônicos: Financeiro, no 1º andar, e Marketing, no 2º andar do bloco administrativo. A equipe orienta o recebimento e o encaminhamento ao coletivo parceiro.",
     "passos": [
       "Confira o tipo, o tamanho e o estado do item antes de levá-lo.",
       "Separe os resíduos de embalagens, líquidos e restos de alimento.",
@@ -695,7 +695,7 @@ const CONTEUDO = {
    Somente locais confirmados são exibidos. Revisar estes dados quando a rotina mudar. */
 CONTEUDO.guia = {
   chamada: 'Sustentabilidade na prática',
-  apoio: 'Separe com cuidado. Descarte no lugar certo. Faça parte dessa mudança.',
+  apoio: 'Separe com cuidado. Descarte no lugar certo.',
   foto: 'fotos/reciclagem.jpg', fotoAlt: 'Materiais separados para reciclagem',
   fotoLegenda: 'CADA MATERIAL TEM SEU CAMINHO.',
   assinatura: 'Uma iniciativa Papelito',
@@ -716,17 +716,17 @@ CONTEUDO.guia = {
   descarteRotulo: 'Descarte aqui', podeRotulo: 'Pode descartar', naoRotulo: 'Não descarte',
   depoisRotulo: 'E depois?', parceriaRotulo: 'Parceria',
   selosTitulo: 'Certificações & compromissos',
-  selosIntro: 'Conheça os compromissos declarados pela Papelito.',
+  selosIntro: '',
   mais: 'Saiba mais',
   impactoTitulo: 'Sustentabilidade que chega à rotina.',
   impactoIntro: 'Compromissos declarados pela Papelito e registrados neste projeto.',
-  impactoNota: 'Indicadores institucionais, não uma medição em tempo real.',
+  impactoNota: '',
   rodapeTitulo: 'ReciclaLito',
   offline: 'Depois do primeiro acesso, funciona sem internet.'
 };
 CONTEUDO.pontosInternos = [
-  { id: 'financeiro', tipo: 'eletronicos', local: 'Financeiro', aceita: ['Pilhas', 'Baterias', 'Pequenos eletrônicos'], referencia: null, parceiro: null },
-  { id: 'marketing', tipo: 'eletronicos', local: 'Marketing', aceita: ['Pilhas', 'Baterias', 'Pequenos eletrônicos'], referencia: null, parceiro: null }
+  { id: 'financeiro', tipo: 'eletronicos', local: 'Financeiro', aceita: ['Pilhas', 'Baterias', 'Pequenos eletrônicos'], referencia: '1º andar do bloco administrativo', parceiro: null },
+  { id: 'marketing', tipo: 'eletronicos', local: 'Marketing', aceita: ['Pilhas', 'Baterias', 'Pequenos eletrônicos'], referencia: '2º andar do bloco administrativo', parceiro: null }
 ];
 // TODO PAPELITO: confirmar limites dos itens aceitos e nome do coletivo parceiro.
 CONTEUDO.bitucas = {
@@ -738,15 +738,15 @@ CONTEUDO.bitucas = {
   parceria: { nome: 'Poiato Recicla', descricao: 'Parceria de destinação e reciclagem de bitucas informada pela Papelito.' }
 };
 CONTEUDO.certificacoes = [
-  // TODO PAPELITO: conteúdo FSC aprovado, escopo, licença, link e imagem oficial.
-  { nome: 'FSC', tipo: 'Certificação', descricao: null, imagem: null, link: null, aprovado: false },
-  { nome: 'Carbono Zerado', tipo: 'Compromisso', descricao: 'A empresa declara compensar as emissões de carbono da sua produção desde 2021.', aprovado: true },
-  { nome: 'Poiato Recicla', tipo: 'Parceria', descricao: 'Destinação de bitucas para reciclagem especializada.', aprovado: true, destino: '#material/bitucas' }
+  // FSC incluído conforme revisão do Marketing e conteúdo oficial consultado em 21/10/2026.
+  { nome: 'FSC', tipo: 'Certificação', descricao: 'Priorizamos madeira de reflorestamento e processos que garantem os direitos dos trabalhadores durante a extração.', imagem: 'fotos/marca/fsc.svg', link: 'https://www.papelito.com/sustentabilidade', aprovado: true },
+  { nome: 'Carbono Zerado', tipo: 'Compromisso', descricao: 'Compensamos as emissões de carbono dos nossos produtos desde o início, em 2021.', aprovado: true },
+  { nome: 'Poiato Recicla', tipo: 'Parceria', descricao: 'Encaminhamos bitucas para reciclagem especializada em parceria com a Poiato Recicla.', aprovado: true, destino: '#material/bitucas' }
 ];
 CONTEUDO.impacto = [
-  { numero: '100%', titulo: 'Energia solar', texto: 'A empresa afirma que toda a produção é abastecida por energia solar.' },
-  { numero: '2×', titulo: 'Mais reciclagem', texto: 'A empresa declara financiar a reciclagem do dobro do resíduo que produz por mês, desde 2021.' },
-  { numero: '100 mil', titulo: 'Árvores até 2027', texto: 'Meta de plantio declarada pela Papelito.' }
+  { numero: '100%', titulo: 'Energia solar', texto: 'Nossa produção é 100% abastecida por energia solar.' },
+  { numero: '2×', titulo: 'Mais reciclagem', texto: 'Reciclamos o dobro do que produzimos e do que você consome.' },
+  { numero: '100 mil', titulo: 'Árvores até 2027', texto: 'Temos a meta de plantar 100 mil árvores até 2027.' }
 ];
 CONTEUDO.materiais.push({
   id: 'bitucas', nome: 'Bitucas de cigarro', cor: '#231F20', texto: 'claro', simbolo: 'separar',
@@ -760,11 +760,11 @@ CONTEUDO.itens.push({ nome: 'Eletrônicos', busca: 'eletronico eletrônicos apar
 
 /* Identidade visual oficial: https://www.papelito.com/sustentabilidade
    Imagens locais consultadas em 25/09/2026; não alteram o escopo de certificações. */
-CONTEUDO.guia.foto = 'fotos/marca/acao.webp';
-CONTEUDO.guia.fotoAlt = 'Participantes da ação Fevereiro Verde da Papelito em uma praia';
-CONTEUDO.guia.fotoLegenda = 'PAPELITO EM AÇÃO • FEVEREIRO VERDE';
+CONTEUDO.guia.foto = 'fotos/marca/reciclagem.svg';
+CONTEUDO.guia.fotoAlt = 'Ilustração oficial da Papelito sobre o cuidado com a natureza';
+CONTEUDO.guia.fotoLegenda = 'NOSSO PAPEL É CUIDAR.';
 CONTEUDO.guia.impactoTitulo = 'Nosso papel é cuidar.';
-CONTEUDO.guia.impactoIntro = 'Da energia que move a produção ao cuidado com o destino dos resíduos.';
+CONTEUDO.guia.impactoIntro = 'Cuidamos de cada etapa: da energia que move nossa produção ao destino dos resíduos.';
 CONTEUDO.guia.fonteRotulo = 'Conheça as iniciativas no site da Papelito';
 CONTEUDO.guia.fonteUrl = 'https://www.papelito.com/sustentabilidade';
 CONTEUDO.guia.fechamentoTitulo = 'O próximo passo começa com você.';
@@ -778,8 +778,8 @@ CONTEUDO.impacto[1].alt = 'Ilustração oficial Papelito de cuidado com a nature
 CONTEUDO.impacto[2].imagem = 'fotos/marca/floresta.webp';
 CONTEUDO.impacto[2].alt = 'Reflorestamento na comunicação oficial da Papelito';
 CONTEUDO.certificacoes[1].imagem = 'fotos/marca/carbono.svg';
-CONTEUDO.certificacoes.push({ nome: '100 mil árvores', tipo: 'Meta até 2027', descricao: 'Meta de plantio divulgada pela Papelito. Cada árvore faz parte de um compromisso de longo prazo.', imagem: 'fotos/marca/arvores-selo.svg', aprovado: true });
-CONTEUDO.certificacoes.push({ nome: 'Indústria brasileira', tipo: 'Origem', descricao: 'Produção nacional e uma identidade conectada à cultura brasileira.', imagem: 'fotos/marca/brasil.svg', aprovado: true });
+CONTEUDO.certificacoes.push({ nome: '100 mil árvores', tipo: 'Meta até 2027', descricao: 'Vamos plantar 100 mil árvores na Amazônia até 2027. Cada árvore faz parte do nosso compromisso de longo prazo.', imagem: 'fotos/marca/arvores-selo.svg', aprovado: true });
+CONTEUDO.certificacoes.push({ nome: 'Indústria brasileira', tipo: 'Origem', descricao: 'Somos uma indústria brasileira e valorizamos a cultura que inspira tudo o que fazemos.', imagem: 'fotos/marca/brasil.svg', aprovado: true });
 
 /* Guia visual e segurança: atualização solicitada em setembro de 2026. */
 CONTEUDO.guia.naoComum = 'Coleta de pilhas e pequenos eletrônicos';
@@ -926,7 +926,7 @@ CONTEUDO.integracao = {
   antes: 'Antes de começar',
   antesTexto: 'Pense nos resíduos que aparecem no seu setor. Ao longo da trilha, procure os pontos de descarte e converse com a equipe quando surgir uma dúvida.',
   passos: 'O que fazer na prática', exemplo: 'Uma situação do dia a dia', pratica: 'Experimente no seu setor',
-  lida: 'Marcar como lida', concluida: 'Etapa já lida', proxima: 'Ir para a próxima etapa',
+  lida: 'Marcar como lida', concluida: 'Etapa já lida', proxima: 'Próxima etapa', anterior: 'Etapa anterior',
   ficha: 'Consultar a ficha do material', voltar: 'Ver todas as etapas',
   rotulo: 'Etapa', de: 'de', pendente: 'Para ler', feito: 'Lida',
   verificar: 'Fazer a verificação', quizFeito: 'Respondida',

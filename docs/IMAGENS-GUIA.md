@@ -15,3 +15,10 @@ Arquivos redimensionados e convertidos para WebP. Não representam instalações
 - `fotos/materiais/placas.webp` — Raimond Spekking · CC BY-SA 4.0. [Fonte e licença](https://en.wikipedia.org/wiki/File:SEG_DVD_430_-_Printed_circuit_board-4276.jpg).
 - `fotos/materiais/toner.webp` — Sir James · domínio público. [Fonte e licença](https://en.wikipedia.org/wiki/File:Tonerkassette_Laserdrucker_HP.jpg).
 - `fotos/materiais/bitucas.webp` — Bundesärztekammer. [Fonte e licença](https://www.bundesaerztekammer.de/themen/aerzte/public-health/suchtmedizin/tabak).
+
+
+### Revisão do Marketing — 21/10/2026
+A ilustração oficial de reciclagem substitui a foto da ação Fevereiro Verde na abertura e integração.
+Selo FSC obtido sem alterações do site oficial de sustentabilidade:
+https://cms.papelito.com/wp-content/uploads/2025/12/tree.svg
+Arquivo local: fotos/marca/fsc.svg. Uso solicitado pela revisão do Marketing.

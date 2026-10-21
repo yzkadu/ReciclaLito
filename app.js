@@ -110,7 +110,7 @@
 
   function telaInicio() {
     var t = C.textos, g = C.guia;
-    return '<section class="abertura">' +
+    return '<div class="aviso-offline">' + icone('manusear') + '<span>' + esc(g.offline) + '</span></div>' + '<section class="abertura">' +
       '<div class="abertura-texto"><span class="sobretitulo">' + esc(g.chamada) + '</span>' +
       '<h1>' + esc(t.subtitulo) + '</h1><p>' + esc(g.apoio) + '</p></div>' +
       '<figure class="abertura-foto"><img src="' + esc(g.foto) + '" alt="' + esc(g.fotoAlt) + '" width="640" height="480"><figcaption>' + esc(g.fotoLegenda) + '</figcaption></figure></section>' +
@@ -118,7 +118,6 @@
       '<div id="grade"><div class="atalhos"><span>' + esc(g.atalhoTitulo) + '</span>' +
       g.atalhos.map(function (x) { return '<a href="' + esc(x.destino) + '">' + esc(x.nome) + '<span aria-hidden="true">↗</span></a>'; }).join('') + '</div>' +
       '<nav class="modulos">' + botaoModulo('m1', '#materiais', t.modulo1, t.modulo1desc) + botaoModulo('m2', '#riscos', t.modulo2, t.modulo2desc) + botaoModulo('m3', '#trilha', t.modulo3, t.modulo3desc) + '</nav>' +
-      '<div class="aviso-offline">' + icone('manusear') + '<span>' + esc(g.offline) + '</span></div>' +
       blocoPontosInternos() + blocoImpacto() + blocoCertificacoes() + blocoFechamento() +
       '<footer class="rodape"><strong>' + esc(g.rodapeTitulo) + '</strong><p>' + esc(t.rodape) + '</p>' + LOGO_PAPELITO + '</footer></div>';
   }
@@ -132,12 +131,12 @@
   function blocoEmpresa(id) {
     if (['eletronico', 'baterias', 'cabos'].indexOf(id) === -1) return '';
     var g = C.guia;
-    return '<section class="bloco empresa"><span class="sobretitulo">' + esc(g.naPapelito) + '</span><h3>' + esc(g.naoComum) + '</h3><div class="locais-inline">' + C.pontosInternos.map(function(p) { return '<span>' + esc(p.local) + '</span>'; }).join('') + '</div><p>' + esc(C.pontosInternos[0].aceita.join(' · ')) + '</p><p>' + esc(g.conferir) + '</p><p>' + esc(g.destino) + '</p></section>';
+    return '<section class="bloco empresa"><span class="sobretitulo">' + esc(g.naPapelito) + '</span><h3>' + esc(g.naoComum) + '</h3><div class="locais-inline">' + C.pontosInternos.map(function(p) { return '<span>' + esc(p.local) + (p.referencia ? ' — ' + esc(p.referencia) : '') + '</span>'; }).join('') + '</div><p>' + esc(C.pontosInternos[0].aceita.join(' · ')) + '</p><p>' + esc(g.conferir) + '</p><p>' + esc(g.destino) + '</p></section>';
   }
 
   function blocoImpacto() {
     var g = C.guia;
-    return '<section id="parceria" class="impacto"><div class="cabecalho-bloco"><div><span class="sobretitulo">' + esc(g.chamada) + '</span><h2>' + esc(g.impactoTitulo) + '</h2></div><p>' + esc(g.impactoIntro) + '</p></div><div class="impacto-grade">' + C.impacto.map(function(i) { return '<article><div class="impacto-imagem"><img src="' + esc(i.imagem) + '" alt="' + esc(i.alt) + '" width="600" height="360" loading="lazy"></div><strong>' + esc(i.numero) + '</strong><h3>' + esc(i.titulo) + '</h3><p>' + esc(i.texto) + '</p></article>'; }).join('') + '</div><p class="nota-impacto">' + esc(g.impactoNota) + '</p><a class="fonte-marca" href="' + esc(g.fonteUrl) + '" target="_blank" rel="noopener noreferrer">' + esc(g.fonteRotulo) + ' ↗</a></section>';
+    return '<section id="parceria" class="impacto"><div class="cabecalho-bloco"><div><span class="sobretitulo">' + esc(g.chamada) + '</span><h2>' + esc(g.impactoTitulo) + '</h2></div><p>' + esc(g.impactoIntro) + '</p></div><div class="impacto-grade">' + C.impacto.map(function(i) { return '<article><div class="impacto-imagem"><img src="' + esc(i.imagem) + '" alt="' + esc(i.alt) + '" width="600" height="360" loading="lazy"></div><strong>' + esc(i.numero) + '</strong><h3>' + esc(i.titulo) + '</h3><p>' + esc(i.texto) + '</p></article>'; }).join('') + '</div>' + (g.impactoNota ? '<p class="nota-impacto">' + esc(g.impactoNota) + '</p>' : '') + '<a class="fonte-marca" href="' + esc(g.fonteUrl) + '" target="_blank" rel="noopener noreferrer">' + esc(g.fonteRotulo) + ' ↗</a></section>';
   }
 
   function blocoFechamento() {
@@ -148,7 +147,7 @@
   function blocoCertificacoes() {
     var lista = (C.certificacoes || []).filter(function(c) { return c.aprovado && c.descricao; });
     if (!lista.length) return '';
-    return '<section class="certificacoes"><div class="cabecalho-bloco"><h2>' + esc(C.guia.selosTitulo) + '</h2><p>' + esc(C.guia.selosIntro) + '</p></div><div class="selos-grade">' + lista.map(function(c) {
+    return '<section class="certificacoes"><div class="cabecalho-bloco"><h2>' + esc(C.guia.selosTitulo) + '</h2>' + (C.guia.selosIntro ? '<p>' + esc(C.guia.selosIntro) + '</p>' : '') + '</div><div class="selos-grade">' + lista.map(function(c) {
       return '<article><span class="sobretitulo">' + esc(c.tipo) + '</span>' + (c.imagem ? '<img width="100" height="100" src="' + esc(c.imagem) + '" alt="' + esc(c.nome) + '">' : '') + '<h3>' + esc(c.nome) + '</h3><p>' + esc(c.descricao) + '</p>' + (c.destino || c.link ? '<a href="' + esc(c.destino || c.link) + '">' + esc(C.guia.mais) + ' ↗</a>' : '') + '</article>';
     }).join('') + '</div></section>';
   }
@@ -400,7 +399,7 @@
       '<div class="seguranca-cabecalho"><h2>' + esc(g.materiaisTitulo) + '</h2><p>' + esc(g.materiaisIntro) + '</p></div><div class="riscos">' + itens + '</div>' +
       '<section class="protecao reveal"><span class="marca-agua" aria-hidden="true">R</span><h3>' + esc(g.protecaoTitulo) + '</h3><ul>' + epi + '</ul></section>' +
       '<div class="blocos">' + campo(g.encerramentoTitulo, g.encerramento, false, 'manusear') + '</div>' +
-      '<section class="seguranca-entrega"><span class="sobretitulo">' + esc(C.guia.naPapelito) + '</span><h2>' + esc(g.entregaTitulo) + '</h2><p>' + esc(g.entregaIntro) + '</p><div class="locais-inline">' + C.pontosInternos.map(function(p) { return '<span>' + esc(p.local) + '</span>'; }).join('') + '</div><p>' + esc(g.bitucas) + '</p><a href="#material/bitucas">' + esc(g.bitucasAcao) + ' ↗</a></section>' +
+      '<section class="seguranca-entrega"><span class="sobretitulo">' + esc(C.guia.naPapelito) + '</span><h2>' + esc(g.entregaTitulo) + '</h2><p>' + esc(g.entregaIntro) + '</p><div class="locais-inline">' + C.pontosInternos.map(function(p) { return '<span>' + esc(p.local) + (p.referencia ? ' — ' + esc(p.referencia) : '') + '</span>'; }).join('') + '</div><p>' + esc(g.bitucas) + '</p><a href="#material/bitucas">' + esc(g.bitucasAcao) + ' ↗</a></section>' +
       '<div class="leitura"><button class="acao urgente" data-ir="#emergencia">' + esc(C.textos.emergencia) + '</button></div>' +
       '<details class="referencias-guia"><summary>' + esc(g.referenciaRotulo) + '</summary><ul>' + g.referencias.map(function(f) { return '<li><a href="' + esc(f.url) + '" target="_blank" rel="noopener noreferrer">' + esc(f.nome) + '</a></li>'; }).join('') + '</ul></details>';
   }
@@ -481,7 +480,9 @@
         '<span class="etapa-conteudo"><span class="etapa-status">' + esc(ok === '1' ? (ultima ? g.quizFeito : g.feito) : (ultima ? g.verificar : g.pendente)) + '</span><span class="tt">' + esc(e.titulo) + '</span><span class="etapa-resumo">' + esc(e.resumo || '') + '</span></span>' +
         icone(iconeEtapa(e), 'ic-etapa') + '</button>';
     }).join('');
-    var acao = pendentes.length ? '<button class="acao" data-ir="#etapa/' + pendentes[0].id + '">' + esc(feitas ? g.continuar : g.comecar) + '</button>' : '<button class="acao claro" data-ir="#concluido">Ver meu comprovante</button>';
+    var retomar = acha(C.trilha, p.ultimaEtapa);
+    var destino = retomar && !p[retomar.id] ? retomar : pendentes[0];
+    var acao = pendentes.length ? '<button class="acao" data-ir="#etapa/' + destino.id + '">' + esc(feitas || retomar ? g.continuar : g.comecar) + '</button>' : '<button class="acao claro" data-ir="#concluido">Ver meu comprovante</button>';
     return faixaSecao('cor-m3', C.textos.modulo3) +
       '<section class="integracao-abertura"><div><span class="sobretitulo">' + esc(g.chamada) + '</span><h2>' + esc(g.titulo) + '</h2><p>' + esc(g.intro) + '</p><p class="integracao-tempo">' + esc(g.tempo) + '</p>' + acao + '</div><figure><img src="' + esc(C.guia.foto) + '" alt="' + esc(C.guia.fotoAlt) + '" width="600" height="440"><figcaption>' + esc(C.guia.fotoLegenda) + '</figcaption></figure></section>' +
       '<section class="integracao-progresso"><h2>' + esc(g.etapasTitulo) + '</h2><p>' + esc(g.salvo) + '</p><div class="barra" role="progressbar" aria-label="' + esc(g.etapasTitulo) + '" aria-valuenow="' + feitas + '" aria-valuemin="0" aria-valuemax="' + C.trilha.length + '"><i style="width:' + pct + '%"></i></div><p class="barra-rot">' + feitas + ' de ' + C.trilha.length + ' concluídas</p></section>' +
@@ -493,26 +494,38 @@
     if (!e) return telaTrilha();
     if (id === C.trilha[C.trilha.length - 1].id) return telaPerguntas();
     var indice = C.trilha.indexOf(e), proxima = C.trilha[indice + 1], p = lerProgresso();
+    var anterior = C.trilha[indice - 1];
+    var navegacao = '<nav class="etapa-navegacao">' +
+      (anterior ? '<button class="acao claro" data-ir="#etapa/' + anterior.id + '">' + esc(g.anterior) + '</button>' : '') +
+      (proxima ? '<button class="acao" data-ir="#etapa/' + proxima.id + '">' + esc(g.proxima) + ' →</button>' : '') + '</nav>';
     var ver = '';
     if (e.ver) {
       var alvo = (e.ver.modulo === 'materiais' ? '#material/' : '#risco/') + e.ver.id;
       ver = '<button class="link-ver" data-ir="' + alvo + '">' + esc(g.ficha) + '</button>';
     }
-    return '<div class="etapa-cabecalho"><span class="sobretitulo">' + esc(g.rotulo) + ' ' + (indice + 1) + ' ' + esc(g.de) + ' ' + C.trilha.length + '</span><h1 class="titulo-secao com-icone">' + icone(iconeEtapa(e), 'ic-titulo') + '<span>' + esc(e.titulo) + '</span></h1><p>' + esc(e.resumo || '') + '</p></div>' +
+    return '<div class="etapa-cabecalho"><span class="sobretitulo">' + esc(g.rotulo) + ' ' + (indice + 1) + ' ' + esc(g.de) + ' ' + C.trilha.length + '</span><h1 class="titulo-secao com-icone">' + icone(iconeEtapa(e), 'ic-titulo') + '<span>' + esc(e.titulo) + '</span></h1><p>' + esc(e.resumo || '') + '</p>' + navegacao + '</div>' +
       '<div class="etapa-aula"><div class="etapa-visual">' + fotoGuia(e, true) + ver + '</div><div class="leitura reveal"><p class="etapa-contexto">' + esc(e.texto) + '</p>' +
       '<section class="etapa-passos"><h2>' + esc(g.passos) + '</h2><ol>' + (e.passos || []).map(function(x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ol></section>' +
       '<section class="etapa-exemplo"><h2>' + esc(g.exemplo) + '</h2><p>' + esc(e.exemplo || '') + '</p></section><section class="etapa-pratica"><h2>' + esc(g.pratica) + '</h2><p>' + esc(e.pratica || '') + '</p></section>' +
       (p[id] ? '<p class="etapa-ja-lida">✓ ' + esc(g.concluida) + '</p>' : '') +
       '<button class="acao" data-concluir="' + e.id + '">' + esc(g.lida) + '</button>' +
-      (proxima ? '<button class="link-ver" data-ir="#etapa/' + proxima.id + '">' + esc(g.proxima) + '</button>' : '') +
+      navegacao +
       '<button class="link-ver" data-ir="#trilha">' + esc(g.voltar) + '</button></div></div>';
   }
 
   /* ---------- verificação final ---------- */
-  var qAtual = 0, qAcertos = 0, qOrdem = [];
+  var qAtual = 0, qAcertos = 0, qOrdem = [], qResposta = null;
 
-  function telaPerguntas(reiniciar) {
-    if (reiniciar !== false) { qAtual = 0; qAcertos = 0; }
+  function guardarPerguntas() {
+    var p = lerProgresso();
+    p.quiz = { atual: qAtual, acertos: qAcertos, resposta: qResposta, total: C.perguntas.length };
+    salvarProgresso(p);
+  }
+  function telaPerguntas() {
+    var salvo = lerProgresso().quiz;
+    if (salvo && salvo.total === C.perguntas.length && salvo.atual >= 0 && salvo.atual < C.perguntas.length) {
+      qAtual = salvo.atual; qAcertos = salvo.acertos; qResposta = salvo.resposta;
+    } else { qAtual = 0; qAcertos = 0; qResposta = null; }
     return montaPergunta();
   }
   function montaPergunta() {
@@ -532,7 +545,7 @@
       '<div class="opcoes">' + ops + '</div><p class="retorno" id="retorno" role="status"></p></section>';
   }
 
-  function responder(pos) {
+  function responder(pos, restaurar) {
     var q = C.perguntas[qAtual];
     var escolhida = qOrdem[pos];
     var bts = main.querySelectorAll('.opcao');
@@ -542,17 +555,21 @@
       else if (k === pos) bts[k].dataset.estado = 'errada';
     }
     var certo = (escolhida === q.certa);
-    if (certo) qAcertos++;
+    if (!restaurar) {
+      if (certo) qAcertos++;
+      qResposta = escolhida; guardarPerguntas();
+    }
     var ret = document.getElementById('retorno');
     ret.textContent = (certo ? C.integracao.acerto : C.integracao.erro) + (q.explicacao ? ' ' + q.explicacao : '');
     var b = document.createElement('button');
     b.className = 'acao';
     b.textContent = (qAtual < C.perguntas.length - 1) ? 'Próxima pergunta' : 'Ver resultado';
     b.addEventListener('click', function () {
-      if (qAtual < C.perguntas.length - 1) { qAtual++; pinta(montaPergunta()); }
+      if (qAtual < C.perguntas.length - 1) { qAtual++; qResposta = null; guardarPerguntas(); pinta(montaPergunta()); }
       else {
         var p = lerProgresso();
         p[C.trilha[C.trilha.length - 1].id] = true;
+        delete p.quiz;
         p.acertos = qAcertos;
         p.total = C.perguntas.length;
         p.data = new Date().toLocaleDateString('pt-BR');
@@ -650,12 +667,29 @@
     if (location.hash === hash) render(); else location.hash = hash;
   }
 
+  var indiceNavegacao = (history.state && history.state.reciclalitoIndice) || 0;
+  function registrarNavegacao() {
+    if (history.state && typeof history.state.reciclalitoIndice === 'number') {
+      indiceNavegacao = history.state.reciclalitoIndice;
+    } else {
+      indiceNavegacao++;
+      history.replaceState({ reciclalitoIndice: indiceNavegacao }, '');
+    }
+    render();
+  }
+  history.replaceState({ reciclalitoIndice: indiceNavegacao }, '');
+
   function render() {
     document.getElementById('assinaturaTopo').innerHTML = LOGO_PAPELITO;
     var h = location.hash || '#inicio';
     var parte = h.split('/');
     var raiz = parte[0];
     var id = parte[1];
+    if (raiz === '#etapa' && acha(C.trilha, id)) {
+      var progresso = lerProgresso();
+      progresso.ultimaEtapa = id;
+      salvarProgresso(progresso);
+    }
 
     btVoltar.hidden = (raiz === '#inicio');
     document.body.dataset.tela = raiz.slice(1);
@@ -671,7 +705,13 @@
     else if (raiz === '#emergencia') pinta(telaEmergencia());
     else if (raiz === '#risco') pinta(telaRisco(id));
     else if (raiz === '#trilha') pinta(telaTrilha());
-    else if (raiz === '#etapa') pinta(telaEtapa(id));
+    else if (raiz === '#etapa') {
+      pinta(telaEtapa(id));
+      if (id === C.trilha[C.trilha.length - 1].id && qResposta !== null) {
+        var posicao = qOrdem.indexOf(qResposta);
+        if (posicao !== -1) responder(posicao, true);
+      }
+    }
     else if (raiz === '#concluido') pinta(telaConcluido());
     else pinta(telaInicio());
   }
@@ -710,7 +750,7 @@
     }
   });
 
-  /* Voltar leva para a tela de cima, não para fora do app */
+  /* Voltar respeita o caminho percorrido. Acesso direto usa a seção de origem. */
   var PAI = {
     '#materiais': '#inicio', '#material': '#materiais', '#item': '#materiais',
     '#riscos': '#inicio', '#risco': '#riscos', '#emergencia': '#riscos',
@@ -718,11 +758,12 @@
   };
   btVoltar.addEventListener('click', function () {
     var raiz = (location.hash || '#inicio').split('/')[0];
-    irPara(PAI[raiz] || '#inicio');
+    if (indiceNavegacao > 0) history.back();
+    else irPara(PAI[raiz] || '#inicio');
   });
   document.getElementById('marca').addEventListener('click', function () { irPara('#inicio'); });
 
-  window.addEventListener('hashchange', render);
+  window.addEventListener('hashchange', registrarNavegacao);
   render();
 
   /* ---------- instalação no celular ---------- */

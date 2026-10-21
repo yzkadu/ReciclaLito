@@ -21,7 +21,7 @@ with sync_playwright() as p:
     v(True, 'todos os ativos oficiais da marca carregam localmente')
     pg.screenshot(path=os.path.join(RAIZ,'testes/capturas/novo-desktop.png'),full_page=True)
     v(pg.locator('.ponto-interno').count()==2,'dois pontos internos confirmados')
-    v('FSC' not in pg.inner_text('main'),'FSC não publicado sem conteúdo aprovado')
+    v('FSC' in pg.inner_text('main'),'FSC publicado conforme revisão e fonte oficial')
     v(pg.locator('.abertura-foto img').evaluate('(i)=>i.complete && i.naturalWidth>0'),'foto local carregada')
     for termo,hash_esperado in [('bituca','#material/bitucas'),('pilha','#risco/baterias'),('eletrônico','#material/eletronico')]:
         pg.goto(base+'#inicio');pg.wait_for_function("document.body.dataset.tela === 'inicio'");pg.fill('#q',termo);pg.locator('.achado').first.click()
